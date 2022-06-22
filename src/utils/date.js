@@ -8,7 +8,6 @@
  * getDateWeekday('2022-05-13') // 'Fri'
  */
 export function getDateWeekday(date) {
-	// typ contoll
 	let day = null;
 
 	if (typeof date === 'string') {

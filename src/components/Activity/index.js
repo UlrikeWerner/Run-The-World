@@ -9,21 +9,21 @@ import {
 } from '../../utils/date';
 
 export default function ActivityResult({activity}) {
-	const durationData = secondToDurationData(activity.duration);
+	const durationData = createDurationString(secondToDurationData(activity.duration));
 	return (
 		<ActivityContainer>
 			<section>
-				<h2>{getDateWeekday(activity.date)}</h2>
-				<p>{getDateDay(activity.date)}.</p>
-				<p>{getDateMonth(activity.date)}</p>
+				<h2>{getDateWeekday(activity.date) ? getDateWeekday(activity.date) : ''}</h2>
+				<p>{getDateDay(activity.date) ? getDateDay(activity.date) : ''}.</p>
+				<p>{getDateMonth(activity.date) ? getDateMonth(activity.date) : ''}</p>
 			</section>
 			<section>
 				<p>distance</p>
-				<p>{activity.distance / 1000}km</p>
+				<p>{activity.distance ? activity.distance / 1000 + 'km' : ''}</p>
 			</section>
 			<section>
 				<p>duration</p>
-				<p>{createDurationString(durationData)}</p>
+				<p>{durationData ? durationData : ''}</p>
 			</section>
 		</ActivityContainer>
 	);
