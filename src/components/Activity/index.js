@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
-import {getDateWeekday, getDateDay, getDateMonth} from '../../utils/date';
-import {secondToDurationData} from '../../utils/unit';
+import {
+	secondToDurationData,
+	createDurationString,
+	getDateWeekday,
+	getDateDay,
+	getDateMonth,
+} from '../../utils/date';
 
 export default function ActivityResult({activity}) {
-	const test = secondToDurationData(activity.duration);
+	const durationData = secondToDurationData(activity.duration);
 	return (
 		<ActivityContainer>
 			<section>
@@ -18,7 +23,7 @@ export default function ActivityResult({activity}) {
 			</section>
 			<section>
 				<p>duration</p>
-				<p>{/*secondToDurationData(activity.duration)*/}</p>
+				<p>{createDurationString(durationData)}</p>
 			</section>
 		</ActivityContainer>
 	);
