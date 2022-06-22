@@ -16,7 +16,9 @@ export default function ResultsPage() {
 				<meta key="description" name="description" content="Results" />
 			</Helmet>
 			<h1>Results of the Runs</h1>
-			<ActivityResult activity={activityList[0]} />
+			{activityList.map(item => {
+				return <ActivityResult key={item.id_} activity={item} />;
+			})}
 		</Layout>
 	);
 }

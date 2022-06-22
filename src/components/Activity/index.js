@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import {
 	secondToDurationData,
 	createDurationString,
@@ -8,29 +6,33 @@ import {
 	getDateMonth,
 } from '../../utils/date';
 
+import {
+	ActivityContainer,
+	DateContainer,
+	DayContainer,
+	DistanceContainer,
+	DurationContainer,
+} from './styled';
+
 export default function ActivityResult({activity}) {
 	const durationData = createDurationString(secondToDurationData(activity.duration));
 	return (
 		<ActivityContainer>
-			<section>
+			<DateContainer>
 				<h2>{getDateWeekday(activity.date) ? getDateWeekday(activity.date) : ''}</h2>
-				<p>{getDateDay(activity.date) ? getDateDay(activity.date) : ''}.</p>
-				<p>{getDateMonth(activity.date) ? getDateMonth(activity.date) : ''}</p>
-			</section>
-			<section>
-				<p>distance</p>
+				<DayContainer>
+					<p>{getDateDay(activity.date) ? getDateDay(activity.date) : ''}. </p>
+					<p>{getDateMonth(activity.date) ? getDateMonth(activity.date) : ''}</p>
+				</DayContainer>
+			</DateContainer>
+			<DistanceContainer>
+				<h3>distance</h3>
 				<p>{activity.distance ? activity.distance / 1000 + 'km' : ''}</p>
-			</section>
-			<section>
-				<p>duration</p>
+			</DistanceContainer>
+			<DurationContainer>
+				<h3>duration</h3>
 				<p>{durationData ? durationData : ''}</p>
-			</section>
+			</DurationContainer>
 		</ActivityContainer>
 	);
 }
-
-const ActivityContainer = styled.section`
-	display: flex;
-	border: 1px solid black;
-	margin: 0.3rem;
-`;
