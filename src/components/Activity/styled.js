@@ -4,8 +4,8 @@ const ActivityContainer = styled.section`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	border: 1px solid black;
-	border-radius: 15px;
 	margin: 0.3rem;
+	border-radius: 15px;
 `;
 
 const DateContainer = styled.section`
