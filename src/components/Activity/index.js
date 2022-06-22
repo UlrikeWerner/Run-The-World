@@ -14,20 +14,20 @@ import {
 	DurationContainer,
 } from './styled';
 
-export default function ActivityResult({activity}) {
-	const durationData = createDurationString(secondToDurationData(activity.duration));
+export default function ActivityResult({date, distance, duration}) {
+	const durationData = createDurationString(secondToDurationData(duration));
 	return (
 		<ActivityContainer>
 			<DateContainer>
-				<h2>{getDateWeekday(activity.date) ? getDateWeekday(activity.date) : ''}</h2>
+				<h2>{getDateWeekday(date) ? getDateWeekday(date) : ''}</h2>
 				<DayContainer>
-					<p>{getDateDay(activity.date) ? getDateDay(activity.date) : ''}. </p>
-					<p>{getDateMonth(activity.date) ? getDateMonth(activity.date) : ''}</p>
+					<p>{getDateDay(date) ? getDateDay(date) : ''}. </p>
+					<p>{getDateMonth(date) ? getDateMonth(date) : ''}</p>
 				</DayContainer>
 			</DateContainer>
 			<DistanceContainer>
 				<h3>distance</h3>
-				<p>{activity.distance ? activity.distance / 1000 + 'km' : ''}</p>
+				<p>{distance ? distance / 1000 + 'km' : ''}</p>
 			</DistanceContainer>
 			<DurationContainer>
 				<h3>duration</h3>

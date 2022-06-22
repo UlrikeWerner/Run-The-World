@@ -17,7 +17,14 @@ export default function ResultsPage() {
 			</Helmet>
 			<h1>Results of the Runs</h1>
 			{activityList.map(item => {
-				return <ActivityResult key={item.id_} activity={item} />;
+				return (
+					<ActivityResult
+						key={item.id_}
+						date={item.date}
+						distance={item.distance}
+						duration={item.duration}
+					/>
+				);
 			})}
 		</Layout>
 	);
