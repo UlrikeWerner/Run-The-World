@@ -16,13 +16,6 @@ const DateContainer = styled.section`
 	}
 `;
 
-const DayContainer = styled.div`
-	display: flex;
-	p {
-		margin: 0;
-	}
-`;
-
 const DistanceContainer = styled.section`
 	margin: 0.75rem 0 0.5rem;
 
@@ -49,4 +42,4 @@ const DurationContainer = styled.section`
 	}
 `;
 
-export {ActivityContainer, DateContainer, DayContainer, DistanceContainer, DurationContainer};
+export {ActivityContainer, DateContainer, DistanceContainer, DurationContainer};

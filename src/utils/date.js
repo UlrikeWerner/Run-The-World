@@ -1,8 +1,7 @@
 /**
  * Return day from the date
  *
- * @param {string} ||
- * @param {Date object} date
+ * @param {string} date || @param {Date object} date
  * @return {string}
  * @example
  * getDateWeekday('2022-05-13') // 'Fri'
@@ -15,11 +14,11 @@ export function getDateWeekday(date) {
 	} else if (typeof date === 'object') {
 		try {
 			day = date.getDay();
-		} catch (err) {
+		} catch (ignore) {
 			return null;
 		}
 	} else {
-		return day;
+		return null;
 	}
 
 	const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -30,8 +29,7 @@ export function getDateWeekday(date) {
 /**
  * Return day from the date
  *
- * @param {string} ||
- * @param {Date object} date
+ * @param {string} date || @param {Date object} date
  * @return {number}
  * @example
  * getDateDay('2022-05-13') // 13
@@ -44,11 +42,11 @@ export function getDateDay(date) {
 	} else if (typeof date === 'object') {
 		try {
 			day = date.getDate();
-		} catch (err) {
+		} catch (ignore) {
 			return null;
 		}
 	} else {
-		return day;
+		return null;
 	}
 
 	return day;
@@ -57,8 +55,7 @@ export function getDateDay(date) {
 /**
  * Return day from the date
  *
- * @param {string} ||
- * @param {Date object} date
+ * @param {string} date || @param {Date object} date
  * @return {string}
  * @example
  * getDateMonth('2022-05-13') // 'May'
@@ -71,11 +68,11 @@ export function getDateMonth(date) {
 	} else if (typeof date === 'object') {
 		try {
 			month = date.getMonth();
-		} catch (err) {
+		} catch (ignore) {
 			return null;
 		}
 	} else {
-		return month;
+		return null;
 	}
 
 	const months = [
@@ -108,6 +105,7 @@ export function secondToDurationData(seconds) {
 	if (typeof seconds !== 'number') {
 		return null;
 	}
+
 	const sec = seconds % 60;
 	const min = ((seconds - sec) / 60) % 60;
 	const h = ((seconds - min * 60 - sec) / 60 / 60) % 24;
@@ -123,7 +121,7 @@ export function secondToDurationData(seconds) {
 }
 
 /**
- * Converts seconds to hh:mm:ss
+ * Converts seconds to a string with
  *
  * @param {object} duration
  * @return {string}
@@ -135,19 +133,15 @@ export function createDurationString(duration) {
 		return null;
 	}
 
-	try {
-		let result = '';
-		result += duration.day ? `${duration.day}days ` : '';
-		result += duration.hour ? `${duration.hour}h ` : '';
-		result += duration.minute ? (duration.day ? '' : `${duration.minute}min `) : '';
-		result += duration.second
-			? duration.day || duration.hour
-				? ''
-				: `${duration.second}sec `
-			: '';
+	let result = '';
+	result += duration.day ? `${duration.day}days ` : '';
+	result += duration.hour ? `${duration.hour}h ` : '';
+	result += duration.minute ? (duration.day ? '' : `${duration.minute}min `) : '';
+	result += duration.second
+		? duration.day || duration.hour
+			? ''
+			: `${duration.second}sec `
+		: '';
 
-		return result;
-	} catch (err) {
-		return null;
-	}
+	return result;
 }

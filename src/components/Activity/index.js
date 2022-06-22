@@ -6,13 +6,7 @@ import {
 	getDateMonth,
 } from '../../utils/date';
 
-import {
-	ActivityContainer,
-	DateContainer,
-	DayContainer,
-	DistanceContainer,
-	DurationContainer,
-} from './styled';
+import {ActivityContainer, DateContainer, DistanceContainer, DurationContainer} from './styled';
 
 export default function ActivityResult({date, distance, duration}) {
 	const durationData = createDurationString(secondToDurationData(duration));
@@ -20,10 +14,10 @@ export default function ActivityResult({date, distance, duration}) {
 		<ActivityContainer>
 			<DateContainer>
 				<h2>{getDateWeekday(date) ? getDateWeekday(date) : ''}</h2>
-				<DayContainer>
-					<p>{getDateDay(date) ? getDateDay(date) : ''}. </p>
-					<p>{getDateMonth(date) ? getDateMonth(date) : ''}</p>
-				</DayContainer>
+				<span>
+					{getDateMonth(date) ? getDateMonth(date) : ''}{' '}
+					{getDateDay(date) ? getDateDay(date) : ''}
+				</span>
 			</DateContainer>
 			<DistanceContainer>
 				<h3>distance</h3>
