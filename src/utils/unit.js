@@ -30,11 +30,18 @@ export function pxToRem(pixel, rootFontSize = 16) {
  * @example
  * secondToDurationData(3696) // "1:01:36"
  */
-export function secondToDurationData(second) {
-	let sec = second % 60;
-	let min = ((second - sec) / 60) % 60;
-	const h = (second - min * 60 - sec) / 60 / 60;
-	sec = sec < 10 ? `0${sec}` : `${sec}`;
-	min = min < 10 ? `0${min}` : `${min}`;
-	return `${h}:${min}:${sec}`;
+export function secondToDurationData(seconds) {
+	const sec = seconds % 60;
+	const min = ((seconds - sec) / 60) % 60;
+	const h = ((seconds - min * 60 - sec) / 60 / 60) % 24;
+	const d = (seconds - h * 3600 - min * 60 - sec) / 24 / 60 / 60;
+
+	const result = {
+		day: d > 0 ? `${d}` : null,
+		hour: h > 0 ? `${h}` : null,
+		minute: min > 0 ? `${min}` : null,
+		second: sec > 0 ? `${sec}` : null,
+	};
+
+	return result;
 }
