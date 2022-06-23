@@ -9,7 +9,6 @@ export default function HomePage() {
 				<title key="title">Run the World</title>
 				<meta key="description" name="description" content="This is my project" />
 			</Helmet>
-			<h1>Home</h1>
 		</Layout>
 	);
 }
