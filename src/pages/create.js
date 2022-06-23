@@ -1,6 +1,6 @@
 import {Helmet} from 'react-helmet';
 
-import AddActivityForm from '../components/Form/index';
+import AddActivity from '../components/Form/index';
 import Layout from '../components/Layout';
 
 export default function CreatePage() {
@@ -10,7 +10,7 @@ export default function CreatePage() {
 				<title key="title">Add Activity</title>
 				<meta key="description" name="description" content="Create" />
 			</Helmet>
-			<AddActivityForm />
+			<AddActivity />
 		</Layout>
 	);
 }

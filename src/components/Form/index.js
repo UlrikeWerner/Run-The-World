@@ -1,9 +1,60 @@
 import {nanoid} from 'nanoid';
 import {useState} from 'react';
 
-export default function AddActivityForm() {
-	//const [distance, setDistance] = useState({distance: ''});
-	//const [duration, setDuration] = useState({duration: ''});
+function calculateDuration(duration) {
+	if (typeof duration !== 'string') {
+		return null;
+	}
+
+	const pattern = new RegExp('^(?:[0-9]{1,2}:){0,2}[0-9]{1,2}$');
+	if (!pattern.test(duration)) {
+		return null;
+	}
+
+	const durationParts = duration.split(':');
+	const length = durationParts.length;
+
+	if (durationParts[length - 1] > 59 || (length >= 2 && durationParts[length - 2] > 59)) {
+		return null;
+	}
+
+	let value = 0;
+	for (let i = length - 1; i >= 0; i--) {
+		switch (i) {
+			case length - 1:
+				value = durationParts[i] * 1;
+				break;
+			case length - 2:
+				value += durationParts[i] * 60;
+				break;
+			case length - 3:
+				value += durationParts[i] * 3600;
+				break;
+			default:
+				break;
+		}
+	}
+
+	return value;
+}
+
+function calculateDistance(distance) {
+	if (typeof distance !== 'string') {
+		return null;
+	}
+
+	let result = distance.replace(',', '.').replace(' ', '');
+	result = distance * 1000;
+
+	const resultIsANumber = !!result;
+	if (!resultIsANumber) {
+		return null;
+	}
+
+	return result;
+}
+
+export default function AddActivity() {
 	const [newValues, setNewValues] = useState({distance: '', duration: ''});
 	const [newActivity, setNewActivity] = useState({id_: '', date: '', distance: '', duration: ''});
 
@@ -26,66 +77,39 @@ export default function AddActivityForm() {
 					id="activityDistance"
 					required
 					onChange={event => {
-						setNewValues({...newValues, distance: event.target.value * 1000});
+						setNewValues({
+							...newValues,
+							distance: calculateDistance(event.target.value),
+						});
 					}}
-				/>
+				/>{' '}
+				km
 			</label>
 			<label htmlFor="activityDuration" aria-label="Enter your duration">
 				duration
 				<input
-					type="number"
+					type="text"
 					id="activityDuration"
-					min="0"
-					max="99"
-					step="1"
-					placeholder="hh"
+					placeholder="hh:mm:ss"
 					required
 					onChange={event => {
 						setNewValues({
 							...newValues,
-							duration: Number(newValues.duration) + event.target.value * 60 * 60,
-						});
-					}}
-				/>{' '}
-				:{' '}
-				<input
-					type="number"
-					id="activityDuration"
-					min="0"
-					max="59"
-					step="1"
-					placeholder="mm"
-					required
-					onChange={event => {
-						setNewValues({
-							...newValues,
-							duration: Number(newValues.duration) + event.target.value * 60,
-						});
-					}}
-				/>{' '}
-				:{' '}
-				<input
-					type="number"
-					id="activityDuration"
-					min="0"
-					max="59"
-					step="1"
-					placeholder="ss"
-					required
-					onChange={event => {
-						setNewValues({
-							...newValues,
-							duration: Number(newValues.duration) + Number(event.target.value),
+							duration: calculateDuration(event.target.value),
 						});
 					}}
 				/>
 				<input
 					type="submit"
-					value="submit"
-					disabled={newValues.distance === '' || newValues.duration === ''}
+					value="add"
+					disabled={
+						newValues.distance <= 0 ||
+						newValues.distance === null ||
+						newValues.duration <= 0 ||
+						newValues.duration === null
+					}
 				/>
 			</label>
-			{console.log(newValues.distance, newValues.duration, newActivity)}
 		</form>
 	);
 }
