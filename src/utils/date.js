@@ -145,3 +145,61 @@ export function createDurationString(duration) {
 
 	return result;
 }
+
+export function calculateDuration(duration) {
+	if (typeof duration !== 'string') {
+		return null;
+	}
+
+	duration = duration.split(' ').join('').split('.').join('');
+
+	const pattern = new RegExp('^(?:[0-9]{1,2}:){0,2}[0-9]{1,2}$');
+	if (!pattern.test(duration)) {
+		return null;
+	}
+
+	const durationParts = duration.split(':');
+	const length = durationParts.length;
+
+	if (durationParts[length - 1] > 59 || (length >= 2 && durationParts[length - 2] > 59)) {
+		return null;
+	}
+
+	let value = 0;
+	for (let i = length - 1; i >= 0; i--) {
+		switch (i) {
+			case length - 1:
+				value = durationParts[i] * 1;
+				break;
+			case length - 2:
+				value += durationParts[i] * 60;
+				break;
+			case length - 3:
+				value += durationParts[i] * 3600;
+				break;
+			default:
+				break;
+		}
+	}
+
+	return value;
+}
+
+export function calculateDistance(distance) {
+	if (typeof distance !== 'string') {
+		return null;
+	}
+
+	let result = distance.replace(',', '.').split(' ').join('');
+	if (result[result.length - 1] === '.') {
+		result = result.slice(0, result.length - 1);
+	}
+	result = distance * 1000;
+
+	const resultIsANumber = !!result;
+	if (!resultIsANumber) {
+		return null;
+	}
+
+	return result;
+}
