@@ -146,17 +146,20 @@ export function createDurationString(duration) {
 	return result;
 }
 
+/**
+ * Converts a string(hh:mm:ss) to a number(sec) with
+ *
+ * @param {string} duration
+ * @return {number}
+ * @example
+ * calculateDuration(1:23:04) // 4984
+ */
 export function calculateDuration(duration) {
 	if (typeof duration !== 'string') {
 		return null;
 	}
 
 	duration = duration.split(' ').join('').split('.').join('');
-
-	const pattern = new RegExp('^(?:[0-9]{1,2}:){0,2}[0-9]{1,2}$');
-	if (!pattern.test(duration)) {
-		return null;
-	}
 
 	const durationParts = duration.split(':');
 	const length = durationParts.length;
@@ -185,21 +188,25 @@ export function calculateDuration(duration) {
 	return value;
 }
 
+/**
+ * Converts a string(km) to a number(m) with
+ *
+ * @param {string} distance
+ * @return {number}
+ * @example
+ * calculateDistance(12,8) // 12800
+ */
 export function calculateDistance(distance) {
 	if (typeof distance !== 'string') {
 		return null;
 	}
 
-	let result = distance.replace(',', '.').split(' ').join('');
-	if (result[result.length - 1] === '.') {
-		result = result.slice(0, result.length - 1);
-	}
-	result = distance * 1000;
+	const result = distance * 1000;
 
 	const resultIsANumber = !!result;
 	if (!resultIsANumber) {
 		return null;
 	}
 
-	return result;
+	return Math.round(result);
 }

@@ -7,17 +7,17 @@ const useStore = create(
 		set => {
 			return {
 				activities: [],
-				addActivities: (duration, distance) =>
+				addActivity: (distance, duration) =>
 					set(state => {
 						return {
-							toDos: [
-								...state.toDos,
+							activities: [
 								{
 									id_: nanoid(),
 									date: new Date(),
-									duration,
 									distance,
+									duration,
 								},
+								...state.activities,
 							],
 						};
 					}),

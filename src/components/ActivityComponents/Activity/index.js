@@ -1,11 +1,11 @@
-import {useStore} from '../../hooks/useStore';
+import {useStore} from '../../../hooks/useStore';
 import {
 	secondToDurationData,
 	createDurationString,
 	getDateWeekday,
 	getDateDay,
 	getDateMonth,
-} from '../../utils/date';
+} from '../../../utils/date';
 
 import {ActivityContainer} from './Style/container';
 import {ActivityWrapper} from './Style/wrapper';
@@ -13,6 +13,7 @@ import {ActivityWrapper} from './Style/wrapper';
 export default function ActivityResult({id_}) {
 	const data = useStore(state => state.activities.find(item => item.id_ === id_));
 	const durationData = createDurationString(secondToDurationData(data.duration));
+
 	return (
 		<ActivityContainer>
 			<ActivityWrapper>
