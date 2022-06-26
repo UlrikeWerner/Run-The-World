@@ -6,7 +6,7 @@ import Button from '../../Button/index';
 
 import {FormContainer} from './style';
 
-export default function AddActivity({isAdded, added}) {
+export default function AddActivity() {
 	const [newValues, setNewValues] = useState('');
 	const [fieldValue, setFieldValue] = useState({distance: '', duration: ''});
 	const addActivity = useStore(state => state.addActivity);
@@ -15,24 +15,22 @@ export default function AddActivity({isAdded, added}) {
 		<FormContainer
 			onSubmit={event => {
 				event.preventDefault();
-				console.log(event);
 				addActivity(newValues.distance, newValues.duration);
-				isAdded((added = !added));
-				setTimeout(() => {
-					isAdded((added = !added));
-				}, 5000);
 				setNewValues('');
 				setFieldValue({distance: '', duration: ''});
+				const modal = document.querySelector('#addActivityModal');
+				modal.close();
 			}}
 		>
 			<label htmlFor="activityDistance" aria-label="Enter your distance">
-				distance
+				distance (km)
 			</label>
 			<div>
 				<input
 					type="number"
 					id="activityDistance"
 					step="0.001"
+					placeholder="0.000"
 					value={fieldValue.distance}
 					required
 					onChange={event => {
@@ -46,7 +44,6 @@ export default function AddActivity({isAdded, added}) {
 						});
 					}}
 				/>
-				<p> km</p>
 			</div>
 			<label htmlFor="activityDuration" aria-label="Enter your duration">
 				duration
@@ -69,17 +66,26 @@ export default function AddActivity({isAdded, added}) {
 					});
 				}}
 			/>
-			<Button
-				value="save"
-				type="submit"
-				id="submit"
-				disabled={
-					newValues.distance === null ||
-					fieldValue.distance === '' ||
-					newValues.duration === null ||
-					fieldValue.duration === ''
-				}
-			/>
+			<div>
+				<Button
+					value="cancel"
+					onClick={() => {
+						const modal = document.querySelector('#addActivityModal');
+						modal.close();
+					}}
+				/>
+				<Button
+					value="save"
+					type="submit"
+					id="submit"
+					disabled={
+						newValues.distance === null ||
+						fieldValue.distance === '' ||
+						newValues.duration === null ||
+						fieldValue.duration === ''
+					}
+				/>
+			</div>
 		</FormContainer>
 	);
 }

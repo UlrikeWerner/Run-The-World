@@ -5,8 +5,6 @@ const FormContainer = styled.form`
 	flex-direction: column;
 	margin: 1rem 2rem;
 	padding: 1rem 3rem;
-	border: 1px solid black;
-	border-radius: 15px;
 
 	div {
 		display: flex;
@@ -23,9 +21,9 @@ const FormContainer = styled.form`
 		max-width: 9.5rem;
 	}
 
-	input#submit {
+	button#submit {
 		max-width: 5rem;
-		margin-top: 0.25rem;
+		margin-left: 0.25rem;
 	}
 `;
 
