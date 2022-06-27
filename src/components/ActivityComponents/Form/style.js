@@ -12,13 +12,13 @@ const FormContainer = styled.form`
 	}
 
 	p {
-		margin: 0;
 		max-width: 2rem;
+		margin: 0;
 	}
 
 	input {
-		text-align: center;
 		max-width: 9.5rem;
+		text-align: center;
 	}
 
 	button#submit {
