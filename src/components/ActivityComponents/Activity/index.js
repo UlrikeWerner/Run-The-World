@@ -11,21 +11,21 @@ import {ActivityContainer} from './Style/container';
 import {ActivityWrapper} from './Style/wrapper';
 
 export default function ActivityResult({id_}) {
-	const data = useStore(state => state.activities.find(item => item.id_ === id_));
-	const durationData = createDurationString(secondToDurationData(data.duration));
+	const activity = useStore(state => state.activities.find(item => item.id_ === id_));
+	const durationData = createDurationString(secondToDurationData(activity.duration));
 
 	return (
 		<ActivityContainer>
 			<ActivityWrapper>
-				<h2>{getDateWeekday(data.date) ? getDateWeekday(data.date) : ''}</h2>
+				<h2>{getDateWeekday(activity.date) ? getDateWeekday(activity.date) : ''}</h2>
 				<span>
-					{getDateMonth(data.date) ? getDateMonth(data.date) : ''}{' '}
-					{getDateDay(data.date) ? getDateDay(data.date) : ''}
+					{getDateMonth(activity.date) ? getDateMonth(activity.date) : ''}{' '}
+					{getDateDay(activity.date) ? getDateDay(activity.date) : ''}
 				</span>
 			</ActivityWrapper>
 			<ActivityWrapper>
 				<h3>distance</h3>
-				<p>{data.distance ? data.distance / 1000 + 'km' : ''}</p>
+				<p>{activity.distance ? activity.distance / 1000 + 'km' : ''}</p>
 			</ActivityWrapper>
 			<ActivityWrapper>
 				<h3>duration</h3>

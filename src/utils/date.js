@@ -111,8 +111,6 @@ export function calculateDuration(duration) {
 		return null;
 	}
 
-	duration = duration.split(' ').join('').split('.').join('');
-
 	const durationParts = duration.split(':');
 	const length = durationParts.length;
 
@@ -147,8 +145,7 @@ export function calculateDistance(distance) {
 
 	const result = distance * 1000;
 
-	const resultIsANumber = !!result;
-	if (!resultIsANumber) {
+	if (!result) {
 		return null;
 	}
 

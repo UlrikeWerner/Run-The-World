@@ -8,17 +8,17 @@ import Button from '../../Button/index';
 import {FormContainer} from './style';
 
 export default function AddActivity() {
-	const [newValues, setNewValues] = useState('');
-	const [fieldValue, setFieldValue] = useState({distance: '', duration: ''});
+	const [newActivity, setNewActivity] = useState('');
+	const [inputValues, setInputValues] = useState({distance: '', duration: ''});
 	const addActivity = useStore(state => state.addActivity);
 
 	return (
 		<FormContainer
 			onSubmit={event => {
 				event.preventDefault();
-				addActivity(newValues.distance, newValues.duration);
-				setNewValues('');
-				setFieldValue({distance: '', duration: ''});
+				addActivity(newActivity.distance, newActivity.duration);
+				setNewActivity('');
+				setInputValues({distance: '', duration: ''});
 				modalClose('addActivityModal');
 			}}
 		>
@@ -31,15 +31,15 @@ export default function AddActivity() {
 					id="activityDistance"
 					step="0.001"
 					placeholder="0.000"
-					value={fieldValue.distance}
+					value={inputValues.distance}
 					required
 					onChange={event => {
-						setNewValues({
-							...newValues,
+						setNewActivity({
+							...newActivity,
 							distance: calculateDistance(event.target.value),
 						});
-						setFieldValue({
-							...fieldValue,
+						setInputValues({
+							...inputValues,
 							distance: event.target.value,
 						});
 					}}
@@ -53,15 +53,15 @@ export default function AddActivity() {
 				id="activityDuration"
 				pattern="^(?:[0-9]{1,2}:){0,2}[0-9]{1,2}$"
 				placeholder="hh:mm:ss"
-				value={fieldValue.duration}
+				value={inputValues.duration}
 				required
 				onChange={event => {
-					setNewValues({
-						...newValues,
+					setNewActivity({
+						...newActivity,
 						duration: calculateDuration(event.target.value),
 					});
-					setFieldValue({
-						...fieldValue,
+					setInputValues({
+						...inputValues,
 						duration: event.target.value,
 					});
 				}}
@@ -78,10 +78,10 @@ export default function AddActivity() {
 					type="submit"
 					id="submit"
 					disabled={
-						newValues.distance === null ||
-						fieldValue.distance === '' ||
-						newValues.duration === null ||
-						fieldValue.duration === ''
+						newActivity.distance === null ||
+						inputValues.distance === '' ||
+						newActivity.duration === null ||
+						inputValues.duration === ''
 					}
 				/>
 			</div>

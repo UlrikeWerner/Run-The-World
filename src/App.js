@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
-import Result from './pages';
+import Result from './pages/index';
 import {GlobalStyle} from './styles';
 
 export default function App() {
