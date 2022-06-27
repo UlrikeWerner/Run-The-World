@@ -2,6 +2,7 @@ import {useState} from 'react';
 
 import {useStore} from '../../../hooks/useStore';
 import {calculateDistance, calculateDuration} from '../../../utils/date';
+import {modalClose} from '../../../utils/modal';
 import Button from '../../Button/index';
 
 import {FormContainer} from './style';
@@ -18,8 +19,7 @@ export default function AddActivity() {
 				addActivity(newValues.distance, newValues.duration);
 				setNewValues('');
 				setFieldValue({distance: '', duration: ''});
-				const modal = document.querySelector('#addActivityModal');
-				modal.close();
+				modalClose('addActivityModal');
 			}}
 		>
 			<label htmlFor="activityDistance" aria-label="Enter your distance">
@@ -70,8 +70,7 @@ export default function AddActivity() {
 				<Button
 					value="cancel"
 					onClick={() => {
-						const modal = document.querySelector('#addActivityModal');
-						modal.close();
+						modalClose('addActivityModal');
 					}}
 				/>
 				<Button

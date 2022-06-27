@@ -5,6 +5,7 @@ import Button from '../components/Button';
 import Layout from '../components/Layout';
 import Modal from '../components/Modal';
 import {useStore} from '../hooks/useStore';
+import {modalShow} from '../utils/modal';
 
 export default function ResultsPage() {
 	const activityList = useStore(state => state.activities);
@@ -19,8 +20,7 @@ export default function ResultsPage() {
 			<Button
 				value="add your activity"
 				onClick={() => {
-					const modal = document.querySelector('#addActivityModal');
-					modal.showModal();
+					modalShow('addActivityModal');
 				}}
 			/>
 			<Modal id={'addActivityModal'} />

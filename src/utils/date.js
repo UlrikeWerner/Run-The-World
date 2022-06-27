@@ -1,11 +1,3 @@
-/**
- * Return day from the date
- *
- * @param {string} date || @param {Date object} date
- * @return {string}
- * @example
- * getDateWeekday('2022-05-13') // 'Fri'
- */
 export function getDateWeekday(date) {
 	let day = null;
 
@@ -26,14 +18,6 @@ export function getDateWeekday(date) {
 	return days[day];
 }
 
-/**
- * Return day from the date
- *
- * @param {string} date || @param {Date object} date
- * @return {number}
- * @example
- * getDateDay('2022-05-13') // 13
- */
 export function getDateDay(date) {
 	let day = null;
 
@@ -52,14 +36,6 @@ export function getDateDay(date) {
 	return day;
 }
 
-/**
- * Return day from the date
- *
- * @param {string} date || @param {Date object} date
- * @return {string}
- * @example
- * getDateMonth('2022-05-13') // 'May'
- */
 export function getDateMonth(date) {
 	let month = null;
 
@@ -93,14 +69,6 @@ export function getDateMonth(date) {
 	return months[month];
 }
 
-/**
- * Converts seconds to hh:mm:ss
- *
- * @param {number} seconds
- * @return {object}
- * @example
- * secondToDurationData(3696) // "1:01:36"
- */
 export function secondToDurationData(seconds) {
 	if (typeof seconds !== 'number') {
 		return null;
@@ -120,14 +88,6 @@ export function secondToDurationData(seconds) {
 	return result;
 }
 
-/**
- * Converts seconds to a string with
- *
- * @param {object} duration
- * @return {string}
- * @example
- * createDurationString({day: null, hour: null, minute: 54, second: 29}) // "54min 29sec"
- */
 export function createDurationString(duration) {
 	if (typeof duration !== 'object') {
 		return null;
@@ -146,14 +106,6 @@ export function createDurationString(duration) {
 	return result;
 }
 
-/**
- * Converts a string(hh:mm:ss) to a number(sec) with
- *
- * @param {string} duration
- * @return {number}
- * @example
- * calculateDuration(1:23:04) // 4984
- */
 export function calculateDuration(duration) {
 	if (typeof duration !== 'string') {
 		return null;
@@ -188,14 +140,6 @@ export function calculateDuration(duration) {
 	return value;
 }
 
-/**
- * Converts a string(km) to a number(m) with
- *
- * @param {string} distance
- * @return {number}
- * @example
- * calculateDistance(12,8) // 12800
- */
 export function calculateDistance(distance) {
 	if (typeof distance !== 'string') {
 		return null;
