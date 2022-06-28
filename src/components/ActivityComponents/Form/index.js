@@ -1,37 +1,29 @@
 import {useState} from 'react';
 
 import {useStore} from '../../../hooks/useStore';
-import {
-	calculateDistance,
-	calculateDuration,
-	secondToDurationData,
-	createDurationInputValue,
-} from '../../../utils/date';
-import {modalClose} from '../../../utils/modal';
+import {calculateDistance, calculateDuration} from '../../../utils/date';
 import Button from '../../Button/index';
 
 import {FormContainer} from './style';
 
-export default function AddActivity({inputDistance = '', inputDuration = ''}) {
+export default function AddActivity({inputDistance = '', inputDuration = '', id = null}) {
+	const edit = id ? true : false;
+
 	const addActivity = useStore(state => state.addActivity);
 	const setModalStatus = useStore(state => state.setModalStatus);
 	const setModal = useStore(state => state.setModal);
 
-	/*const distance = inputDistance?.distance / 1000;
-	const duration = createDurationInputValue(secondToDurationData(inputDuration?.duration));
-	console.log(duration ? duration : '');*/
-
 	const [newActivity, setNewActivity] = useState('');
 	const [inputValues, setInputValues] = useState({
 		distance: inputDistance,
-		duraction: inputDuration,
+		duration: inputDuration,
 	});
 
 	return (
 		<FormContainer
 			onSubmit={event => {
 				event.preventDefault();
-				addActivity(newActivity.distance, newActivity.duration);
+				addActivity(id, newActivity.distance, newActivity.duration);
 				setNewActivity('');
 				setInputValues({distance: '', duration: ''});
 				setModal('', '');
@@ -80,6 +72,7 @@ export default function AddActivity({inputDistance = '', inputDuration = ''}) {
 						...inputValues,
 						duration: event.target.value,
 					});
+					console.log(event.target.value, typeof event.target.value);
 				}}
 			/>
 			<div>
@@ -91,7 +84,7 @@ export default function AddActivity({inputDistance = '', inputDuration = ''}) {
 					}}
 				/>
 				<Button
-					value="save"
+					value={edit ? 'edit' : 'save'}
 					type="submit"
 					id="submit"
 					disabled={

@@ -9,20 +9,35 @@ const useStore = create(
 				activities: [],
 				modalStatus: false,
 				modal: {activTyp: '', idOfActivObject: ''},
-				addActivity: (distance, duration) =>
-					set(state => {
-						return {
-							activities: [
-								{
-									id_: nanoid(),
-									date: new Date(),
-									distance,
-									duration,
-								},
-								...state.activities,
-							],
-						};
-					}),
+				addActivity: (id, distance, duration) =>
+					id
+						? set(state => {
+								return {
+									activities: state.activities.map(activity =>
+										activity.id_ === id
+											? {
+													...activity,
+													distance,
+													duration,
+											  }
+											: activity
+									),
+								};
+						  })
+						: set(state => {
+								return {
+									activities: [
+										{
+											id_: nanoid(),
+											date: new Date(),
+											distance,
+											duration,
+										},
+										...state.activities,
+									],
+								};
+						  }),
+
 				setModalStatus: status =>
 					set(() => {
 						return {
