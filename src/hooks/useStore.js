@@ -9,16 +9,19 @@ const useStore = create(
 				activities: [],
 				modalStatus: false,
 				modal: {activTyp: '', idOfActivObject: ''},
-				addActivity: (id, distance, duration) =>
+				addActivity: (id, values) =>
 					id
 						? set(state => {
+								console.log('modal', id);
+								console.log(values);
 								return {
 									activities: state.activities.map(activity =>
 										activity.id_ === id
 											? {
-													...activity,
-													distance,
-													duration,
+													id_: activity.id_,
+													date: activity.date,
+													distance: values.distance,
+													duration: values.duration,
 											  }
 											: activity
 									),
@@ -30,8 +33,8 @@ const useStore = create(
 										{
 											id_: nanoid(),
 											date: new Date(),
-											distance,
-											duration,
+											distance: values.distance,
+											duration: values.duration,
 										},
 										...state.activities,
 									],

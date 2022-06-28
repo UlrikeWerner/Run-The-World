@@ -110,12 +110,12 @@ export function createDurationInputValue(duration) {
 	if (typeof duration !== 'object') {
 		return null;
 	}
+	const hour = duration.day * 24 + duration.hour;
 
 	let result = '';
-	result += duration.day ? `${duration.day}:` : '';
-	result += duration.hour ? `${duration.hour}:` : '';
-	result += duration.minute ? (duration.day ? '' : `${duration.minute}:`) : '';
-	result += duration.second ? (duration.day || duration.hour ? '' : `${duration.second}`) : '';
+	result += duration.hour ? `${hour}` : '';
+	result += duration.minute ? `:${duration.minute}` : '';
+	result += duration.second ? `:${duration.second}` : '';
 
 	return result;
 }

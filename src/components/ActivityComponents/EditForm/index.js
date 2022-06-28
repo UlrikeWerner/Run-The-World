@@ -7,7 +7,7 @@ export default function EditActivity({objectId}) {
 
 	const distance = activity?.distance / 1000;
 	const duration = createDurationInputValue(secondToDurationData(activity?.duration));
-	console.log(distance, duration);
+	console.log('editActivity', distance, duration);
 
 	return <AddActivity inputDistance={distance} inputDuration={duration} id={objectId} />;
 }

@@ -6,7 +6,7 @@ import Button from '../../Button/index';
 
 import {FormContainer} from './style';
 
-export default function AddActivity({inputDistance = '', inputDuration = '', id = null}) {
+export default function AddActivity({inputDistance = '', inputDuration = '', id = ''}) {
 	const edit = id ? true : false;
 
 	const addActivity = useStore(state => state.addActivity);
@@ -18,14 +18,18 @@ export default function AddActivity({inputDistance = '', inputDuration = '', id 
 		distance: inputDistance,
 		duration: inputDuration,
 	});
+	console.log('start', inputValues);
 
 	return (
 		<FormContainer
 			onSubmit={event => {
 				event.preventDefault();
-				addActivity(id, newActivity.distance, newActivity.duration);
+				console.log('save', inputValues);
+				console.log('distance:', newActivity.distance, 'duration:', newActivity.duration);
+				addActivity(id, newActivity);
 				setNewActivity('');
 				setInputValues({distance: '', duration: ''});
+				console.log('end', newActivity);
 				setModal('', '');
 				setModalStatus(false);
 			}}
@@ -42,8 +46,12 @@ export default function AddActivity({inputDistance = '', inputDuration = '', id 
 					value={inputValues.distance}
 					required
 					onChange={event => {
+						console.log('calcDistance', calculateDistance(event.target.value));
 						setNewActivity({
 							...newActivity,
+							/*distance: event.target.value
+								? calculateDistance(event.target.value)
+								: calculateDistance(inputValues.distance),*/
 							distance: calculateDistance(event.target.value),
 						});
 						setInputValues({
@@ -64,15 +72,18 @@ export default function AddActivity({inputDistance = '', inputDuration = '', id 
 				value={inputValues.duration}
 				required
 				onChange={event => {
+					console.log(event.target.value);
 					setNewActivity({
 						...newActivity,
+						/*duration: event.target.value
+							? calculateDuration(event.target.value)
+							: calculateDuration(inputValues.duration),*/
 						duration: calculateDuration(event.target.value),
 					});
 					setInputValues({
 						...inputValues,
 						duration: event.target.value,
 					});
-					console.log(event.target.value, typeof event.target.value);
 				}}
 			/>
 			<div>
