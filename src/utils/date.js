@@ -106,6 +106,20 @@ export function createDurationString(duration) {
 	return result;
 }
 
+export function createDurationInputValue(duration) {
+	if (typeof duration !== 'object') {
+		return null;
+	}
+
+	let result = '';
+	result += duration.day ? `${duration.day}:` : '';
+	result += duration.hour ? `${duration.hour}:` : '';
+	result += duration.minute ? (duration.day ? '' : `${duration.minute}:`) : '';
+	result += duration.second ? (duration.day || duration.hour ? '' : `${duration.second}`) : '';
+
+	return result;
+}
+
 export function calculateDuration(duration) {
 	if (typeof duration !== 'string') {
 		return null;

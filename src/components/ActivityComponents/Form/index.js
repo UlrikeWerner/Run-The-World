@@ -1,16 +1,40 @@
 import {useState} from 'react';
 
 import {useStore} from '../../../hooks/useStore';
-import {calculateDistance, calculateDuration} from '../../../utils/date';
+import {
+	calculateDistance,
+	calculateDuration,
+	secondToDurationData,
+	createDurationInputValue,
+} from '../../../utils/date';
 import {modalClose} from '../../../utils/modal';
 import Button from '../../Button/index';
 
 import {FormContainer} from './style';
 
-export default function AddActivity() {
-	const [newActivity, setNewActivity] = useState('');
-	const [inputValues, setInputValues] = useState({distance: '', duration: ''});
+export default function AddActivity({inputDistance = '', inputDuration = ''}) {
+	/*let activity;
+	try {
+		activity = useStore(state => state.activities.find(item => item.id_ === activityId));
+	} catch (err) {
+		console.log('can not find');
+	}*/
+
 	const addActivity = useStore(state => state.addActivity);
+	const setModal = useStore(state => state.setModal);
+
+	/*const distance = inputDistance?.distance / 1000;
+	const duration = createDurationInputValue(secondToDurationData(inputDuration?.duration));
+	console.log(duration ? duration : '');*/
+
+	const [newActivity, setNewActivity] = useState('');
+	/*const [inputValues, setInputValues] = useState(
+		activity ? {distance: '', duraction: ''} : {distance: '', duration: ''}
+	);*/
+	const [inputValues, setInputValues] = useState({
+		distance: inputDistance,
+		duraction: inputDuration,
+	});
 
 	return (
 		<FormContainer
@@ -19,6 +43,7 @@ export default function AddActivity() {
 				addActivity(newActivity.distance, newActivity.duration);
 				setNewActivity('');
 				setInputValues({distance: '', duration: ''});
+				setModal('', '');
 				modalClose('addActivityModal');
 			}}
 		>
@@ -70,6 +95,7 @@ export default function AddActivity() {
 				<Button
 					value="cancel"
 					onClick={() => {
+						setModal('', '');
 						modalClose('addActivityModal');
 					}}
 				/>

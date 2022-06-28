@@ -7,6 +7,7 @@ const useStore = create(
 		set => {
 			return {
 				activities: [],
+				modal: {activTyp: '', idOfActivObject: ''},
 				addActivity: (distance, duration) =>
 					set(state => {
 						return {
@@ -19,6 +20,15 @@ const useStore = create(
 								},
 								...state.activities,
 							],
+						};
+					}),
+				setModal: (activTyp, idOfActivObject) =>
+					set(() => {
+						return {
+							modal: {
+								activTyp,
+								idOfActivObject,
+							},
 						};
 					}),
 			};

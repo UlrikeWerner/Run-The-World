@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const ActivityContainer = styled.section`
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 2fr 2fr 2fr 1fr;
 	margin: 0.3rem;
 	border: 1px solid black;
 	border-radius: 15px;

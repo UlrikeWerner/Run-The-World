@@ -9,6 +9,7 @@ import {modalShow} from '../utils/modal';
 
 export default function ResultsPage() {
 	const activityList = useStore(state => state.activities);
+	const setModal = useStore(state => state.setModal);
 
 	return (
 		<Layout>
@@ -20,6 +21,7 @@ export default function ResultsPage() {
 			<Button
 				value="add your activity"
 				onClick={() => {
+					setModal('create', '');
 					modalShow('addActivityModal');
 				}}
 			/>
