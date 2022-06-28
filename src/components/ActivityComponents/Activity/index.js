@@ -6,7 +6,6 @@ import {
 	getDateDay,
 	getDateMonth,
 } from '../../../utils/date';
-import {modalShow} from '../../../utils/modal';
 import Button from '../../Button/index';
 
 import {ActivityContainer} from './Style/container';
@@ -15,6 +14,8 @@ import {ActivityWrapper} from './Style/wrapper';
 export default function ActivityResult({id_}) {
 	const activity = useStore(state => state.activities.find(item => item.id_ === id_));
 	const setModal = useStore(state => state.setModal);
+	const setModalStatus = useStore(state => state.setModalStatus);
+
 	const durationData = createDurationString(secondToDurationData(activity.duration));
 
 	return (
@@ -53,9 +54,8 @@ export default function ActivityResult({id_}) {
 						</svg>
 					}
 					onClick={() => {
-						console.log(activity.id_);
 						setModal('edit', activity.id_);
-						modalShow('addActivityModal');
+						setModalStatus(true);
 					}}
 				/>
 			</ActivityWrapper>

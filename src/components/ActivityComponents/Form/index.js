@@ -13,14 +13,8 @@ import Button from '../../Button/index';
 import {FormContainer} from './style';
 
 export default function AddActivity({inputDistance = '', inputDuration = ''}) {
-	/*let activity;
-	try {
-		activity = useStore(state => state.activities.find(item => item.id_ === activityId));
-	} catch (err) {
-		console.log('can not find');
-	}*/
-
 	const addActivity = useStore(state => state.addActivity);
+	const setModalStatus = useStore(state => state.setModalStatus);
 	const setModal = useStore(state => state.setModal);
 
 	/*const distance = inputDistance?.distance / 1000;
@@ -28,9 +22,6 @@ export default function AddActivity({inputDistance = '', inputDuration = ''}) {
 	console.log(duration ? duration : '');*/
 
 	const [newActivity, setNewActivity] = useState('');
-	/*const [inputValues, setInputValues] = useState(
-		activity ? {distance: '', duraction: ''} : {distance: '', duration: ''}
-	);*/
 	const [inputValues, setInputValues] = useState({
 		distance: inputDistance,
 		duraction: inputDuration,
@@ -44,7 +35,7 @@ export default function AddActivity({inputDistance = '', inputDuration = ''}) {
 				setNewActivity('');
 				setInputValues({distance: '', duration: ''});
 				setModal('', '');
-				modalClose('addActivityModal');
+				setModalStatus(false);
 			}}
 		>
 			<label htmlFor="activityDistance" aria-label="Enter your distance">
@@ -96,7 +87,7 @@ export default function AddActivity({inputDistance = '', inputDuration = ''}) {
 					value="cancel"
 					onClick={() => {
 						setModal('', '');
-						modalClose('addActivityModal');
+						setModalStatus(false);
 					}}
 				/>
 				<Button

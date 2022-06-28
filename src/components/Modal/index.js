@@ -3,8 +3,8 @@ import {setModalContent} from '../../utils/modal';
 
 import ModalContainer from './styled';
 
-export default function Modal({id}) {
+export default function Modal({open, id}) {
 	const modalState = useStore(state => state.modal);
 	console.log(modalState);
-	return <ModalContainer id={id}>{setModalContent(modalState)}</ModalContainer>;
+	return <ModalContainer open={open}>{setModalContent(modalState)}</ModalContainer>;
 }

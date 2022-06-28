@@ -5,11 +5,12 @@ import Button from '../components/Button';
 import Layout from '../components/Layout';
 import Modal from '../components/Modal';
 import {useStore} from '../hooks/useStore';
-import {modalShow} from '../utils/modal';
 
 export default function ResultsPage() {
 	const activityList = useStore(state => state.activities);
 	const setModal = useStore(state => state.setModal);
+	const modalStatus = useStore(state => state.modalStatus);
+	const setModalStatus = useStore(state => state.setModalStatus);
 
 	return (
 		<Layout>
@@ -22,10 +23,10 @@ export default function ResultsPage() {
 				value="add your activity"
 				onClick={() => {
 					setModal('create', '');
-					modalShow('addActivityModal');
+					setModalStatus(true);
 				}}
 			/>
-			<Modal id={'addActivityModal'} />
+			<Modal open={modalStatus} />
 			{activityList.length > 0 ? (
 				activityList.map(item => {
 					return <ActivityResult key={item.id_} id_={item.id_} />;
