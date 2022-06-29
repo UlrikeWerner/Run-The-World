@@ -5,5 +5,8 @@ import ModalContainer from './styled';
 
 export default function Modal({open}) {
 	const modalState = useStore(state => state.modal);
-	return <ModalContainer open={open}>{setModalContent(modalState)}</ModalContainer>;
+	const activity = useStore(state =>
+		state.activities.find(item => item.id_ === modalState.idOfActivObject)
+	);
+	return <ModalContainer open={open}>{setModalContent(modalState, activity)}</ModalContainer>;
 }

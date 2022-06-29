@@ -20,6 +20,7 @@ export default function ResultsPage() {
 			</Helmet>
 			<h1>Results of the Runs</h1>
 			<Button
+				variant="large"
 				onClick={() => {
 					setModal('create', '');
 					setModalStatus(true);
@@ -30,7 +31,15 @@ export default function ResultsPage() {
 			<Modal open={modalStatus} />
 			{activityList.length > 0 ? (
 				activityList.map(item => {
-					return <ActivityResult key={item.id_} id_={item.id_} />;
+					return (
+						<ActivityResult
+							key={item.id_}
+							activityId={item.id_}
+							date={item.date}
+							duration={item.duration}
+							distance={item.distance}
+						/>
+					);
 				})
 			) : (
 				<p>no results</p>

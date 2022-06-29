@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const FormContainer = styled.form`
+const MessageContainer = styled.section`
 	display: flex;
 	flex-direction: column;
 	margin: 1rem 0.5rem 0.75rem;
@@ -12,19 +12,13 @@ const FormContainer = styled.form`
 	}
 
 	p {
-		max-width: 2rem;
 		margin: 0;
 	}
 
-	input {
-		max-width: 9.5rem;
-		text-align: center;
-	}
-
-	button#submit {
+	button {
 		max-width: 5rem;
-		margin-left: 0.25rem;
+		margin-right: 0.25rem;
 	}
 `;
 
-export {FormContainer};
+export {MessageContainer};

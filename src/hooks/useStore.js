@@ -38,6 +38,13 @@ const useStore = create(
 									],
 								};
 						  }),
+				deleteActivity: id => {
+					set(state => {
+						return {
+							activities: state.activities.filter(element => element.id_ !== id),
+						};
+					});
+				},
 
 				setModalStatus: status =>
 					set(() => {
