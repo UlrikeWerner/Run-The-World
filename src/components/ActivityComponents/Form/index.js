@@ -78,18 +78,20 @@ export default function AddActivity({id = ''}) {
 			/>
 			<div>
 				<Button
-					value="cancel"
 					onClick={() => {
 						setModal('', '');
 						setModalStatus(false);
 					}}
-				/>
+				>
+					cancel
+				</Button>
 				<Button
-					value={id ? 'edit' : 'save'}
 					type="submit"
 					id="submit"
 					disabled={inputValues.distance === '' || inputValues.duration === ''}
-				/>
+				>
+					{id ? 'edit' : 'save'}
+				</Button>
 			</div>
 		</FormContainer>
 	);

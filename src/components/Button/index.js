@@ -1,9 +1,9 @@
 import StyledButton from './styled';
 
-export default function Button({value, type = 'button', ...props}) {
+export default function Button({children, type = 'button', ...props}) {
 	return (
 		<StyledButton type={type} {...props}>
-			{value}
+			{children}
 		</StyledButton>
 	);
 }

@@ -20,12 +20,13 @@ export default function ResultsPage() {
 			</Helmet>
 			<h1>Results of the Runs</h1>
 			<Button
-				value="add your activity"
 				onClick={() => {
 					setModal('create', '');
 					setModalStatus(true);
 				}}
-			/>
+			>
+				add your activity
+			</Button>
 			<Modal open={modalStatus} />
 			{activityList.length > 0 ? (
 				activityList.map(item => {
