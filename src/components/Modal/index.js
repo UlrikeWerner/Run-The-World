@@ -1,11 +1,9 @@
-import AddActivity from '../ActivityComponents/Form';
+import {useStore} from '../../hooks/useStore';
+import {setModalContent} from '../../utils/modal';
 
 import ModalContainer from './styled';
 
-export default function Modal({id}) {
-	return (
-		<ModalContainer id={id}>
-			<AddActivity />
-		</ModalContainer>
-	);
+export default function Modal({open}) {
+	const modalState = useStore(state => state.modal);
+	return <ModalContainer open={open}>{setModalContent(modalState)}</ModalContainer>;
 }

@@ -106,6 +106,20 @@ export function createDurationString(duration) {
 	return result;
 }
 
+export function createDurationInputValue(duration) {
+	if (typeof duration !== 'object') {
+		return null;
+	}
+	const hour = duration.day * 24 + duration.hour;
+
+	let result = '';
+	result += duration.hour ? `${hour}:` : '';
+	result += duration.minute !== null ? `${duration.minute}` : `00`;
+	result += duration.second !== null ? `:${duration.second}` : `:00`;
+
+	return result;
+}
+
 export function calculateDuration(duration) {
 	if (typeof duration !== 'string') {
 		return null;
@@ -139,8 +153,12 @@ export function calculateDuration(duration) {
 }
 
 export function calculateDistance(distance) {
-	if (typeof distance !== 'string') {
+	if (typeof distance !== 'string' && typeof distance !== 'number') {
 		return null;
+	}
+
+	if (typeof distance === 'number') {
+		distance = distance.toString();
 	}
 
 	const result = distance * 1000;

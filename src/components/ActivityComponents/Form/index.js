@@ -1,25 +1,43 @@
 import {useState} from 'react';
 
 import {useStore} from '../../../hooks/useStore';
-import {calculateDistance, calculateDuration} from '../../../utils/date';
-import {modalClose} from '../../../utils/modal';
+import {
+	createDurationInputValue,
+	secondToDurationData,
+	calculateDistance,
+	calculateDuration,
+} from '../../../utils/date';
 import Button from '../../Button/index';
 
 import {FormContainer} from './style';
 
-export default function AddActivity() {
-	const [newActivity, setNewActivity] = useState('');
-	const [inputValues, setInputValues] = useState({distance: '', duration: ''});
+export default function AddActivity({id = ''}) {
+	const activity = useStore(state => state.activities.find(item => item.id_ === id));
 	const addActivity = useStore(state => state.addActivity);
+	const setModalStatus = useStore(state => state.setModalStatus);
+	const setModal = useStore(state => state.setModal);
+
+	const inputDistance = activity ? activity.distance / 1000 : '';
+	const inputDuration = activity
+		? createDurationInputValue(secondToDurationData(activity?.duration))
+		: '';
+	const [inputValues, setInputValues] = useState({
+		distance: inputDistance,
+		duration: inputDuration,
+	});
 
 	return (
 		<FormContainer
 			onSubmit={event => {
 				event.preventDefault();
-				addActivity(newActivity.distance, newActivity.duration);
-				setNewActivity('');
+				addActivity(
+					id,
+					calculateDistance(inputValues.distance),
+					calculateDuration(inputValues.duration)
+				);
 				setInputValues({distance: '', duration: ''});
-				modalClose('addActivityModal');
+				setModal('', '');
+				setModalStatus(false);
 			}}
 		>
 			<label htmlFor="activityDistance" aria-label="Enter your distance">
@@ -34,10 +52,6 @@ export default function AddActivity() {
 					value={inputValues.distance}
 					required
 					onChange={event => {
-						setNewActivity({
-							...newActivity,
-							distance: calculateDistance(event.target.value),
-						});
 						setInputValues({
 							...inputValues,
 							distance: event.target.value,
@@ -56,10 +70,6 @@ export default function AddActivity() {
 				value={inputValues.duration}
 				required
 				onChange={event => {
-					setNewActivity({
-						...newActivity,
-						duration: calculateDuration(event.target.value),
-					});
 					setInputValues({
 						...inputValues,
 						duration: event.target.value,
@@ -68,22 +78,20 @@ export default function AddActivity() {
 			/>
 			<div>
 				<Button
-					value="cancel"
 					onClick={() => {
-						modalClose('addActivityModal');
+						setModal('', '');
+						setModalStatus(false);
 					}}
-				/>
+				>
+					cancel
+				</Button>
 				<Button
-					value="save"
 					type="submit"
 					id="submit"
-					disabled={
-						newActivity.distance === null ||
-						inputValues.distance === '' ||
-						newActivity.duration === null ||
-						inputValues.duration === ''
-					}
-				/>
+					disabled={inputValues.distance === '' || inputValues.duration === ''}
+				>
+					{id ? 'edit' : 'save'}
+				</Button>
 			</div>
 		</FormContainer>
 	);

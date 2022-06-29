@@ -5,10 +5,12 @@ import Button from '../components/Button';
 import Layout from '../components/Layout';
 import Modal from '../components/Modal';
 import {useStore} from '../hooks/useStore';
-import {modalShow} from '../utils/modal';
 
 export default function ResultsPage() {
 	const activityList = useStore(state => state.activities);
+	const setModal = useStore(state => state.setModal);
+	const modalStatus = useStore(state => state.modalStatus);
+	const setModalStatus = useStore(state => state.setModalStatus);
 
 	return (
 		<Layout>
@@ -18,12 +20,14 @@ export default function ResultsPage() {
 			</Helmet>
 			<h1>Results of the Runs</h1>
 			<Button
-				value="add your activity"
 				onClick={() => {
-					modalShow('addActivityModal');
+					setModal('create', '');
+					setModalStatus(true);
 				}}
-			/>
-			<Modal id={'addActivityModal'} />
+			>
+				add your activity
+			</Button>
+			<Modal open={modalStatus} />
 			{activityList.length > 0 ? (
 				activityList.map(item => {
 					return <ActivityResult key={item.id_} id_={item.id_} />;
