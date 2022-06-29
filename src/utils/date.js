@@ -89,7 +89,7 @@ export function secondToDurationData(seconds) {
 }
 
 export function createDurationString(duration) {
-	if (typeof duration !== 'object') {
+	if (typeof duration !== 'object' || !duration) {
 		return null;
 	}
 

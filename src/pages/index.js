@@ -4,6 +4,7 @@ import ActivityResult from '../components/ActivityComponents/Activity/index';
 import Button from '../components/Button';
 import Layout from '../components/Layout';
 import Modal from '../components/Modal';
+import ModalBackdrop from '../components/Modal/ModalBackdrop';
 import {useStore} from '../hooks/useStore';
 
 export default function ResultsPage() {
@@ -18,6 +19,7 @@ export default function ResultsPage() {
 				<title key="title">Results</title>
 				<meta key="description" name="description" content="Results" />
 			</Helmet>
+			<ModalBackdrop open={modalStatus} />
 			<h1>Results of the Runs</h1>
 			<Button
 				variant="large"

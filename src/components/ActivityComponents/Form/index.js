@@ -63,7 +63,7 @@ export default function AddActivity({id = '', distance = '', duration = ''}) {
 			<input
 				type="text"
 				id="activityDuration"
-				pattern="^(?:[0-9]{1,2}:){0,2}[0-9]{1,2}$"
+				pattern="^(([0-9]+:)?[0-5]?[0-9]:)?[0-5]?[0-9]$"
 				placeholder="hh:mm:ss"
 				value={inputValues.duration}
 				required
