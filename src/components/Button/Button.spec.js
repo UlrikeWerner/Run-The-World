@@ -6,7 +6,7 @@ import Button from './';
 
 describe('Button component', () => {
 	it('should render children', () => {
-		render(<Button value="save" />);
+		render(<Button>save</Button>);
 		const button = screen.getByText('save');
 		expect(button).toBeInTheDocument();
 	});
@@ -15,7 +15,7 @@ describe('Button component', () => {
 describe('Button component', () => {
 	it('should allow clicks', async () => {
 		const handleClick = jest.fn();
-		render(<Button value="save" onClick={handleClick} />);
+		render(<Button onClick={handleClick}>save</Button>);
 		const button = screen.getByText('save');
 		await userEvent.click(button);
 		expect(handleClick).toHaveBeenCalledTimes(1);
