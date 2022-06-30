@@ -9,7 +9,7 @@ const useStore = create(
 				activities: [],
 				modalStatus: false,
 				modal: {activTyp: '', idOfActivObject: ''},
-				addActivity: (id, distance, duration) =>
+				addActivity: (id, date, distance, duration) =>
 					id
 						? set(state => {
 								return {
@@ -17,7 +17,7 @@ const useStore = create(
 										activity.id_ === id
 											? {
 													id_: activity.id_,
-													date: activity.date,
+													date,
 													distance,
 													duration,
 											  }
@@ -30,7 +30,7 @@ const useStore = create(
 									activities: [
 										{
 											id_: nanoid(),
-											date: new Date(),
+											date,
 											distance,
 											duration,
 										},

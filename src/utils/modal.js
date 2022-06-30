@@ -14,6 +14,7 @@ export function setModalContent(modalState, activity) {
 			return (
 				<AddActivity
 					id={modalState.idOfActivObject}
+					date={activity.date}
 					distance={activity.distance}
 					duration={activity.duration}
 				/>

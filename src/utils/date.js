@@ -69,6 +69,29 @@ export function getDateMonth(date) {
 	return months[month];
 }
 
+export function getDateForForm(date) {
+	let dateStringForForm = '';
+
+	if (typeof date === 'object') {
+		try {
+			dateStringForForm += `${date.getFullYear()}-`;
+			const month = date.getMonth() + 1;
+			if (month < 10) {
+				dateStringForForm += `0${month}-`;
+			} else {
+				dateStringForForm += `${month}-`;
+			}
+			dateStringForForm += `${date.getDate()}`;
+
+			return dateStringForForm;
+		} catch (ignore) {
+			return null;
+		}
+	}
+
+	return null;
+}
+
 export function secondToDurationData(seconds) {
 	if (typeof seconds !== 'number') {
 		return null;
