@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 const ActivityWrapper = styled.section`
-	margin: 0.75rem 0 0.5rem;
+	margin: 0.35rem 0 0;
 
-	h2 {
+	h2,
+	button {
 		margin: 0;
 	}
 
 	h3 {
-		margin: 0;
+		margin: 0.6rem 0 0;
 		font-size: 0.85rem;
 	}
 

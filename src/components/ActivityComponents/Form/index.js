@@ -11,19 +11,17 @@ import Button from '../../Button/index';
 
 import {FormContainer} from './style';
 
-export default function AddActivity({id = ''}) {
+export default function AddActivity({id = '', distance = '', duration = ''}) {
 	const activity = useStore(state => state.activities.find(item => item.id_ === id));
 	const addActivity = useStore(state => state.addActivity);
 	const setModalStatus = useStore(state => state.setModalStatus);
 	const setModal = useStore(state => state.setModal);
 
-	const inputDistance = activity ? activity.distance / 1000 : '';
-	const inputDuration = activity
-		? createDurationInputValue(secondToDurationData(activity?.duration))
-		: '';
+	distance = distance ? distance / 1000 : '';
+	duration = duration ? createDurationInputValue(secondToDurationData(duration)) : '';
 	const [inputValues, setInputValues] = useState({
-		distance: inputDistance,
-		duration: inputDuration,
+		distance: distance,
+		duration: duration,
 	});
 
 	return (
@@ -65,7 +63,7 @@ export default function AddActivity({id = ''}) {
 			<input
 				type="text"
 				id="activityDuration"
-				pattern="^(?:[0-9]{1,2}:){0,2}[0-9]{1,2}$"
+				pattern="^(([0-9]+:)?[0-5]?[0-9]:)?[0-5]?[0-9]$"
 				placeholder="hh:mm:ss"
 				value={inputValues.duration}
 				required
@@ -78,6 +76,7 @@ export default function AddActivity({id = ''}) {
 			/>
 			<div>
 				<Button
+					variant="medium"
 					onClick={() => {
 						setModal('', '');
 						setModalStatus(false);
@@ -86,9 +85,16 @@ export default function AddActivity({id = ''}) {
 					cancel
 				</Button>
 				<Button
+					variant="medium"
 					type="submit"
 					id="submit"
-					disabled={inputValues.distance === '' || inputValues.duration === ''}
+					disabled={
+						inputValues.distance === '' ||
+						inputValues.distance === null ||
+						inputValues.distance <= 0 ||
+						inputValues.duration === '' ||
+						inputValues.duration === null
+					}
 				>
 					{id ? 'edit' : 'save'}
 				</Button>
