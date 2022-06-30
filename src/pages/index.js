@@ -23,6 +23,7 @@ export default function ResultsPage() {
 			<h1>Results of the Runs</h1>
 			<Button
 				variant="large"
+				role="create"
 				onClick={() => {
 					setModal('create', '');
 					setModalStatus(true);

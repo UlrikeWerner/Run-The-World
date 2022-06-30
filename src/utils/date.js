@@ -133,7 +133,7 @@ export function createDurationInputValue(duration) {
 	if (typeof duration !== 'object') {
 		return null;
 	}
-	const hour = duration.day * 24 + duration.hour;
+	const hour = duration.day * 24 + duration.hour * 1;
 
 	let result = '';
 	result += duration.hour ? `${hour}:` : '';

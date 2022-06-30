@@ -25,15 +25,4 @@ describe('ActivityResult component', () => {
 		expect(editBTN).toBeInTheDocument();
 		expect(deleteBTN).toBeInTheDocument();
 	});
-
-	it('buttons should allow clicks', async () => {
-		const handleClick = jest.fn();
-		render(<ActivityResult date="2022-05-13" distance={15600} duration={3269} />);
-		const editBTN = screen.getByRole('edit');
-		const deleteBTN = screen.getByRole('delete');
-		await userEvent.click(editBTN);
-		expect(handleClick).toHaveBeenCalledTimes(1);
-		await userEvent.click(deleteBTN);
-		expect(handleClick).toHaveBeenCalledTimes(1);
-	});
 });
