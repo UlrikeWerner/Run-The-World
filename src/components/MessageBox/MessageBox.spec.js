@@ -1,10 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, screen} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import MessageBox from './index';
-import Modal from '../Modal/index';
-import {setModalContent} from '../../utils/modal';
 
 describe('MessageBox component', () => {
 	it('should render children', () => {
