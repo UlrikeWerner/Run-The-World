@@ -3,20 +3,17 @@ import styled from 'styled-components';
 const ChallengeContainer = styled.section`
 	max-width: 10rem;
 	max-height: 20rem;
-	margin: 1rem;
 	overflow: hidden;
 	border: 1px solid black;
 	border-radius: 15px;
 
 	img {
-		object-fit: contain;
-		max-width: 100%;
-		max-height: 100%;
+		max-width: 10rem;
+		max-height: 10rem;
 	}
 
 	h2,
-	p,
-	nav {
+	p {
 		margin: 0 0.25rem;
 	}
 
