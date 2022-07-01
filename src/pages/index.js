@@ -2,10 +2,12 @@ import {Helmet} from 'react-helmet';
 
 import Challenge from '../components/Challenge/index';
 import Layout from '../components/Layout';
+import {useStore} from '../hooks/useStore';
 
 import {ChallengeList} from './indexStyled';
 
 export default function ChallengesPage() {
+	const challengeList = useStore(state => state.challenges);
 	return (
 		<Layout>
 			<Helmet>
@@ -13,41 +15,19 @@ export default function ChallengesPage() {
 				<meta key="description" name="description" content="Challenges" />
 			</Helmet>
 			<ChallengeList>
-				<Challenge
-					image="https://images.unsplash.com/photo-1589830258006-f91b5cb1eab5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1414&q=80"
-					title="Route 66"
-					startingPoint="Chicago"
-					endingPoint="Santa Monica"
-					distance="3945"
-				/>
-				<Challenge
-					image="https://images.unsplash.com/photo-1589830258006-f91b5cb1eab5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1414&q=80"
-					title="Route 66"
-					startingPoint="Chicago"
-					endingPoint="Santa Monica"
-					distance="3945"
-				/>
-				<Challenge
-					image="https://images.unsplash.com/photo-1589830258006-f91b5cb1eab5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1414&q=80"
-					title="Route 66"
-					startingPoint="Chicago"
-					endingPoint="Santa Monica"
-					distance="3945"
-				/>
-				<Challenge
-					image="https://images.unsplash.com/photo-1589830258006-f91b5cb1eab5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1414&q=80"
-					title="Route 66"
-					startingPoint="Chicago"
-					endingPoint="Santa Monica"
-					distance="3945"
-				/>
-				<Challenge
-					image="https://images.unsplash.com/photo-1589830258006-f91b5cb1eab5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1414&q=80"
-					title="Route 66"
-					startingPoint="Chicago"
-					endingPoint="Santa Monica"
-					distance="3945"
-				/>
+				{challengeList.map(item => {
+					return (
+						<Challenge
+							key={item.id}
+							id={item.id}
+							image={item.img}
+							title={item.title}
+							startingPoint={item.startingPoint}
+							endingPoint={item.endingPoint}
+							distance={item.distance}
+						/>
+					);
+				})}
 			</ChallengeList>
 		</Layout>
 	);

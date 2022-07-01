@@ -9,17 +9,24 @@ export function setModalContent(modalState, activity) {
 
 	switch (modalState.activTyp) {
 		case 'create':
-			return <AddActivity />;
+			return <AddActivity challengeId={modalState.challengeId} />;
 		case 'edit':
 			return (
 				<AddActivity
+					challengeId={modalState.challengeId}
 					id={modalState.idOfActivObject}
 					distance={activity.distance}
 					duration={activity.duration}
 				/>
 			);
 		case 'delete':
-			return <MessageBox id={modalState.idOfActivObject} text={text} />;
+			return (
+				<MessageBox
+					challengeId={modalState.challengeId}
+					id={modalState.idOfActivObject}
+					text={text}
+				/>
+			);
 		default:
 			break;
 	}

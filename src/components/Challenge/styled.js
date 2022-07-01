@@ -25,7 +25,7 @@ const ChallengeContainer = styled.section`
 		font-size: 0.9rem;
 	}
 
-	a {
+	/*a {
 		display: inline-block;
 		width: 3rem;
 		margin: 0.5rem 0.25rem;
@@ -43,6 +43,9 @@ const ChallengeContainer = styled.section`
 		&:active {
 			background: #bad;
 		}
+	}*/
+	Button {
+		margin: 0.5rem 0.25rem;
 	}
 `;
 

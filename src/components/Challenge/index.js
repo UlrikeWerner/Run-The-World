@@ -1,8 +1,10 @@
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
+import Button from '../Button/index';
 import {ChallengeContainer} from '../Challenge/styled';
 
 export default function Challenge({image, title, startingPoint, endingPoint, distance}) {
+	const navigate = useNavigate();
 	return (
 		<ChallengeContainer>
 			<img src={image} alt={title} />
@@ -11,7 +13,13 @@ export default function Challenge({image, title, startingPoint, endingPoint, dis
 				{startingPoint} to {endingPoint}
 			</p>
 			<p>{distance} km</p>
-			<Link to="/ActiveChallenge">start</Link>
+			<Button
+				onClick={() => {
+					navigate('/ActiveChallenge');
+				}}
+			>
+				Start
+			</Button>
 		</ChallengeContainer>
 	);
 }

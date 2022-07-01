@@ -8,7 +8,9 @@ import ModalBackdrop from '../components/Modal/ModalBackdrop';
 import {useStore} from '../hooks/useStore';
 
 export default function ActiveChallengePage() {
-	const activityList = useStore(state => state.activities);
+	const challenge = useStore(state => state.challenges.map(item => item.status === 'activ'));
+	const challengeId = challenge.id;
+	const activityList = challenge.activities;
 	const setModal = useStore(state => state.setModal);
 	const modalStatus = useStore(state => state.modalStatus);
 	const setModalStatus = useStore(state => state.setModalStatus);
@@ -20,11 +22,11 @@ export default function ActiveChallengePage() {
 				<meta key="description" name="description" content="activeChallenge" />
 			</Helmet>
 			<ModalBackdrop open={modalStatus} />
-			<h1>Results of the Runs</h1>
+			<h1>{challenge.title}</h1>
 			<Button
 				variant="large"
 				onClick={() => {
-					setModal('create', '');
+					setModal('create', challengeId, '');
 					setModalStatus(true);
 				}}
 			>
@@ -36,6 +38,7 @@ export default function ActiveChallengePage() {
 					return (
 						<ActivityResult
 							key={item.id_}
+							challengeId={challengeId}
 							activityId={item.id_}
 							date={item.date}
 							duration={item.duration}

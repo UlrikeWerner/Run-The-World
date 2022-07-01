@@ -11,7 +11,7 @@ import Button from '../../Button/index';
 
 import {FormContainer} from './style';
 
-export default function AddActivity({id = '', distance = '', duration = ''}) {
+export default function AddActivity({challengeId, id = '', distance = '', duration = ''}) {
 	const addActivity = useStore(state => state.addActivity);
 	const setModalStatus = useStore(state => state.setModalStatus);
 	const setModal = useStore(state => state.setModal);
@@ -28,6 +28,7 @@ export default function AddActivity({id = '', distance = '', duration = ''}) {
 			onSubmit={event => {
 				event.preventDefault();
 				addActivity(
+					challengeId,
 					id,
 					calculateDistance(inputValues.distance),
 					calculateDuration(inputValues.duration)

@@ -2,46 +2,68 @@ import {nanoid} from 'nanoid';
 import create from 'zustand';
 import {persist} from 'zustand/middleware';
 
+import db from '../db/challengesDB';
+
 const useStore = create(
 	persist(
 		set => {
 			return {
-				activities: [],
 				modalStatus: false,
-				modal: {activTyp: '', idOfActivObject: ''},
-				addActivity: (id, distance, duration) =>
+				modal: {activTyp: '', challengeId: '', idOfActivObject: ''},
+				challenges: [...db],
+
+				addActivity: (challengeId, id, distance, duration) =>
 					id
 						? set(state => {
+								const challenge = state.challenges.map(
+									challenge => challenge.id === challengeId
+								);
 								return {
-									activities: state.activities.map(activity =>
-										activity.id_ === id
+									challenges: challenge.activities.map(entry =>
+										entry.id_ === id
 											? {
-													id_: activity.id_,
-													date: activity.date,
+													id_: id,
+													date: entry.date,
 													distance,
 													duration,
 											  }
-											: activity
+											: entry
 									),
 								};
 						  })
 						: set(state => {
+								const challenge = state.challenges.map(
+									challenge => challenge.id === challengeId
+								);
 								return {
-									activities: [
+									challenges: (challenge.activities = [
 										{
 											id_: nanoid(),
 											date: new Date(),
 											distance,
 											duration,
 										},
-										...state.activities,
-									],
+										...challenge.activities,
+									]),
 								};
 						  }),
-				deleteActivity: id => {
+				deleteActivity: (challengeId, id) => {
 					set(state => {
+						const challenge = state.challenges.map(
+							challenge => challenge.id === challengeId
+						);
 						return {
-							activities: state.activities.filter(element => element.id_ !== id),
+							activities: challenge.activities.filter(element => element.id_ !== id),
+						};
+					});
+				},
+				setChallengeStatus: (challengeId, status) => {
+					set(state => {
+						const challenge = state.challenges.map(
+							challenge => challenge.id === challengeId
+						);
+						return {
+							status: challenge.activities.filter(element => element.id_ !== id),
 						};
 					});
 				},

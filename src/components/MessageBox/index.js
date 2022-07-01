@@ -3,7 +3,7 @@ import Button from '../Button';
 
 import {MessageContainer} from './styled';
 
-export default function MessageBox({id, text}) {
+export default function MessageBox({challengeId, id, text}) {
 	const setModal = useStore(state => state.setModal);
 	const setModalStatus = useStore(state => state.setModalStatus);
 	const deleteActivity = useStore(state => state.deleteActivity);
@@ -25,7 +25,7 @@ export default function MessageBox({id, text}) {
 					variant="medium"
 					type="button"
 					onClick={() => {
-						deleteActivity(id);
+						deleteActivity(challengeId, id);
 						setModal('', '');
 						setModalStatus(false);
 					}}
