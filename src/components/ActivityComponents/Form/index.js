@@ -12,7 +12,6 @@ import Button from '../../Button/index';
 import {FormContainer} from './style';
 
 export default function AddActivity({id = '', distance = '', duration = ''}) {
-	const activity = useStore(state => state.activities.find(item => item.id_ === id));
 	const addActivity = useStore(state => state.addActivity);
 	const setModalStatus = useStore(state => state.setModalStatus);
 	const setModal = useStore(state => state.setModal);
