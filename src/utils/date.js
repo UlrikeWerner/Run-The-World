@@ -81,7 +81,12 @@ export function getDateForForm(date) {
 			} else {
 				dateStringForForm += `${month}-`;
 			}
-			dateStringForForm += `${date.getDate()}`;
+
+			if (date.getDate() < 10) {
+				dateStringForForm += `0${date.getDate()}`;
+			} else {
+				dateStringForForm += `${date.getDate()}`;
+			}
 
 			return dateStringForForm;
 		} catch (ignore) {
