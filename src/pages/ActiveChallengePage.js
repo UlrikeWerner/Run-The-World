@@ -27,32 +27,38 @@ export default function ActiveChallengePage() {
 				<meta key="description" name="description" content="activeChallenge" />
 			</Helmet>
 			<ModalBackdrop open={modalStatus} />
-			<h1>{challenge[0]?.title}</h1>
-			<Button
-				variant="large"
-				onClick={() => {
-					setModal('create', '');
-					setModalStatus(true);
-				}}
-			>
-				add your activity
-			</Button>
-			<Modal open={modalStatus} />
-			{activeChallengeActivities.length > 0 ? (
-				activeChallengeActivities.map(item => {
-					return (
-						<ActivityResult
-							key={item.id}
-							challengeId={activeChallengeId}
-							activityId={item.id}
-							date={item.date}
-							duration={item.duration}
-							distance={item.distance}
-						/>
-					);
-				})
+			{challenge <= 0 ? (
+				<p>You have no active challenge</p>
 			) : (
-				<p>no results</p>
+				<>
+					<h1>{challenge[0]?.title}</h1>
+					<Button
+						variant="large"
+						onClick={() => {
+							setModal('create', '');
+							setModalStatus(true);
+						}}
+					>
+						add your activity
+					</Button>
+					<Modal open={modalStatus} />
+					{activeChallengeActivities.length > 0 ? (
+						activeChallengeActivities.map(item => {
+							return (
+								<ActivityResult
+									key={item.id}
+									challengeId={activeChallengeId}
+									activityId={item.id}
+									date={item.date}
+									duration={item.duration}
+									distance={item.distance}
+								/>
+							);
+						})
+					) : (
+						<p>no results</p>
+					)}
+				</>
 			)}
 		</Layout>
 	);
