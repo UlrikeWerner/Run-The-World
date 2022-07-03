@@ -8,5 +8,6 @@ export default function Modal({open}) {
 	const activity = useStore(state =>
 		state.activities.find(item => item.id_ === modalState.idOfActivObject)
 	);
+
 	return <ModalContainer open={open}>{setModalContent(modalState, activity)}</ModalContainer>;
 }

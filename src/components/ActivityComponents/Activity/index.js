@@ -37,6 +37,7 @@ export default function ActivityResult({activityId, date, duration, distance}) {
 			<ActivityWrapper>
 				<Button
 					variant="small"
+					role="edit"
 					onClick={() => {
 						setModal('edit', activityId);
 						setModalStatus(true);
@@ -59,6 +60,7 @@ export default function ActivityResult({activityId, date, duration, distance}) {
 				</Button>
 				<Button
 					variant="small"
+					role="delete"
 					onClick={() => {
 						setModal('delete', activityId);
 						setModalStatus(true);
