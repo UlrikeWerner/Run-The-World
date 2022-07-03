@@ -2,18 +2,18 @@ import AddActivity from '../components/ActivityComponents/Form/index';
 import MessageBox from '../components/MessageBox';
 import {getDateDay, getDateMonth} from '../utils/date';
 
-export function setModalContent(modalState, activity) {
+export function setModalContent(modalState, activeChallengeId, activity) {
 	const text = `Do you want to delete the activity from ${getDateMonth(
 		activity?.date
 	)} ${getDateDay(activity?.date)}`;
 
 	switch (modalState.activTyp) {
 		case 'create':
-			return <AddActivity challengeId={modalState.challengeId} />;
+			return <AddActivity challengeId={activeChallengeId} />;
 		case 'edit':
 			return (
 				<AddActivity
-					challengeId={modalState.challengeId}
+					challengeId={activeChallengeId}
 					id={modalState.idOfActivObject}
 					date={activity.date}
 					distance={activity.distance}
@@ -23,7 +23,7 @@ export function setModalContent(modalState, activity) {
 		case 'delete':
 			return (
 				<MessageBox
-					challengeId={modalState.challengeId}
+					challengeId={activeChallengeId}
 					id={modalState.idOfActivObject}
 					text={text}
 				/>

@@ -38,8 +38,8 @@ export default function AddActivity({
 			onSubmit={event => {
 				event.preventDefault();
 				addActivity(
-					challengeId,
 					id,
+					challengeId,
 					inputValues.date,
 					calculateDistance(inputValues.distance),
 					calculateDuration(inputValues.duration)

@@ -11,18 +11,25 @@ const useStore = create(
 				modalStatus: false,
 				modal: {activTyp: '', challengeId: '', idOfActivObject: ''},
 				challenges: [...db],
+				activeChallengeId: '',
+				activities: [],
 
-				addActivity: (challengeId, id, date, distance, duration) =>
+				setActivChallengeId: challengeId =>
+					set(() => {
+						return {
+							activeChallengeId: challengeId,
+						};
+					}),
+
+				addActivity: (id, challengeId, date, distance, duration) =>
 					id
 						? set(state => {
-								const challenge = state.challenges.map(
-									challenge => challenge.id === challengeId
-								);
 								return {
-									challenges: challenge.activities.map(entry =>
-										entry.id_ === id
+									activities: state.activities.map(entry =>
+										entry.id === id
 											? {
-													id_: activity.id_,
+													id: entry.id,
+													challengeId: entry.challengeId,
 													date,
 													distance,
 													duration,
@@ -32,41 +39,27 @@ const useStore = create(
 								};
 						  })
 						: set(state => {
-								const challenge = state.challenges.map(
-									challenge => challenge.id === challengeId
-								);
 								return {
-									challenges: (challenge.activities = [
+									activities: [
 										{
-											id_: nanoid(),
+											id: nanoid(),
+											challengeId,
 											date,
 											distance,
 											duration,
 										},
-										...challenge.activities,
-									]),
+										...state.activities,
+									],
 								};
 						  }),
-				deleteActivity: (challengeId, id) => {
+
+				deleteActivity: id => {
 					set(state => {
-						const challenge = state.challenges.map(
-							challenge => challenge.id === challengeId
-						);
 						return {
-							activities: challenge.activities.filter(element => element.id_ !== id),
+							activities: state.activities.filter(element => element.id !== id),
 						};
 					});
 				},
-				/*setChallengeStatus: (challengeId, status) => {
-					set(state => {
-						const challenge = state.challenges.map(
-							challenge => challenge.id === challengeId
-						);
-						return {
-							status: challenge.activities.filter(element => element.id_ !== id),
-						};
-					});
-				},*/
 
 				setModalStatus: status =>
 					set(() => {
