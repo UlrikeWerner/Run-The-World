@@ -57,7 +57,7 @@ const useStore = create(
 						};
 					});
 				},
-				setChallengeStatus: (challengeId, status) => {
+				/*setChallengeStatus: (challengeId, status) => {
 					set(state => {
 						const challenge = state.challenges.map(
 							challenge => challenge.id === challengeId
@@ -66,7 +66,7 @@ const useStore = create(
 							status: challenge.activities.filter(element => element.id_ !== id),
 						};
 					});
-				},
+				},*/
 
 				setModalStatus: status =>
 					set(() => {
