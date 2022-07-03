@@ -69,6 +69,34 @@ export function getDateMonth(date) {
 	return months[month];
 }
 
+export function getDateForForm(date) {
+	let dateStringForForm = '';
+
+	if (typeof date === 'object') {
+		try {
+			dateStringForForm += `${date.getFullYear()}-`;
+			const month = date.getMonth() + 1;
+			if (month < 10) {
+				dateStringForForm += `0${month}-`;
+			} else {
+				dateStringForForm += `${month}-`;
+			}
+
+			if (date.getDate() < 10) {
+				dateStringForForm += `0${date.getDate()}`;
+			} else {
+				dateStringForForm += `${date.getDate()}`;
+			}
+
+			return dateStringForForm;
+		} catch (ignore) {
+			return null;
+		}
+	}
+
+	return null;
+}
+
 export function secondToDurationData(seconds) {
 	if (typeof seconds !== 'number') {
 		return null;
@@ -110,7 +138,7 @@ export function createDurationInputValue(duration) {
 	if (typeof duration !== 'object') {
 		return null;
 	}
-	const hour = duration.day * 24 + duration.hour;
+	const hour = duration.day * 24 + duration.hour * 1;
 
 	let result = '';
 	result += duration.hour ? `${hour}:` : '';

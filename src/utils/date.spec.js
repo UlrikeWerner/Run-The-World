@@ -2,8 +2,10 @@ import {
 	getDateWeekday,
 	getDateDay,
 	getDateMonth,
+	getDateForForm,
 	secondToDurationData,
 	createDurationString,
+	createDurationInputValue,
 	calculateDuration,
 	calculateDistance,
 } from './date';
@@ -35,6 +37,13 @@ describe('getDateMonth', () => {
 	});
 });
 
+describe('getDateForForm', () => {
+	it('should return a string of the date', () => {
+		const date = new Date('2022-06-27T07:26:30.599Z');
+		expect(getDateForForm(date)).toBe('2022-06-27');
+	});
+});
+
 describe('secondToDurationData', () => {
 	it('should return an array of the duration', () => {
 		expect(secondToDurationData(2592)).toStrictEqual({
@@ -56,6 +65,19 @@ describe('createDurationString', () => {
 				second: '12',
 			})
 		).toBe('43min 12sec ');
+	});
+});
+
+describe('createDurationInputValue', () => {
+	it('should return a string of the duration', () => {
+		expect(
+			createDurationInputValue({
+				day: '1',
+				hour: '1',
+				minute: '43',
+				second: '12',
+			})
+		).toBe('25:43:12');
 	});
 });
 

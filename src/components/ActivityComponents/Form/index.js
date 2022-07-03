@@ -2,6 +2,7 @@ import {useState} from 'react';
 
 import {useStore} from '../../../hooks/useStore';
 import {
+	getDateForForm,
 	createDurationInputValue,
 	secondToDurationData,
 	calculateDistance,
@@ -11,14 +12,23 @@ import Button from '../../Button/index';
 
 import {FormContainer} from './style';
 
-export default function AddActivity({challengeId, id = '', distance = '', duration = ''}) {
+export default function AddActivity({
+	challengeId,
+	id = '',
+	date = '',
+	distance = '',
+	duration = '',
+}) {
 	const addActivity = useStore(state => state.addActivity);
 	const setModalStatus = useStore(state => state.setModalStatus);
 	const setModal = useStore(state => state.setModal);
 
+	const today = getDateForForm(new Date());
+	date = date ? date : today;
 	distance = distance ? distance / 1000 : '';
 	duration = duration ? createDurationInputValue(secondToDurationData(duration)) : '';
 	const [inputValues, setInputValues] = useState({
+		date: date,
 		distance: distance,
 		duration: duration,
 	});
@@ -30,14 +40,34 @@ export default function AddActivity({challengeId, id = '', distance = '', durati
 				addActivity(
 					challengeId,
 					id,
+					inputValues.date,
 					calculateDistance(inputValues.distance),
 					calculateDuration(inputValues.duration)
 				);
-				setInputValues({distance: '', duration: ''});
+				setInputValues({date: today, distance: '', duration: ''});
 				setModal('', '');
 				setModalStatus(false);
 			}}
 		>
+			<label htmlFor="activityDate" aria-label="Enter your date">
+				date of the activity
+			</label>
+			<div>
+				<input
+					type="date"
+					id="activityDate"
+					placeholder="YYYY-MM-DD"
+					max={today}
+					value={inputValues.date}
+					required
+					onChange={event => {
+						setInputValues({
+							...inputValues,
+							date: event.target.value,
+						});
+					}}
+				/>
+			</div>
 			<label htmlFor="activityDistance" aria-label="Enter your distance">
 				distance (km)
 			</label>
@@ -60,6 +90,7 @@ export default function AddActivity({challengeId, id = '', distance = '', durati
 			<label htmlFor="activityDuration" aria-label="Enter your duration">
 				duration
 			</label>
+
 			<input
 				type="text"
 				id="activityDuration"

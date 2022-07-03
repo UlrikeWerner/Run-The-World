@@ -12,7 +12,7 @@ const useStore = create(
 				modal: {activTyp: '', challengeId: '', idOfActivObject: ''},
 				challenges: [...db],
 
-				addActivity: (challengeId, id, distance, duration) =>
+				addActivity: (challengeId, id, date, distance, duration) =>
 					id
 						? set(state => {
 								const challenge = state.challenges.map(
@@ -22,8 +22,8 @@ const useStore = create(
 									challenges: challenge.activities.map(entry =>
 										entry.id_ === id
 											? {
-													id_: id,
-													date: entry.date,
+													id_: activity.id_,
+													date,
 													distance,
 													duration,
 											  }
@@ -39,7 +39,7 @@ const useStore = create(
 									challenges: (challenge.activities = [
 										{
 											id_: nanoid(),
-											date: new Date(),
+											date,
 											distance,
 											duration,
 										},

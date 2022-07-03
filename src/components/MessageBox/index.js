@@ -14,6 +14,7 @@ export default function MessageBox({challengeId, id, text}) {
 			<div>
 				<Button
 					variant="medium"
+					role="cancel"
 					onClick={() => {
 						setModal('', '');
 						setModalStatus(false);
@@ -23,6 +24,7 @@ export default function MessageBox({challengeId, id, text}) {
 				</Button>
 				<Button
 					variant="medium"
+					role="ok"
 					type="button"
 					onClick={() => {
 						deleteActivity(challengeId, id);

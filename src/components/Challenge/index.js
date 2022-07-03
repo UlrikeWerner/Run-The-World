@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import Button from '../Button/index';
 import {ChallengeContainer} from '../Challenge/styled';
 
-export default function Challenge({image, title, startingPoint, endingPoint, distance}) {
+export default function Challenge({id, image, title, startingPoint, endingPoint, distance}) {
 	const navigate = useNavigate();
 	return (
 		<ChallengeContainer>
