@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
-import Result from './pages/index';
+import ActiveChallengePage from './pages/ActiveChallengePage';
+import ChallengesPage from './pages/index';
 import {GlobalStyle} from './styles';
 
 export default function App() {
@@ -10,7 +11,8 @@ export default function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/">
-						<Route path="/" element={<Result />} />
+						<Route path="/" element={<ChallengesPage />} />
+						<Route path="/activeChallenge" element={<ActiveChallengePage />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

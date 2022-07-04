@@ -2,26 +2,39 @@ import {nanoid} from 'nanoid';
 import create from 'zustand';
 import {persist} from 'zustand/middleware';
 
+import db from '../db/challengesDB';
+
 const useStore = create(
 	persist(
 		set => {
 			return {
-				activities: [],
 				modalStatus: false,
-				modal: {activTyp: '', idOfActivObject: ''},
-				addActivity: (id, date, distance, duration) =>
+				modal: {activTyp: '', challengeId: '', idOfActivObject: ''},
+				challenges: [...db],
+				activeChallengeId: '',
+				activities: [],
+
+				setActivChallengeId: challengeId =>
+					set(() => {
+						return {
+							activeChallengeId: challengeId,
+						};
+					}),
+
+				addActivity: (id, challengeId, date, distance, duration) =>
 					id
 						? set(state => {
 								return {
-									activities: state.activities.map(activity =>
-										activity.id_ === id
+									activities: state.activities.map(entry =>
+										entry.id === id
 											? {
-													id_: activity.id_,
+													id: entry.id,
+													challengeId: entry.challengeId,
 													date,
 													distance,
 													duration,
 											  }
-											: activity
+											: entry
 									),
 								};
 						  })
@@ -29,7 +42,8 @@ const useStore = create(
 								return {
 									activities: [
 										{
-											id_: nanoid(),
+											id: nanoid(),
+											challengeId,
 											date,
 											distance,
 											duration,
@@ -38,10 +52,11 @@ const useStore = create(
 									],
 								};
 						  }),
+
 				deleteActivity: id => {
 					set(state => {
 						return {
-							activities: state.activities.filter(element => element.id_ !== id),
+							activities: state.activities.filter(element => element.id !== id),
 						};
 					});
 				},
