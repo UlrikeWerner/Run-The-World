@@ -11,7 +11,7 @@ import Button from '../../Button/index';
 import {ActivityContainer} from './Style/container';
 import {ActivityWrapper} from './Style/wrapper';
 
-export default function ActivityResult({activityId, date, duration, distance}) {
+export default function ActivityResult({challengeId, activityId, date, duration, distance}) {
 	const setModal = useStore(state => state.setModal);
 	const setModalStatus = useStore(state => state.setModalStatus);
 
