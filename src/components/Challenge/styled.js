@@ -25,26 +25,7 @@ const ChallengeContainer = styled.section`
 		font-size: 0.9rem;
 	}
 
-	/*a {
-		display: inline-block;
-		width: 3rem;
-		margin: 0.5rem 0.25rem;
-		border: 1px solid black;
-		border-radius: 15px;
-		color: black;
-		font-size: 0.9rem;
-		text-align: center;
-		text-decoration: none;
-
-		&:hover {
-			background: lightgreen;
-		}
-
-		&:active {
-			background: #bad;
-		}
-	}*/
-	Button {
+	button {
 		margin: 0.5rem 0.25rem;
 	}
 `;
