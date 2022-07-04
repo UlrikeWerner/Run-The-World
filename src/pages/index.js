@@ -5,6 +5,7 @@ import Button from '../components/Button';
 import Layout from '../components/Layout';
 import Modal from '../components/Modal';
 import ModalBackdrop from '../components/Modal/ModalBackdrop';
+import NavBar from '../components/NavBar';
 import {useStore} from '../hooks/useStore';
 
 export default function ResultsPage() {
@@ -47,6 +48,7 @@ export default function ResultsPage() {
 			) : (
 				<p>no results</p>
 			)}
+			<NavBar />
 		</Layout>
 	);
 }
