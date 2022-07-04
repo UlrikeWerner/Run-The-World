@@ -16,6 +16,10 @@ export default function ActiveChallengePage() {
 	const activeChallengeActivities = activityList.filter(
 		item => item.challengeId === activeChallengeId
 	);
+	activeChallengeActivities.sort(function (a, b) {
+		return new Date(b.date) - new Date(a.date);
+	});
+
 	const setModal = useStore(state => state.setModal);
 	const modalStatus = useStore(state => state.modalStatus);
 	const setModalStatus = useStore(state => state.setModalStatus);
@@ -27,9 +31,7 @@ export default function ActiveChallengePage() {
 				<meta key="description" name="description" content="activeChallenge" />
 			</Helmet>
 			<ModalBackdrop open={modalStatus} />
-			{challenge <= 0 ? (
-				<p>You have no active challenge</p>
-			) : (
+			{challenge.length > 0 ? (
 				<>
 					<h1>{challenge[0]?.title}</h1>
 					<Button
@@ -59,6 +61,8 @@ export default function ActiveChallengePage() {
 						<p>no results</p>
 					)}
 				</>
+			) : (
+				<p>You have no active challenge</p>
 			)}
 		</Layout>
 	);
