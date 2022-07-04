@@ -21,13 +21,7 @@ export function setModalContent(modalState, activeChallengeId, activity) {
 				/>
 			);
 		case 'delete':
-			return (
-				<MessageBox
-					challengeId={activeChallengeId}
-					id={modalState.idOfActivObject}
-					text={text}
-				/>
-			);
+			return <MessageBox id={modalState.idOfActivObject} text={text} />;
 		default:
 			break;
 	}

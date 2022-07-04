@@ -27,7 +27,7 @@ export default function MessageBox({challengeId, id, text}) {
 					role="ok"
 					type="button"
 					onClick={() => {
-						deleteActivity(challengeId, id);
+						deleteActivity(id);
 						setModal('', '');
 						setModalStatus(false);
 					}}
