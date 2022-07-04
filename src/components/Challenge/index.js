@@ -16,7 +16,7 @@ export default function Challenge({
 	const setActivChallengeId = useStore(state => state.setActivChallengeId);
 	return (
 		<ChallengeContainer>
-			<img src={image} alt={title} />
+			<img src={image} aria-label={title} alt={title} />
 			<h2>{title}</h2>
 			<p>
 				{startingPoint} to {endingPoint}
