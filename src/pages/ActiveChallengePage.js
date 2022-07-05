@@ -7,6 +7,7 @@ import Layout from '../components/Layout';
 import Modal from '../components/Modal';
 import ModalBackdrop from '../components/Modal/ModalBackdrop';
 import NavBar from '../components/NavBar/index';
+import ProgressBox from '../components/ProgressBox';
 import {useStore} from '../hooks/useStore';
 
 import {HeadLine} from './style/HeadLineStyle';
@@ -49,6 +50,10 @@ export default function ActiveChallengePage() {
 								/>
 								<h1>{challenge[0]?.title}</h1>
 							</HeadLine>
+							<ProgressBox
+								distance={challenge[0]?.distance}
+								activities={activeChallengeActivities}
+							/>
 							<Button
 								variant="large"
 								onClick={() => {

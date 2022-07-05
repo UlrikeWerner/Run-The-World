@@ -1,5 +1,3 @@
-//import {Link} from 'react-router-dom';
-
 import {LinkContainer} from './style/linkStyled';
 import {StyledNavBar} from './style/navStyled';
 

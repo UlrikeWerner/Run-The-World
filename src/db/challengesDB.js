@@ -3,7 +3,7 @@ import {nanoid} from 'nanoid';
 const challengesDB = [
 	{
 		id: nanoid(),
-		title: 'Route 66',
+		title: 'Historic Route 66',
 		logo: 'map:route',
 		logoSize: '1.8rem',
 		img: 'https://images.unsplash.com/photo-1589830258006-f91b5cb1eab5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1414&q=80',
