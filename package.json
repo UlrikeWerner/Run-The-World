@@ -30,6 +30,7 @@
     "zustand": "4.0.0-rc.1"
   },
   "devDependencies": {
+    "@iconify/react": "^3.2.2",
     "@jest/globals": "^28.1.0",
     "@mdx-js/react": "^2.1.1",
     "@storybook/addon-actions": "^6.5.9",

@@ -1,3 +1,4 @@
+import {Icon} from '@iconify/react';
 import {Helmet} from 'react-helmet';
 
 import ActivityResult from '../components/ActivityComponents/Activity/index';
@@ -6,6 +7,8 @@ import Layout from '../components/Layout';
 import Modal from '../components/Modal';
 import ModalBackdrop from '../components/Modal/ModalBackdrop';
 import {useStore} from '../hooks/useStore';
+
+import {HeadLine} from './HeadLineStyle';
 
 export default function ActiveChallengePage() {
 	const activeChallengeId = useStore(state => state.activeChallengeId);
@@ -33,7 +36,14 @@ export default function ActiveChallengePage() {
 			<ModalBackdrop open={modalStatus} />
 			{challenge.length > 0 ? (
 				<>
-					<h1>{challenge[0]?.title}</h1>
+					<HeadLine>
+						<Icon
+							icon={challenge[0]?.logo}
+							width={challenge[0]?.logoSize}
+							height={challenge[0]?.logoSize}
+						/>
+						<h1>{challenge[0]?.title}</h1>
+					</HeadLine>
 					<Button
 						variant="large"
 						onClick={() => {
