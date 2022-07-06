@@ -1,4 +1,3 @@
-//import {secondToDurationData, createDurationString} from './date';
 import {sumDuration, sumDistance, calculatePercent} from './progress';
 
 const activities = [

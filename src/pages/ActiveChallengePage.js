@@ -17,7 +17,7 @@ import {SiteWrapper} from './style/SiteWrapper';
 export default function ActiveChallengePage() {
 	const activeChallengeId = useStore(state => state.activeChallengeId);
 	const challenge = useStore(state =>
-		state.challenges.filter(item => item.id === activeChallengeId)
+		state.challenges.find(item => item.id === activeChallengeId)
 	);
 	const activityList = useStore(state => state.activities);
 	const activeChallengeActivities = activityList.filter(
@@ -40,18 +40,18 @@ export default function ActiveChallengePage() {
 			<SiteWrapper>
 				<ModalBackdrop open={modalStatus} />
 				<SiteContent>
-					{challenge.length > 0 ? (
+					{challenge ? (
 						<>
 							<HeadLine>
 								<Icon
-									icon={challenge[0]?.logo}
-									width={challenge[0]?.logoSize}
-									height={challenge[0]?.logoSize}
+									icon={challenge?.logo}
+									width={challenge?.logoSize}
+									height={challenge?.logoSize}
 								/>
-								<h1>{challenge[0]?.title}</h1>
+								<h1>{challenge?.title}</h1>
 							</HeadLine>
 							<ProgressBox
-								distance={challenge[0]?.distance}
+								distance={challenge?.distance}
 								activities={activeChallengeActivities}
 							/>
 							<Button
