@@ -25,17 +25,7 @@ const buttonState = {
 	},
 };
 
-const display = {
-	shown: {
-		visibile: 'block',
-		hidden: 'none',
-	},
-};
-
 const StyledButton = styled.button`
-	${props => `
-	display: ${display.shown[props.status] ?? display.shown.visibile};
-	`};
 	margin-top: 0.5rem;
 	padding: 0.5em 1em;
 	border: 1px solid rgba(0, 0, 0, 0.3);
