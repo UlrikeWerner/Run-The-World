@@ -1,3 +1,4 @@
+import {Icon} from '@iconify/react';
 import {Helmet} from 'react-helmet';
 
 import ActivityResult from '../components/ActivityComponents/Activity/index';
@@ -6,15 +7,17 @@ import Layout from '../components/Layout';
 import Modal from '../components/Modal';
 import ModalBackdrop from '../components/Modal/ModalBackdrop';
 import NavBar from '../components/NavBar/index';
+import ProgressBox from '../components/ProgressBox';
 import {useStore} from '../hooks/useStore';
 
+import {HeadLine} from './style/HeadLineStyle';
 import {SiteContent} from './style/SiteContent';
 import {SiteWrapper} from './style/SiteWrapper';
 
 export default function ActiveChallengePage() {
 	const activeChallengeId = useStore(state => state.activeChallengeId);
 	const challenge = useStore(state =>
-		state.challenges.filter(item => item.id === activeChallengeId)
+		state.challenges.find(item => item.id === activeChallengeId)
 	);
 	const activityList = useStore(state => state.activities);
 	const activeChallengeActivities = activityList.filter(
@@ -37,9 +40,20 @@ export default function ActiveChallengePage() {
 			<SiteWrapper>
 				<ModalBackdrop open={modalStatus} />
 				<SiteContent>
-					{challenge.length > 0 ? (
+					{challenge ? (
 						<>
-							<h1>{challenge[0]?.title}</h1>
+							<HeadLine>
+								<Icon
+									icon={challenge?.logo}
+									width={challenge?.logoSize}
+									height={challenge?.logoSize}
+								/>
+								<h1>{challenge?.title}</h1>
+							</HeadLine>
+							<ProgressBox
+								distance={challenge?.distance}
+								activities={activeChallengeActivities}
+							/>
 							<Button
 								variant="large"
 								onClick={() => {
