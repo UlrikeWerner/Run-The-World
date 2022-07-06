@@ -47,11 +47,14 @@ export default function ActiveChallengePage() {
 					{challenge ? (
 						<>
 							<HeadLine>
-								<Icon
-									icon={challenge?.logo}
-									width={challenge?.logoSize}
-									height={challenge?.logoSize}
-								/>
+								<div>
+									<Icon
+										icon={challenge?.logo}
+										width={challenge?.logoSize}
+										height={challenge?.logoSize}
+									/>
+								</div>
+
 								<h1>{challenge?.title}</h1>
 							</HeadLine>
 							<ProgressBox
