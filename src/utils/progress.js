@@ -13,7 +13,7 @@ export function sumDuration(activities) {
 	return createDurationString(secondToDurationData(sum));
 }
 
-export function sumDistance(activities) {
+export function sumDistance(activities, distance) {
 	let sum = 0;
 	if (activities.length <= 0) {
 		return '0,00';
@@ -23,7 +23,7 @@ export function sumDistance(activities) {
 		sum += element.distance;
 	});
 
-	return sum / 1000;
+	return Math.min(sum / 1000, distance);
 }
 
 export function calculatePercent(totalSum, partSum) {
@@ -32,5 +32,5 @@ export function calculatePercent(totalSum, partSum) {
 		return percent;
 	}
 	percent = Math.round((partSum * 100) / totalSum);
-	return percent;
+	return Math.min(percent, totalSum);
 }

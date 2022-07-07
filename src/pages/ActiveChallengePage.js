@@ -54,7 +54,6 @@ export default function ActiveChallengePage() {
 										height={challenge?.logoSize}
 									/>
 								</div>
-
 								<h1>{challenge?.title}</h1>
 							</HeadLine>
 							<ProgressBox
