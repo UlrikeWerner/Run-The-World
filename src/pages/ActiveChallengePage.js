@@ -27,7 +27,7 @@ export default function ActiveChallengePage() {
 	activeChallengeActivities.sort(function (a, b) {
 		return new Date(b.date) - new Date(a.date);
 	});
-	const sumActivitiesDistance = sumDistance(activeChallengeActivities);
+	const sumActivitiesDistance = sumDistance(activeChallengeActivities, challenge?.distance);
 
 	const setModal = useStore(state => state.setModal);
 	const modalStatus = useStore(state => state.modalStatus);
@@ -69,7 +69,6 @@ export default function ActiveChallengePage() {
 							) : (
 								<Button
 									variant="large"
-									status={status}
 									onClick={() => {
 										setModal('create', '', challenge.id);
 										setModalStatus(true);
