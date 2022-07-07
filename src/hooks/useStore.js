@@ -55,7 +55,6 @@ const useStore = create(
 
 								return {challengeStatus: challengeStat};
 						  }),
-
 				addActivity: (id, challengeId, date, distance, duration) =>
 					id
 						? set(state => {

@@ -14,6 +14,17 @@ export default function Challenge({
 }) {
 	const navigate = useNavigate();
 	const setChallengeStatus = useStore(state => state.setChallengeStatus);
+
+	const activities = useStore(state => state.activities).filter(activity => {
+		return activity.challengeId === challengeId;
+	});
+	let activityDistance = 0;
+	activities.forEach(activity => {
+		activityDistance += activity.distance;
+	});
+
+	const isFinished = distance <= activityDistance;
+
 	return (
 		<ChallengeContainer>
 			<img src={image} aria-label={title} alt={title} />
@@ -22,14 +33,18 @@ export default function Challenge({
 				{startingPoint} to {endingPoint}
 			</p>
 			<p>{distance} km</p>
-			<Button
-				onClick={() => {
-					setChallengeStatus(challengeId);
-					navigate('/ActiveChallenge');
-				}}
-			>
-				Start
-			</Button>
+			{isFinished ? (
+				<div>*finished</div>
+			) : (
+				<Button
+					onClick={() => {
+						setChallengeStatus(challengeId);
+						navigate('/ActiveChallenge');
+					}}
+				>
+					Start
+				</Button>
+			)}
 		</ChallengeContainer>
 	);
 }

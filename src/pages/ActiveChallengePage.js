@@ -1,5 +1,6 @@
 import {Icon} from '@iconify/react';
 import {Helmet} from 'react-helmet';
+import {useNavigate} from 'react-router-dom';
 
 import ActivityResult from '../components/ActivityComponents/Activity/index';
 import Button from '../components/Button';
@@ -16,11 +17,13 @@ import {SiteContent} from './style/SiteContent';
 import {SiteWrapper} from './style/SiteWrapper';
 
 export default function ActiveChallengePage() {
+	const navigate = useNavigate();
+
 	const activeChallengeId = useStore(state =>
 		state.challengeStatus.find(item => item.status === 'active')
-	);
+	).challengeId;
 	const challenge = useStore(state =>
-		state.challenges.find(item => item.id === activeChallengeId.challengeId)
+		state.challenges.find(item => item.id === activeChallengeId)
 	);
 	const activityList = useStore(state => state.activities);
 	const activeChallengeActivities = activityList.filter(
@@ -62,11 +65,19 @@ export default function ActiveChallengePage() {
 							/>
 							{sumActivitiesDistance >= challenge.distance ? (
 								<div>
-									<p>&#127881; Congratulation!</p>
+									<p>&#127881; Congratulations!</p>
 									<p>
-										You have conquered the <span>{challenge?.title} </span>
+										You have conquered <span>{challenge?.title} </span>
 										&#127881;
 									</p>
+									<Button
+										variant="large"
+										onClick={() => {
+											navigate('/');
+										}}
+									>
+										start a new challenge
+									</Button>
 								</div>
 							) : (
 								<Button
