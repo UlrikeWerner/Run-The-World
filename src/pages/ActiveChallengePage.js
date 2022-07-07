@@ -29,8 +29,6 @@ export default function ActiveChallengePage() {
 	});
 	const sumActivitiesDistance = sumDistance(activeChallengeActivities);
 
-	let status = 'visible';
-
 	const setModal = useStore(state => state.setModal);
 	const modalStatus = useStore(state => state.modalStatus);
 	const setModalStatus = useStore(state => state.setModalStatus);

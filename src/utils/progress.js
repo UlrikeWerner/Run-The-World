@@ -31,6 +31,6 @@ export function calculatePercent(totalSum, partSum) {
 	if (partSum === '0,00') {
 		return percent;
 	}
-	percent = Math.round((partSum * 100) / totalSum);
+	percent = Math.floor((partSum * 100) / totalSum);
 	return Math.min(percent, totalSum);
 }
