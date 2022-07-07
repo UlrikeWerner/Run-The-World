@@ -102,12 +102,13 @@ const useStore = create(
 							modalStatus: status,
 						};
 					}),
-				setModal: (activTyp, idOfActivObject) =>
+				setModal: (activTyp, idOfActivObject, challengeId) =>
 					set(() => {
 						return {
 							modal: {
 								activTyp,
 								idOfActivObject,
+								challengeId,
 							},
 						};
 					}),

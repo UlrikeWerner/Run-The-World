@@ -51,7 +51,7 @@ export default function ActivityResult({challengeId, activityId, date, duration,
 					variant="small"
 					role="delete"
 					onClick={() => {
-						setModal('delete', activityId, challengeId);
+						setModal('delete', activityId, '');
 						setModalStatus(true);
 					}}
 				>

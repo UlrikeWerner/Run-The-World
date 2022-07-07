@@ -3,9 +3,10 @@ import {sumDuration, sumDistance, calculatePercent} from '../../utils/progress';
 import {ProgressContainer} from './styled';
 
 export default function ProgressBox({distance, activities}) {
-	let completedKM = sumDistance(activities);
+	let completedKM = sumDistance(activities, distance);
 	let completed = calculatePercent(distance, completedKM);
 	let totalDuration = sumDuration(activities);
+
 	return (
 		<ProgressContainer>
 			<ul>
