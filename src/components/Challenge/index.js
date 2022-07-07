@@ -23,7 +23,7 @@ export default function Challenge({
 		activityDistance += activity.distance;
 	});
 
-	const isFinished = distance <= activityDistance;
+	const isFinished = distance >= activityDistance;
 
 	return (
 		<ChallengeContainer>
