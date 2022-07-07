@@ -13,7 +13,7 @@ export default function Challenge({
 	distance,
 }) {
 	const navigate = useNavigate();
-	const setActivChallengeId = useStore(state => state.setActivChallengeId);
+	const setChallengeStatus = useStore(state => state.setChallengeStatus);
 	return (
 		<ChallengeContainer>
 			<img src={image} aria-label={title} alt={title} />
@@ -24,7 +24,7 @@ export default function Challenge({
 			<p>{distance} km</p>
 			<Button
 				onClick={() => {
-					setActivChallengeId(challengeId);
+					setChallengeStatus(challengeId, 'active');
 					navigate('/ActiveChallenge');
 				}}
 			>

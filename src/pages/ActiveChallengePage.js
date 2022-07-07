@@ -15,9 +15,11 @@ import {SiteContent} from './style/SiteContent';
 import {SiteWrapper} from './style/SiteWrapper';
 
 export default function ActiveChallengePage() {
-	const activeChallengeId = useStore(state => state.activeChallengeId);
+	const activeChallengeId = useStore(state =>
+		state.challengeStatus.find(item => item.status === 'active')
+	);
 	const challenge = useStore(state =>
-		state.challenges.find(item => item.id === activeChallengeId)
+		state.challenges.find(item => item.id === activeChallengeId.challengeId)
 	);
 	const activityList = useStore(state => state.activities);
 	const activeChallengeActivities = activityList.filter(

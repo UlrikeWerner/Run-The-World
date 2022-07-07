@@ -11,15 +11,59 @@ const useStore = create(
 				modalStatus: false,
 				modal: {activTyp: '', challengeId: '', idOfActivObject: ''},
 				challenges: [...db],
-				activeChallengeId: '',
+				challengeStatus: [],
+				//activeChallengeId: '',
 				activities: [],
 
-				setActivChallengeId: challengeId =>
+				/*setActivChallengeId: challengeId =>
 					set(() => {
 						return {
 							activeChallengeId: challengeId,
 						};
-					}),
+					}),*/
+				setChallengeStatus: (challengeId, status) =>
+					challengeId
+						? set(state => {
+								const newState = {
+									...state,
+									challengeStatus: state.challengeStatus.map(entry =>
+										entry.status === 'active'
+											? {
+													challengeId: entry.id,
+													status: 'paused',
+											  }
+											: entry
+									),
+									/*challengeStatus: state.challengeStatus.map(entry =>
+										entry.id === challengeId
+											? {
+													challengeId,
+													status: 'active',
+											  }
+											: entry
+									),*/
+								};
+								return newState;
+						  })
+						: set(state => {
+								return {
+									challengeStatus: state.challengeStatus.map(entry =>
+										entry.status === 'active'
+											? {
+													challengeId: entry.id,
+													status: 'paused',
+											  }
+											: entry
+									),
+									/*challengeStatus: [
+										{
+											challengeId,
+											status,
+										},
+										...state.challengeStatus,
+									],*/
+								};
+						  }),
 
 				addActivity: (id, challengeId, date, distance, duration) =>
 					id
