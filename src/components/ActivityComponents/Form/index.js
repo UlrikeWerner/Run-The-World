@@ -45,7 +45,7 @@ export default function AddActivity({
 					calculateDuration(inputValues.duration)
 				);
 				setInputValues({date: today, distance: '', duration: ''});
-				setModal('', '');
+				setModal('', '', '');
 				setModalStatus(false);
 			}}
 		>
@@ -109,7 +109,7 @@ export default function AddActivity({
 				<Button
 					variant="medium"
 					onClick={() => {
-						setModal('', '');
+						setModal('', '', '');
 						setModalStatus(false);
 					}}
 				>

@@ -41,7 +41,7 @@ export default function ActivityResult({challengeId, activityId, date, duration,
 					variant="small"
 					role="edit"
 					onClick={() => {
-						setModal('edit', activityId);
+						setModal('edit', activityId, challengeId);
 						setModalStatus(true);
 					}}
 				>
@@ -51,7 +51,7 @@ export default function ActivityResult({challengeId, activityId, date, duration,
 					variant="small"
 					role="delete"
 					onClick={() => {
-						setModal('delete', activityId);
+						setModal('delete', activityId, '');
 						setModalStatus(true);
 					}}
 				>

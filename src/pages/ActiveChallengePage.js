@@ -9,6 +9,7 @@ import ModalBackdrop from '../components/Modal/ModalBackdrop';
 import NavBar from '../components/NavBar/index';
 import ProgressBox from '../components/ProgressBox';
 import {useStore} from '../hooks/useStore';
+import {sumDistance} from '../utils/progress';
 
 import {HeadLine} from './style/HeadLineStyle';
 import {SiteContent} from './style/SiteContent';
@@ -26,6 +27,7 @@ export default function ActiveChallengePage() {
 	activeChallengeActivities.sort(function (a, b) {
 		return new Date(b.date) - new Date(a.date);
 	});
+	const sumActivitiesDistance = sumDistance(activeChallengeActivities, challenge?.distance);
 
 	const setModal = useStore(state => state.setModal);
 	const modalStatus = useStore(state => state.modalStatus);
@@ -43,26 +45,38 @@ export default function ActiveChallengePage() {
 					{challenge ? (
 						<>
 							<HeadLine>
-								<Icon
-									icon={challenge?.logo}
-									width={challenge?.logoSize}
-									height={challenge?.logoSize}
-								/>
+								<div>
+									<Icon
+										icon={challenge?.logo}
+										width={challenge?.logoSize}
+										height={challenge?.logoSize}
+									/>
+								</div>
 								<h1>{challenge?.title}</h1>
 							</HeadLine>
 							<ProgressBox
 								distance={challenge?.distance}
 								activities={activeChallengeActivities}
 							/>
-							<Button
-								variant="large"
-								onClick={() => {
-									setModal('create', '');
-									setModalStatus(true);
-								}}
-							>
-								add your activity
-							</Button>
+							{sumActivitiesDistance >= challenge.distance ? (
+								<div>
+									<p>&#127881; Congratulation!</p>
+									<p>
+										You have conquered the <span>{challenge?.title} </span>
+										&#127881;
+									</p>
+								</div>
+							) : (
+								<Button
+									variant="large"
+									onClick={() => {
+										setModal('create', '', challenge.id);
+										setModalStatus(true);
+									}}
+								>
+									add your activity
+								</Button>
+							)}
 							<Modal open={modalStatus} />
 							{activeChallengeActivities.length > 0 ? (
 								activeChallengeActivities.map(item => {
@@ -78,11 +92,15 @@ export default function ActiveChallengePage() {
 									);
 								})
 							) : (
-								<p>no results</p>
+								<div>
+									<p>no results</p>
+								</div>
 							)}
 						</>
 					) : (
-						<p>You have no active challenge</p>
+						<div>
+							<p>You have no active challenge</p>
+						</div>
 					)}
 				</SiteContent>
 				<NavBar />
