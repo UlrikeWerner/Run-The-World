@@ -109,7 +109,7 @@ export default function AddActivity({
 				<Button
 					variant="medium"
 					onClick={() => {
-						setModal('', '');
+						setModal('', '', '');
 						setModalStatus(false);
 					}}
 				>

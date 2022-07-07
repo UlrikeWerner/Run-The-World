@@ -12,57 +12,48 @@ const useStore = create(
 				modal: {activTyp: '', challengeId: '', idOfActivObject: ''},
 				challenges: [...db],
 				challengeStatus: [],
-				//activeChallengeId: '',
 				activities: [],
 
-				/*setActivChallengeId: challengeId =>
-					set(() => {
-						return {
-							activeChallengeId: challengeId,
-						};
-					}),*/
-				setChallengeStatus: (challengeId, status) =>
-					challengeId
+				setChallengeStatus: (challengeId, finished = false) =>
+					finished
 						? set(state => {
-								const newState = {
-									...state,
-									challengeStatus: state.challengeStatus.map(entry =>
-										entry.status === 'active'
-											? {
-													challengeId: entry.id,
-													status: 'paused',
-											  }
-											: entry
-									),
-									/*challengeStatus: state.challengeStatus.map(entry =>
-										entry.id === challengeId
-											? {
-													challengeId,
-													status: 'active',
-											  }
-											: entry
-									),*/
-								};
-								return newState;
-						  })
-						: set(state => {
 								return {
 									challengeStatus: state.challengeStatus.map(entry =>
-										entry.status === 'active'
+										entry.challengeId === challengeId
 											? {
-													challengeId: entry.id,
-													status: 'paused',
+													challengeId: entry.challengeId,
+													status: 'finish',
 											  }
 											: entry
 									),
-									/*challengeStatus: [
-										{
-											challengeId,
-											status,
-										},
-										...state.challengeStatus,
-									],*/
 								};
+						  })
+						: set(state => {
+								let challengeStat = state.challengeStatus.map(entry =>
+									entry.status === 'active'
+										? {
+												challengeId: entry.challengeId,
+												status: 'paused',
+										  }
+										: entry
+								);
+
+								const challenge = state.challengeStatus.find(
+									entry => entry.challengeId === challengeId
+								);
+
+								challengeStat = challenge
+									? challengeStat.map(entry =>
+											entry.challengeId === challengeId
+												? {
+														...entry,
+														status: 'active',
+												  }
+												: entry
+									  )
+									: [...challengeStat, {challengeId, status: 'active'}];
+
+								return {challengeStatus: challengeStat};
 						  }),
 
 				addActivity: (id, challengeId, date, distance, duration) =>

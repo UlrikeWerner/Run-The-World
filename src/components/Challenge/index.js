@@ -24,7 +24,7 @@ export default function Challenge({
 			<p>{distance} km</p>
 			<Button
 				onClick={() => {
-					setChallengeStatus(challengeId, 'active');
+					setChallengeStatus(challengeId);
 					navigate('/ActiveChallenge');
 				}}
 			>
