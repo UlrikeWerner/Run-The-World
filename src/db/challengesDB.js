@@ -37,7 +37,7 @@ const challengesDB = [
 		logo: 'emojione-monotone:statue-of-liberty',
 		logoSize: '1.8rem',
 		img: 'https://images.pexels.com/photos/7729432/pexels-photo-7729432.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-		distance: '42',
+		distance: '42.2',
 		startingPoint: 'Fort Wadsworth',
 		endingPoint: 'Central Park',
 	},
@@ -53,7 +53,7 @@ const challengesDB = [
 	},
 	{
 		id: nanoid(),
-		title: 'Run between the Seas',
+		title: 'Lauf zwischen den Meeren',
 		logo: 'mdi:lighthouse',
 		logoSize: '1.8rem',
 		img: 'https://images.unsplash.com/photo-1558366761-abbf5fee4cea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
