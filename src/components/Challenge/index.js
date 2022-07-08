@@ -13,7 +13,20 @@ export default function Challenge({
 	distance,
 }) {
 	const navigate = useNavigate();
-	const setActivChallengeId = useStore(state => state.setActivChallengeId);
+	const setChallengeStatus = useStore(state => state.setChallengeStatus);
+
+	const activities = useStore(state => state.activities).filter(activity => {
+		return activity.challengeId === challengeId;
+	});
+	let activityDistance = 0;
+	activities.forEach(activity => {
+		activityDistance += activity.distance;
+	});
+	const isFinished = activityDistance / 1000 >= distance;
+
+	const challengeStatus = useStore(state => state.challengeStatus);
+	const status = challengeStatus.find(challenge => challenge.challengeId === challengeId);
+
 	return (
 		<ChallengeContainer>
 			<img src={image} aria-label={title} alt={title} />
@@ -22,14 +35,36 @@ export default function Challenge({
 				{startingPoint} to {endingPoint}
 			</p>
 			<p>{distance} km</p>
-			<Button
-				onClick={() => {
-					setActivChallengeId(challengeId);
-					navigate('/ActiveChallenge');
-				}}
-			>
-				Start
-			</Button>
+			{isFinished ? (
+				<div>*finished</div>
+			) : status?.status === 'paused' ? (
+				<Button
+					onClick={() => {
+						setChallengeStatus(challengeId);
+						navigate('/ActiveChallenge');
+					}}
+				>
+					resume
+				</Button>
+			) : status?.status === 'active' ? (
+				<Button
+					onClick={() => {
+						setChallengeStatus(challengeId);
+						navigate('/ActiveChallenge');
+					}}
+				>
+					open
+				</Button>
+			) : (
+				<Button
+					onClick={() => {
+						setChallengeStatus(challengeId);
+						navigate('/ActiveChallenge');
+					}}
+				>
+					start
+				</Button>
+			)}
 		</ChallengeContainer>
 	);
 }

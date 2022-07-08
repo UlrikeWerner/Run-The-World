@@ -11,6 +11,7 @@ import {SiteWrapper} from './style/SiteWrapper';
 
 export default function ChallengesPage() {
 	const challengeList = useStore(state => state.challenges);
+
 	return (
 		<Layout>
 			<Helmet>
