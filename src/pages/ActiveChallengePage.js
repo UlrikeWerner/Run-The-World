@@ -21,9 +21,9 @@ export default function ActiveChallengePage() {
 
 	const activeChallengeId = useStore(state =>
 		state.challengeStatus.find(item => item.status === 'active')
-	).challengeId;
+	)?.challengeId;
 	const challenge = useStore(state =>
-		state.challenges.find(item => item.id === activeChallengeId)
+		state.challenges?.find(item => item.id === activeChallengeId)
 	);
 	const activityList = useStore(state => state.activities);
 	const activeChallengeActivities = activityList.filter(
