@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {Helmet} from 'react-helmet';
 
 import Challenge from '../components/Challenge/index';
@@ -10,6 +11,7 @@ import {SiteContent} from './style/SiteContent';
 import {SiteWrapper} from './style/SiteWrapper';
 
 export default function ChallengesPage() {
+	const [searchInput, setSearchInput] = useState('');
 	const challengeList = useStore(state => state.challenges);
 
 	return (
@@ -19,6 +21,18 @@ export default function ChallengesPage() {
 				<meta key="description" name="description" content="Challenges" />
 			</Helmet>
 			<SiteWrapper>
+				<form>
+					<input
+						type="text"
+						id="searchBar"
+						value={searchInput}
+						placeholder="search.."
+						required
+						onChange={event => {
+							setSearchInput(event.target.value);
+						}}
+					/>
+				</form>
 				<SiteContent>
 					{
 						<ChallengeList>
