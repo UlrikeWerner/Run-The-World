@@ -17,6 +17,7 @@ export default function ChallengesPage() {
 	const [searchInput, setSearchInput] = useState('');
 	const modalStatus = useStore(state => state.modalStatus);
 	const challengeList = useStore(state => state.challenges);
+	let filterChallengeList = [...challengeList];
 
 	return (
 		<Layout>
@@ -34,9 +35,14 @@ export default function ChallengesPage() {
 						required
 						onChange={event => {
 							setSearchInput(event.target.value);
+							//console.log(event.target.value);
+							filterChallengeList = challengeList.filter(challenge =>
+								challenge.title.includes(searchInput)
+							);
 						}}
 					/>
 				</form>
+				{console.log(filterChallengeList)}
 				<ModalBackdrop open={modalStatus} />
 				<ModalWrapper>
 					<Modal open={modalStatus} />
