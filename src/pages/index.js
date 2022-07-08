@@ -13,6 +13,7 @@ import {SiteWrapper} from './style/SiteWrapper';
 export default function ChallengesPage() {
 	const modalStatus = useStore(state => state.modalStatus);
 	const challengeList = useStore(state => state.challenges);
+
 	return (
 		<Layout>
 			<Helmet>
