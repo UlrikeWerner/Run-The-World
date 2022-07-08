@@ -1,5 +1,4 @@
-import {useNavigate} from 'react-router-dom';
-
+import Modal from '../../components/Modal/index';
 import {useStore} from '../../hooks/useStore';
 import Button from '../Button/index';
 import {ChallengeContainer} from '../Challenge/styled';
@@ -12,10 +11,13 @@ export default function Challenge({
 	endingPoint,
 	distance,
 }) {
-	const navigate = useNavigate();
-	const setActivChallengeId = useStore(state => state.setActivChallengeId);
+	const modalStatus = useStore(state => state.modalStatus);
+	const setModal = useStore(state => state.setModal);
+	const setModalStatus = useStore(state => state.setModalStatus);
+
 	return (
 		<ChallengeContainer>
+			<Modal open={modalStatus} />
 			<img src={image} aria-label={title} alt={title} />
 			<h2>{title}</h2>
 			<p>
@@ -24,8 +26,8 @@ export default function Challenge({
 			<p>{distance} km</p>
 			<Button
 				onClick={() => {
-					setActivChallengeId(challengeId);
-					navigate('/ActiveChallenge');
+					setModal('start Challenge', '', challengeId);
+					setModalStatus(true);
 				}}
 			>
 				Start

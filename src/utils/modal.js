@@ -2,7 +2,7 @@ import AddActivity from '../components/ActivityComponents/Form/index';
 import MessageBox from '../components/MessageBox';
 import {getDateDay, getDateMonth} from '../utils/date';
 
-export function setModalContent(modalState, activity) {
+export function setModalContent(modalState, activity, challengeTitle = '') {
 	let text = '';
 
 	switch (modalState.activTyp) {
@@ -23,6 +23,9 @@ export function setModalContent(modalState, activity) {
 				activity?.date
 			)} ${getDateDay(activity?.date)}`;
 			return <MessageBox id={modalState.idOfActivObject} type="delete" text={text} />;
+		case 'start Challenge':
+			text = `Do you want to pause your active challenge to start the '${challengeTitle}' challenge?`;
+			return <MessageBox id={modalState.challengeId} type="start" text={text} />;
 		default:
 			break;
 	}

@@ -2,6 +2,7 @@ import {Helmet} from 'react-helmet';
 
 import Challenge from '../components/Challenge/index';
 import Layout from '../components/Layout';
+import ModalBackdrop from '../components/Modal/ModalBackdrop/index';
 import NavBar from '../components/NavBar/index';
 import {useStore} from '../hooks/useStore';
 
@@ -10,6 +11,7 @@ import {SiteContent} from './style/SiteContent';
 import {SiteWrapper} from './style/SiteWrapper';
 
 export default function ChallengesPage() {
+	const modalStatus = useStore(state => state.modalStatus);
 	const challengeList = useStore(state => state.challenges);
 	return (
 		<Layout>
@@ -18,6 +20,7 @@ export default function ChallengesPage() {
 				<meta key="description" name="description" content="Challenges" />
 			</Helmet>
 			<SiteWrapper>
+				<ModalBackdrop open={modalStatus} />
 				<SiteContent>
 					{
 						<ChallengeList>
