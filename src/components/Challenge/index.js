@@ -1,4 +1,5 @@
-import Modal from '../../components/Modal/index';
+import {useNavigate} from 'react-router-dom';
+
 import {useStore} from '../../hooks/useStore';
 import Button from '../Button/index';
 import {ChallengeContainer} from '../Challenge/styled';
@@ -13,7 +14,6 @@ export default function Challenge({
 }) {
 	const navigate = useNavigate();
 
-	const modalStatus = useStore(state => state.modalStatus);
 	const setModal = useStore(state => state.setModal);
 	const setModalStatus = useStore(state => state.setModalStatus);
 	const setChallengeStatus = useStore(state => state.setChallengeStatus);
@@ -32,7 +32,6 @@ export default function Challenge({
 
 	return (
 		<ChallengeContainer>
-			<Modal open={modalStatus} />
 			<img src={image} aria-label={title} alt={title} />
 			<h2>{title}</h2>
 			<p>
@@ -53,11 +52,20 @@ export default function Challenge({
 			) : status?.status === 'active' ? (
 				<Button
 					onClick={() => {
-						setModal('start Challenge', '', challengeId);
-						setModalStatus(true);
+						setChallengeStatus(challengeId);
+						navigate('/ActiveChallenge');
 					}}
 				>
 					open
+				</Button>
+			) : challengeStatus.length <= 0 ? (
+				<Button
+					onClick={() => {
+						setChallengeStatus(challengeId);
+						navigate('/ActiveChallenge');
+					}}
+				>
+					start
 				</Button>
 			) : (
 				<Button

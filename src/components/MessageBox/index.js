@@ -9,7 +9,7 @@ export default function MessageBox({id = '', type, text}) {
 	const setModal = useStore(state => state.setModal);
 	const setModalStatus = useStore(state => state.setModalStatus);
 	const deleteActivity = useStore(state => state.deleteActivity);
-	const setActivChallengeId = useStore(state => state.setActivChallengeId);
+	const setChallengeStatus = useStore(state => state.setChallengeStatus);
 
 	const navigate = useNavigate();
 
@@ -59,7 +59,7 @@ export default function MessageBox({id = '', type, text}) {
 							role="ok"
 							type="button"
 							onClick={() => {
-								setActivChallengeId(id);
+								setChallengeStatus(id);
 								setModal('', '', '');
 								setModalStatus(false);
 								navigate('/ActiveChallenge');
