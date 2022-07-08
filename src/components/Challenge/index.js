@@ -13,6 +13,9 @@ export default function Challenge({
 	distance,
 }) {
 	const navigate = useNavigate();
+
+	const setModal = useStore(state => state.setModal);
+	const setModalStatus = useStore(state => state.setModalStatus);
 	const setChallengeStatus = useStore(state => state.setChallengeStatus);
 
 	const activities = useStore(state => state.activities).filter(activity => {
@@ -40,8 +43,8 @@ export default function Challenge({
 			) : status?.status === 'paused' ? (
 				<Button
 					onClick={() => {
-						setChallengeStatus(challengeId);
-						navigate('/ActiveChallenge');
+						setModal('start Challenge', '', challengeId);
+						setModalStatus(true);
 					}}
 				>
 					resume
@@ -55,11 +58,20 @@ export default function Challenge({
 				>
 					open
 				</Button>
-			) : (
+			) : challengeStatus.length <= 0 ? (
 				<Button
 					onClick={() => {
 						setChallengeStatus(challengeId);
 						navigate('/ActiveChallenge');
+					}}
+				>
+					start
+				</Button>
+			) : (
+				<Button
+					onClick={() => {
+						setModal('start Challenge', '', challengeId);
+						setModalStatus(true);
 					}}
 				>
 					start

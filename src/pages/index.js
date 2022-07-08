@@ -3,15 +3,19 @@ import {Helmet} from 'react-helmet';
 
 import Challenge from '../components/Challenge/index';
 import Layout from '../components/Layout';
+import Modal from '../components/Modal/index';
+import ModalBackdrop from '../components/Modal/ModalBackdrop/index';
 import NavBar from '../components/NavBar/index';
 import {useStore} from '../hooks/useStore';
 
 import {ChallengeList} from './style/IndexStyled';
+import {ModalWrapper} from './style/ModalWrapper';
 import {SiteContent} from './style/SiteContent';
 import {SiteWrapper} from './style/SiteWrapper';
 
 export default function ChallengesPage() {
 	const [searchInput, setSearchInput] = useState('');
+	const modalStatus = useStore(state => state.modalStatus);
 	const challengeList = useStore(state => state.challenges);
 
 	return (
@@ -33,6 +37,10 @@ export default function ChallengesPage() {
 						}}
 					/>
 				</form>
+				<ModalBackdrop open={modalStatus} />
+				<ModalWrapper>
+					<Modal open={modalStatus} />
+				</ModalWrapper>
 				<SiteContent>
 					{
 						<ChallengeList>
