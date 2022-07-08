@@ -14,47 +14,35 @@ const useStore = create(
 				challengeStatus: [],
 				activities: [],
 
-				setChallengeStatus: (challengeId, finished = false) =>
-					finished
-						? set(state => {
-								return {
-									challengeStatus: state.challengeStatus.map(entry =>
-										entry.challengeId === challengeId
-											? {
-													challengeId: entry.challengeId,
-													status: 'finish',
-											  }
-											: entry
-									),
-								};
-						  })
-						: set(state => {
-								let challengeStat = state.challengeStatus.map(entry =>
-									entry.status === 'active'
+				setChallengeStatus: challengeId =>
+					set(state => {
+						let challengeStat = state.challengeStatus.map(entry =>
+							entry.status === 'active'
+								? {
+										challengeId: entry.challengeId,
+										status: 'paused',
+								  }
+								: entry
+						);
+
+						const challenge = state.challengeStatus.find(
+							entry => entry.challengeId === challengeId
+						);
+
+						challengeStat = challenge
+							? challengeStat.map(entry =>
+									entry.challengeId === challengeId
 										? {
-												challengeId: entry.challengeId,
-												status: 'paused',
+												...entry,
+												status: 'active',
 										  }
 										: entry
-								);
+							  )
+							: [...challengeStat, {challengeId, status: 'active'}];
 
-								const challenge = state.challengeStatus.find(
-									entry => entry.challengeId === challengeId
-								);
+						return {challengeStatus: challengeStat};
+					}),
 
-								challengeStat = challenge
-									? challengeStat.map(entry =>
-											entry.challengeId === challengeId
-												? {
-														...entry,
-														status: 'active',
-												  }
-												: entry
-									  )
-									: [...challengeStat, {challengeId, status: 'active'}];
-
-								return {challengeStatus: challengeStat};
-						  }),
 				addActivity: (id, challengeId, date, distance, duration) =>
 					id
 						? set(state => {

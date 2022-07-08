@@ -22,8 +22,12 @@ export default function Challenge({
 	activities.forEach(activity => {
 		activityDistance += activity.distance;
 	});
+	console.log('erreichte Distanz', activityDistance / 1000, 'totale Distanz', distance);
+	const isFinished = activityDistance / 1000 >= distance;
+	console.log(isFinished);
 
-	const isFinished = distance >= activityDistance;
+	const challengeStatus = useStore(state => state.challengeStatus);
+	const status = challengeStatus.find(challenge => challenge.challengeId === challengeId);
 
 	return (
 		<ChallengeContainer>
@@ -35,6 +39,24 @@ export default function Challenge({
 			<p>{distance} km</p>
 			{isFinished ? (
 				<div>*finished</div>
+			) : status?.status === 'paused' ? (
+				<Button
+					onClick={() => {
+						setChallengeStatus(challengeId);
+						navigate('/ActiveChallenge');
+					}}
+				>
+					resume
+				</Button>
+			) : status?.status === 'active' ? (
+				<Button
+					onClick={() => {
+						setChallengeStatus(challengeId);
+						navigate('/ActiveChallenge');
+					}}
+				>
+					open
+				</Button>
 			) : (
 				<Button
 					onClick={() => {
@@ -42,7 +64,7 @@ export default function Challenge({
 						navigate('/ActiveChallenge');
 					}}
 				>
-					Start
+					start
 				</Button>
 			)}
 		</ChallengeContainer>
