@@ -22,9 +22,7 @@ export default function Challenge({
 	activities.forEach(activity => {
 		activityDistance += activity.distance;
 	});
-	console.log('erreichte Distanz', activityDistance / 1000, 'totale Distanz', distance);
 	const isFinished = activityDistance / 1000 >= distance;
-	console.log(isFinished);
 
 	const challengeStatus = useStore(state => state.challengeStatus);
 	const status = challengeStatus.find(challenge => challenge.challengeId === challengeId);
