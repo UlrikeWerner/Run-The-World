@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const HeadLine = styled.div`
+const StyledHeadLine = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	width: 100vw;
@@ -13,4 +13,4 @@ const HeadLine = styled.div`
 	}
 `;
 
-export {HeadLine};
+export {StyledHeadLine};

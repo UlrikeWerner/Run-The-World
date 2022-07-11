@@ -12,7 +12,7 @@ import ProgressBox from '../components/ProgressBox';
 import {useStore} from '../hooks/useStore';
 import {sumDistance} from '../utils/progress';
 
-import {HeadLine} from './style/HeadLineStyle';
+import {StyledHeadLine} from './style/HeadLineStyle';
 import {StyledSiteContent} from './style/SiteContent';
 import {StyledSiteWrapper} from './style/SiteWrapper';
 
@@ -49,7 +49,7 @@ export default function ActiveChallengePage() {
 				<StyledSiteContent>
 					{challenge ? (
 						<>
-							<HeadLine>
+							<StyledHeadLine>
 								<div>
 									<Icon
 										icon={challenge?.logo}
@@ -58,7 +58,7 @@ export default function ActiveChallengePage() {
 									/>
 								</div>
 								<h1>{challenge?.title}</h1>
-							</HeadLine>
+							</StyledHeadLine>
 							<ProgressBox
 								distance={challenge?.distance}
 								activities={activeChallengeActivities}
