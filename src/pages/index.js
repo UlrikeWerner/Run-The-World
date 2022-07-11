@@ -15,9 +15,22 @@ import {SiteWrapper} from './style/SiteWrapper';
 
 export default function ChallengesPage() {
 	const [searchInput, setSearchInput] = useState('');
+	const [filterResult, setFilterResult] = useState([]);
+
 	const modalStatus = useStore(state => state.modalStatus);
 	const challengeList = useStore(state => state.challenges);
-	let filterChallengeList = [...challengeList];
+
+	function searchChallenges(searchInput) {
+		setSearchInput(searchInput);
+		if (searchInput !== '') {
+			const filterChallengeList = challengeList.filter(challenge => {
+				return challenge.title.toLowerCase().includes(searchInput.toLowerCase());
+			});
+			setFilterResult(filterChallengeList);
+		} else {
+			setFilterResult(challengeList);
+		}
+	}
 
 	return (
 		<Layout>
@@ -34,15 +47,10 @@ export default function ChallengesPage() {
 						placeholder="search.."
 						required
 						onChange={event => {
-							setSearchInput(event.target.value);
-							//console.log(event.target.value);
-							filterChallengeList = challengeList.filter(challenge =>
-								challenge.title.includes(searchInput)
-							);
+							searchChallenges(event.target.value);
 						}}
 					/>
 				</form>
-				{console.log(filterChallengeList)}
 				<ModalBackdrop open={modalStatus} />
 				<ModalWrapper>
 					<Modal open={modalStatus} />
@@ -50,19 +58,33 @@ export default function ChallengesPage() {
 				<SiteContent>
 					{
 						<ChallengeList>
-							{challengeList.map(item => {
-								return (
-									<Challenge
-										key={item.id}
-										challengeId={item.id}
-										image={item.img}
-										title={item.title}
-										startingPoint={item.startingPoint}
-										endingPoint={item.endingPoint}
-										distance={item.distance}
-									/>
-								);
-							})}
+							{searchInput.length >= 1
+								? filterResult.map(item => {
+										return (
+											<Challenge
+												key={item.id}
+												challengeId={item.id}
+												image={item.img}
+												title={item.title}
+												startingPoint={item.startingPoint}
+												endingPoint={item.endingPoint}
+												distance={item.distance}
+											/>
+										);
+								  })
+								: challengeList.map(item => {
+										return (
+											<Challenge
+												key={item.id}
+												challengeId={item.id}
+												image={item.img}
+												title={item.title}
+												startingPoint={item.startingPoint}
+												endingPoint={item.endingPoint}
+												distance={item.distance}
+											/>
+										);
+								  })}
 						</ChallengeList>
 					}
 				</SiteContent>
