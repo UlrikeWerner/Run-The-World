@@ -7,14 +7,6 @@ const StyledChallengeList = styled.section`
 	padding: 0.8rem 1rem;
 	column-gap: 1rem;
 	row-gap: 0.8rem;
-
-	div {
-		position: relative;
-		left: 50%;
-		margin-top: 1rem;
-		transform: translateX(-25%);
-		color: darkred;
-	}
 `;
 
 export {StyledChallengeList};

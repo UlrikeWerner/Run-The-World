@@ -15,6 +15,10 @@ import {sumDistance} from '../utils/progress';
 import {StyledHeadLine} from './style/HeadLineStyle';
 import {StyledSiteContent} from './style/SiteContent';
 import {StyledSiteWrapper} from './style/SiteWrapper';
+import {StyledHeadLineH1} from './style/StyledHeadLineH1';
+import {StyledNoChallengeText} from './style/StyledNoChallengeText';
+import {StyledText} from './style/StyledText';
+import {StyledTextBold} from './style/StyledTextBold';
 
 export default function ActiveChallengePage() {
 	const navigate = useNavigate();
@@ -57,7 +61,7 @@ export default function ActiveChallengePage() {
 										height={challenge?.logoSize}
 									/>
 								</div>
-								<h1>{challenge?.title}</h1>
+								<StyledHeadLineH1>{challenge?.title}</StyledHeadLineH1>
 							</StyledHeadLine>
 							<ProgressBox
 								distance={challenge?.distance}
@@ -65,11 +69,12 @@ export default function ActiveChallengePage() {
 							/>
 							{sumActivitiesDistance >= challenge.distance ? (
 								<div>
-									<p>&#127881; Congratulations!</p>
-									<p>
-										You have conquered <span>{challenge?.title} </span>
+									<StyledTextBold>&#127881; Congratulations!</StyledTextBold>
+									<StyledText>
+										You have conquered{' '}
+										<StyledTextBold>{challenge?.title} </StyledTextBold>
 										&#127881;
-									</p>
+									</StyledText>
 									<Button
 										variant="large"
 										onClick={() => {
@@ -105,15 +110,11 @@ export default function ActiveChallengePage() {
 									);
 								})
 							) : (
-								<div>
-									<p>no results</p>
-								</div>
+								<StyledText>no results</StyledText>
 							)}
 						</>
 					) : (
-						<div>
-							<p>You have no active challenge</p>
-						</div>
+						<StyledNoChallengeText>You have no active challenge</StyledNoChallengeText>
 					)}
 				</StyledSiteContent>
 				<NavBar />
