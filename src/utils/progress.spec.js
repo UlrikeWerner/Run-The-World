@@ -25,7 +25,7 @@ describe('sumDuration', () => {
 
 describe('sumDistance', () => {
 	it('should return the completed distance', () => {
-		expect(sumDistance(activities)).toBe(23);
+		expect(sumDistance(activities, 1000)).toBe(23);
 	});
 });
 

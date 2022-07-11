@@ -27,7 +27,7 @@ describe('Challenge component', () => {
 		const title = screen.getByText('Route 66');
 		const route = screen.getByText('Chicago to Santa Monica');
 		const distance = screen.getByText('3945 km');
-		const button = screen.getByText('Start');
+		const button = screen.getByText('start');
 
 		expect(image).toBeInTheDocument();
 		expect(title).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe('Button at the Challenge component', () => {
 				distance="3945"
 			/>
 		);
-		const button = screen.getByText('Start');
+		const button = screen.getByText('start');
 		await userEvent.click(button);
 		expect(mockedUsedNavigate).toHaveBeenCalledTimes(1);
 	});

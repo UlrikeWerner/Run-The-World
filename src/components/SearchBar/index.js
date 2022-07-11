@@ -4,8 +4,10 @@ import {SearchSvg} from './Style/SearchSvg';
 
 export default function SearchBar({searchChallenges, searchInput}) {
 	return (
-		<SearchContainer>
+		<SearchContainer data-testid="form">
 			<SearchSvg
+				data-testid="img-search"
+				alt="search"
 				xmlns="http://www.w3.org/2000/svg"
 				aria-hidden="true"
 				role="search-logo"
@@ -20,9 +22,11 @@ export default function SearchBar({searchChallenges, searchInput}) {
 				/>
 			</SearchSvg>
 			<SearchInput
+				data-testid="search-input"
 				type="text"
 				id="searchBar"
 				value={searchInput}
+				aria-label="search"
 				placeholder="search.."
 				required
 				onChange={event => {
