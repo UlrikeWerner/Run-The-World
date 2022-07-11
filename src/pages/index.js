@@ -28,7 +28,6 @@ export default function ChallengesPage() {
 				return challenge.title.toLowerCase().includes(searchInput.toLowerCase());
 			});
 			setFilterResult(filterChallengeList);
-			console.log(filterResult);
 		} else {
 			setFilterResult(challengeList);
 		}
