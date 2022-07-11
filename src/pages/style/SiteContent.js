@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const SiteContent = styled.div`
+const StyledSiteContent = styled.div`
 	flex-grow: 1;
 	margin-top: -0.25rem;
 	overflow-y: auto;
@@ -14,4 +14,4 @@ const SiteContent = styled.div`
 	}
 `;
 
-export {SiteContent};
+export {StyledSiteContent};

@@ -13,8 +13,8 @@ import {useStore} from '../hooks/useStore';
 import {sumDistance} from '../utils/progress';
 
 import {HeadLine} from './style/HeadLineStyle';
-import {SiteContent} from './style/SiteContent';
-import {SiteWrapper} from './style/SiteWrapper';
+import {StyledSiteContent} from './style/SiteContent';
+import {StyledSiteWrapper} from './style/SiteWrapper';
 
 export default function ActiveChallengePage() {
 	const navigate = useNavigate();
@@ -44,9 +44,9 @@ export default function ActiveChallengePage() {
 				<title key="title">activeCallenge</title>
 				<meta key="description" name="description" content="activeChallenge" />
 			</Helmet>
-			<SiteWrapper>
+			<StyledSiteWrapper>
 				<ModalBackdrop open={modalStatus} />
-				<SiteContent>
+				<StyledSiteContent>
 					{challenge ? (
 						<>
 							<HeadLine>
@@ -115,9 +115,9 @@ export default function ActiveChallengePage() {
 							<p>You have no active challenge</p>
 						</div>
 					)}
-				</SiteContent>
+				</StyledSiteContent>
 				<NavBar />
-			</SiteWrapper>
+			</StyledSiteWrapper>
 		</Layout>
 	);
 }

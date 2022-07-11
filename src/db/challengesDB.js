@@ -13,7 +13,7 @@ const challengesDB = [
 	},
 	{
 		id: nanoid(),
-		title: 'the Great Wall of China',
+		title: 'The Great Wall of China',
 		logo: 'icon-park:great-wall',
 		logoSize: '1.8rem',
 		img: 'https://images.unsplash.com/photo-1509624780899-f812439647e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',

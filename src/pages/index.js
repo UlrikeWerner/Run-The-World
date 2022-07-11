@@ -9,10 +9,10 @@ import NavBar from '../components/NavBar/index';
 import SearchBar from '../components/SearchBar';
 import {useStore} from '../hooks/useStore';
 
-import {ChallengeList} from './style/IndexStyled';
-import {ModalWrapper} from './style/ModalWrapper';
-import {SiteContent} from './style/SiteContent';
-import {SiteWrapper} from './style/SiteWrapper';
+import {StyledChallengeList} from './style/IndexStyled';
+import {StyledModalWrapper} from './style/ModalWrapper';
+import {StyledSiteContent} from './style/SiteContent';
+import {StyledSiteWrapper} from './style/SiteWrapper';
 
 export default function ChallengesPage() {
 	const [searchInput, setSearchInput] = useState('');
@@ -40,15 +40,15 @@ export default function ChallengesPage() {
 				<title key="title">Challenges</title>
 				<meta key="description" name="description" content="Challenges" />
 			</Helmet>
-			<SiteWrapper>
+			<StyledSiteWrapper>
 				<SearchBar searchChallenges={searchChallenges} searchInput={searchInput} />
 				<ModalBackdrop open={modalStatus} />
-				<ModalWrapper>
+				<StyledModalWrapper>
 					<Modal open={modalStatus} />
-				</ModalWrapper>
-				<SiteContent>
+				</StyledModalWrapper>
+				<StyledSiteContent>
 					{
-						<ChallengeList>
+						<StyledChallengeList>
 							{searchInput.length >= 1
 								? filterResult.map(item => {
 										return (
@@ -76,11 +76,11 @@ export default function ChallengesPage() {
 											/>
 										);
 								  })}
-						</ChallengeList>
+						</StyledChallengeList>
 					}
-				</SiteContent>
+				</StyledSiteContent>
 				<NavBar />
-			</SiteWrapper>
+			</StyledSiteWrapper>
 		</Layout>
 	);
 }

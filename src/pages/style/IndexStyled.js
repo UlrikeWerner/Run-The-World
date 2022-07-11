@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ChallengeList = styled.section`
+const StyledChallengeList = styled.section`
 	display: flex;
 	flex-wrap: wrap;
 	width: 100vw;
@@ -17,4 +17,4 @@ const ChallengeList = styled.section`
 	}
 `;
 
-export {ChallengeList};
+export {StyledChallengeList};
