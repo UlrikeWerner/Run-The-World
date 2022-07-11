@@ -1,4 +1,4 @@
-import {SearchContainer} from './style/searchBarStyle';
+import {SearchContainer} from './styled';
 
 export default function SearchBar({searchChallenges, searchInput}) {
 	return (
@@ -8,8 +8,8 @@ export default function SearchBar({searchChallenges, searchInput}) {
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"
 					role="search-logo"
-					width="1em"
-					height="1em"
+					width="1rem"
+					height="1rem"
 					preserveAspectRatio="xMidYMid meet"
 					viewBox="0 0 20 20"
 				>

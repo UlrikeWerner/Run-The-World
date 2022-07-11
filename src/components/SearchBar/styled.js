@@ -11,8 +11,8 @@ const SearchContainer = styled.section`
 		}
 		svg {
 			position: relative;
-			top: 0.1rem;
-			left: 1rem;
+			top: 0.25rem;
+			left: 1.2rem;
 			font-size: 0.8rem;
 		}
 	}
