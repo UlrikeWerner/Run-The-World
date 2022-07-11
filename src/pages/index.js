@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 import Modal from '../components/Modal/index';
 import ModalBackdrop from '../components/Modal/ModalBackdrop/index';
 import NavBar from '../components/NavBar/index';
+import SearchBar from '../components/SearchBar';
 import {useStore} from '../hooks/useStore';
 
 import {ChallengeList} from './style/IndexStyled';
@@ -39,18 +40,7 @@ export default function ChallengesPage() {
 				<meta key="description" name="description" content="Challenges" />
 			</Helmet>
 			<SiteWrapper>
-				<form>
-					<input
-						type="text"
-						id="searchBar"
-						value={searchInput}
-						placeholder="search.."
-						required
-						onChange={event => {
-							searchChallenges(event.target.value);
-						}}
-					/>
-				</form>
+				<SearchBar searchChallenges={searchChallenges} searchInput={searchInput} />
 				<ModalBackdrop open={modalStatus} />
 				<ModalWrapper>
 					<Modal open={modalStatus} />
