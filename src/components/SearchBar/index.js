@@ -1,5 +1,6 @@
 import {StyledSearchContainer} from './Style/StyledSearchContainer';
 import {StyledSearchInput} from './Style/StyledSearchInput';
+import {StyledSearchLabel} from './Style/StyledSearchLabel';
 import {StyledSearchSvg} from './Style/StyledSearchSvg';
 
 export default function SearchBar({searchChallenges, searchInput}) {
@@ -26,12 +27,13 @@ export default function SearchBar({searchChallenges, searchInput}) {
 				id="searchBar"
 				value={searchInput}
 				aria-label="search"
-				placeholder="search..."
+				//placeholder="search..."
 				required
 				onChange={event => {
 					searchChallenges(event.target.value);
 				}}
 			/>
+			<StyledSearchLabel htmlFor="searchBar">search...</StyledSearchLabel>
 		</StyledSearchContainer>
 	);
 }

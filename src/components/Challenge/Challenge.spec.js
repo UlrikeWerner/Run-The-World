@@ -27,7 +27,7 @@ describe('Challenge component', () => {
 		const title = screen.getByText('Route 66');
 		const route = screen.getByText('Chicago to Santa Monica');
 		const distance = screen.getByText('3945 km');
-		const button = screen.getByText('start');
+		const button = screen.getByRole('button', {name: 'start'});
 
 		expect(image).toBeInTheDocument();
 		expect(title).toBeInTheDocument();

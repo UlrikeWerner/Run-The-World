@@ -10,38 +10,36 @@ jest.mock('react-router-dom', () => ({
 	useNavigate: () => mockedUsedNavigate,
 }));
 
-describe('MessageBox component with type "delete"', () => {
-	it('should render children', () => {
+describe('MessageBox', () => {
+	it('renders a message box with a delete button if it is of type "delete"', () => {
 		render(<MessageBox type="delete" text="hey" />);
-		const msg = screen.getByText('hey');
-		const cancelBTN = screen.getByText('cancel');
-		const okBTN = screen.getByText('ok');
+		const message = screen.getByText('hey');
+		const cancelButton = screen.getByText('cancel');
+		const okButton = screen.getByText('ok');
 
-		expect(msg).toBeInTheDocument();
-		expect(cancelBTN).toBeInTheDocument();
-		expect(okBTN).toBeInTheDocument();
+		expect(message).toBeInTheDocument();
+		expect(cancelButton).toBeInTheDocument();
+		expect(okButton).toBeInTheDocument();
+	});
+
+	it('renders a message box with a delete button if it is of type "start"', () => {
+		render(<MessageBox type="start" text="hey" />);
+		const message = screen.getByText('hey');
+		const cancelButton = screen.getByText('cancel');
+		const okButton = screen.getByText('ok');
+
+		expect(message).toBeInTheDocument();
+		expect(cancelButton).toBeInTheDocument();
+		expect(okButton).toBeInTheDocument();
 	});
 });
 
-describe('MessageBox component with type "start"', () => {
-	it('should render children', () => {
+describe('MessageBox with type "start"', () => {
+	it('should allow clicks at the okButton', async () => {
 		render(<MessageBox type="start" text="hey" />);
-		const msg = screen.getByText('hey');
-		const cancelBTN = screen.getByText('cancel');
-		const okBTN = screen.getByText('ok');
+		const okButton = screen.getByText('ok');
 
-		expect(msg).toBeInTheDocument();
-		expect(cancelBTN).toBeInTheDocument();
-		expect(okBTN).toBeInTheDocument();
-	});
-});
-
-describe('Button at the MessageBox component with type "start"', () => {
-	it('should allow clicks', async () => {
-		render(<MessageBox type="start" text="hey" />);
-		const okBTN = screen.getByText('ok');
-
-		await userEvent.click(okBTN);
+		await userEvent.click(okButton);
 		expect(mockedUsedNavigate).toHaveBeenCalledTimes(1);
 	});
 });
