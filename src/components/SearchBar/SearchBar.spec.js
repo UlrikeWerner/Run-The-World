@@ -1,3 +1,4 @@
+import {userEvent} from '@storybook/testing-library';
 import '@testing-library/jest-dom';
 import {render, screen} from '@testing-library/react';
 
@@ -20,3 +21,19 @@ describe('SearchBar component', () => {
 		expect(searchInput.value).toBe('the');
 	});
 });
+
+/* try it but don't working!
+
+describe('SearchBar component', () => {
+	it('should let type into an input field', async => {
+		const handleChange = jest.fn();
+
+		render(<SearchBar searchChallenges={handleChange} searchInput="" />);
+
+		const searchInput = screen.getByLabelText('search...');
+
+		await userEvent.type(searchInput, 'Bye');
+
+		expect(searchInput).toHaveValue('Bye');
+	});
+});*/
