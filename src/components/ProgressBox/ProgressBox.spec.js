@@ -23,9 +23,9 @@ const activities = [
 describe('ProgressBox component', () => {
 	it('should render children', () => {
 		render(<ProgressBox distance="5000" activities={activities} />);
-		const totalDistance = screen.getByText(/total distance/);
-		const distance = screen.getByText(/completed distance/);
-		const percent = screen.getByText(/% completed/);
+		const totalDistance = screen.getByText(/distance/);
+		const distance = screen.getByText(/completed/);
+		const percent = screen.getByText(/%/);
 		const duration = screen.getByText(/duration/);
 
 		expect(totalDistance).toBeInTheDocument();
