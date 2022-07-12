@@ -2,7 +2,9 @@ import {useNavigate} from 'react-router-dom';
 
 import {useStore} from '../../hooks/useStore';
 import Button from '../Button/index';
-import {ChallengeContainer} from '../Challenge/styled';
+
+import {ChallengeContainer} from './Style/StyledChallengeContainer';
+import {StyledFinishText} from './Style/StyledFinishText';
 
 export default function Challenge({
 	challengeId,
@@ -39,7 +41,7 @@ export default function Challenge({
 			</p>
 			<p>{distance} km</p>
 			{isFinished ? (
-				<div>*finished</div>
+				<StyledFinishText>*finished</StyledFinishText>
 			) : status?.status === 'paused' ? (
 				<Button
 					onClick={() => {
