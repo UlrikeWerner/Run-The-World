@@ -11,7 +11,7 @@ describe('SearchBar component', () => {
 
 		const form = screen.getByTestId('form');
 		const svg = screen.getByTestId('img-search');
-		const searchInput = screen.getByPlaceholderText('search...');
+		const searchInput = screen.getByLabelText('search...');
 
 		expect(form).toBeInTheDocument();
 		expect(svg).toBeInTheDocument();
