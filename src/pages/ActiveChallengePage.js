@@ -12,18 +12,22 @@ import ProgressBox from '../components/ProgressBox';
 import {useStore} from '../hooks/useStore';
 import {sumDistance} from '../utils/progress';
 
-import {HeadLine} from './style/HeadLineStyle';
-import {SiteContent} from './style/SiteContent';
-import {SiteWrapper} from './style/SiteWrapper';
+import {StyledHeadLine} from './style/HeadLineStyle';
+import {StyledSiteContent} from './style/SiteContent';
+import {StyledSiteWrapper} from './style/SiteWrapper';
+import {StyledHeadLineH1} from './style/StyledHeadLineH1';
+import {StyledNoChallengeText} from './style/StyledNoChallengeText';
+import {StyledText} from './style/StyledText';
+import {StyledTextBold} from './style/StyledTextBold';
 
 export default function ActiveChallengePage() {
 	const navigate = useNavigate();
 
 	const activeChallengeId = useStore(state =>
 		state.challengeStatus.find(item => item.status === 'active')
-	).challengeId;
+	)?.challengeId;
 	const challenge = useStore(state =>
-		state.challenges.find(item => item.id === activeChallengeId)
+		state.challenges?.find(item => item.id === activeChallengeId)
 	);
 	const activityList = useStore(state => state.activities);
 	const activeChallengeActivities = activityList.filter(
@@ -44,12 +48,12 @@ export default function ActiveChallengePage() {
 				<title key="title">activeCallenge</title>
 				<meta key="description" name="description" content="activeChallenge" />
 			</Helmet>
-			<SiteWrapper>
+			<StyledSiteWrapper>
 				<ModalBackdrop open={modalStatus} />
-				<SiteContent>
+				<StyledSiteContent>
 					{challenge ? (
 						<>
-							<HeadLine>
+							<StyledHeadLine>
 								<div>
 									<Icon
 										icon={challenge?.logo}
@@ -57,19 +61,20 @@ export default function ActiveChallengePage() {
 										height={challenge?.logoSize}
 									/>
 								</div>
-								<h1>{challenge?.title}</h1>
-							</HeadLine>
+								<StyledHeadLineH1>{challenge?.title}</StyledHeadLineH1>
+							</StyledHeadLine>
 							<ProgressBox
 								distance={challenge?.distance}
 								activities={activeChallengeActivities}
 							/>
 							{sumActivitiesDistance >= challenge.distance ? (
 								<div>
-									<p>&#127881; Congratulations!</p>
-									<p>
-										You have conquered <span>{challenge?.title} </span>
+									<StyledTextBold>&#127881; Congratulations!</StyledTextBold>
+									<StyledText>
+										You have conquered{' '}
+										<StyledTextBold>{challenge?.title} </StyledTextBold>
 										&#127881;
-									</p>
+									</StyledText>
 									<Button
 										variant="large"
 										onClick={() => {
@@ -105,19 +110,15 @@ export default function ActiveChallengePage() {
 									);
 								})
 							) : (
-								<div>
-									<p>no results</p>
-								</div>
+								<StyledText>no results</StyledText>
 							)}
 						</>
 					) : (
-						<div>
-							<p>You have no active challenge</p>
-						</div>
+						<StyledNoChallengeText>You have no active challenge</StyledNoChallengeText>
 					)}
-				</SiteContent>
+				</StyledSiteContent>
 				<NavBar />
-			</SiteWrapper>
+			</StyledSiteWrapper>
 		</Layout>
 	);
 }
