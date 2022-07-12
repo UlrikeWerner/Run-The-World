@@ -31,8 +31,8 @@ export default function ProgressBox({distance, activities}) {
 		<StyledProgressContainer>
 			<StyledDoughnutContainer>
 				<Doughnut data={data} />
+				<StyledPercent>{completed}%</StyledPercent>
 			</StyledDoughnutContainer>
-			<StyledPercent>{completed}%</StyledPercent>
 			<StyledProgressUl>
 				<li>distance: {distance}km</li>
 				<li>completed: {completedKM}km</li>
