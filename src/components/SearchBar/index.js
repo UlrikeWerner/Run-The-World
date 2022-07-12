@@ -27,7 +27,6 @@ export default function SearchBar({searchChallenges, searchInput}) {
 				id="searchBar"
 				value={searchInput}
 				aria-label="search"
-				//placeholder="search..."
 				required
 				onChange={event => {
 					searchChallenges(event.target.value);
