@@ -16,7 +16,7 @@ export function sumDuration(activities) {
 export function sumDistance(activities, distance) {
 	let sum = 0;
 	if (activities.length <= 0) {
-		return '0,00';
+		return 0.0;
 	}
 
 	activities.forEach(element => {
