@@ -4,6 +4,7 @@ import {Doughnut} from 'react-chartjs-2';
 import {sumDuration, sumDistance, calculatePercent} from '../../utils/progress';
 
 import {StyledDoughnutContainer} from './Styled/StyledDoughnutContainer';
+import {StyledPercent} from './Styled/StyledPercent';
 import {StyledProgressContainer} from './Styled/StyledProgressContainer';
 import {StyledProgressUl} from './Styled/StyledProgressUl';
 
@@ -14,7 +15,6 @@ export default function ProgressBox({distance, activities}) {
 	const completed = calculatePercent(distance, completedKM);
 	const openDistance = distance - completedKM;
 	const totalDuration = sumDuration(activities);
-	//labels: ['completed', 'still to go'],
 
 	const data = {
 		datasets: [
@@ -32,7 +32,7 @@ export default function ProgressBox({distance, activities}) {
 			<StyledDoughnutContainer>
 				<Doughnut data={data} />
 			</StyledDoughnutContainer>
-			<p>{completed}%</p>
+			<StyledPercent>{completed}%</StyledPercent>
 			<StyledProgressUl>
 				<li>distance: {distance}km</li>
 				<li>completed: {completedKM}km</li>
