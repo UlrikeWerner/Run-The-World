@@ -22,10 +22,8 @@ describe('SearchBar component', () => {
 	});
 });
 
-/* try it but don't working!
-
 describe('SearchBar component', () => {
-	it('should let type into an input field', async => {
+	it('should let type into an input field', async () => {
 		const handleChange = jest.fn();
 
 		render(<SearchBar searchChallenges={handleChange} searchInput="" />);
@@ -34,6 +32,8 @@ describe('SearchBar component', () => {
 
 		await userEvent.type(searchInput, 'Bye');
 
-		expect(searchInput).toHaveValue('Bye');
+		expect(handleChange).toHaveBeenCalledWith('B');
+		expect(handleChange).toHaveBeenCalledWith('y');
+		expect(handleChange).toHaveBeenCalledWith('e');
 	});
-});*/
+});
