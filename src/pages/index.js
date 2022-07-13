@@ -9,6 +9,7 @@ import NavBar from '../components/NavBar/index';
 import SearchBar from '../components/SearchBar';
 import SortBar from '../components/SortBar';
 import {useStore} from '../hooks/useStore';
+import {sortAndFilter} from '../utils/searchAndSort';
 
 import {StyledChallengeList} from './style/IndexStyled';
 import {StyledModalWrapper} from './style/ModalWrapper';
@@ -23,169 +24,15 @@ export default function ChallengesPage() {
 	const modalStatus = useStore(state => state.modalStatus);
 	const challengeList = useStore(state => state.challenges);
 
-	/*function searchChallenges(searchInput) {
-		setSearchInput(searchInput);
-		if (searchInput !== '') {
-			const filterChallengeList = challengeList.filter(challenge => {
-				return challenge.title.toLowerCase().includes(searchInput.toLowerCase());
-			});
-			setFilterResult(filterChallengeList);
-		} else {
-			setFilterResult(challengeList);
-		}
-	}
-
-	function sortChallenges(sortInput) {
-		console.log(sortInput, 'sortInput');
-		let challenges = challengeList;
-		if (filterResult.length > 0) {
-			challenges = filterResult;´
-				case 'alphabetically':
-					challenges.sort(function (a, b) {
-						if (a.title < b.title) {
-							return -1;
-						}
-						if (a.title > b.title) {
-							return 1;
-						}
-						return 0;
-					});
-					break;
-				case 'ascending':
-					challenges.sort(function (a, b) {
-						if (Number(a.distance) < Number(b.distance)) {
-							return -1;
-						}
-						if (Number(a.distance) > Number(b.distance)) {
-							return 1;
-						}
-						return 0;
-					});
-					break;
-				case 'descending':
-					challenges.sort(function (a, b) {
-						if (Number(a.distance) < Number(b.distance)) {
-							return 1;
-						}
-						if (Number(a.distance) > Number(b.distance)) {
-							return -1;
-						}
-						return 0;
-					});
-					break;
-				default:
-					break;
-			}
-			setFilterResult(challenges);
-		} else {
-			setFilterResult(challenges);
-		}
-	}*/
-
-	function filterChallenges(type, value) {
-		console.log(type, value);
-		let filterChallengeList = challengeList;
+	function sortAndFilterChallenges(type, value) {
 		if (type === 'search') {
 			setSearchInput(value);
 		} else {
 			setSortInput(value);
 		}
 
-		if (type === 'search') {
-			if (value !== '') {
-				filterChallengeList = filterChallengeList.filter(challenge => {
-					return challenge.title.toLowerCase().includes(value.toLowerCase());
-				});
-				console.log(filterChallengeList);
-			}
-		} else {
-			if (searchInput !== '') {
-				filterChallengeList = filterChallengeList.filter(challenge => {
-					return challenge.title.toLowerCase().includes(searchInput.toLowerCase());
-				});
-			}
-		}
-
-		if (type === 'sort' && value !== 'none') {
-			switch (value) {
-				case 'alphabetically':
-					filterChallengeList.sort(function (a, b) {
-						if (a.title < b.title) {
-							return -1;
-						}
-						if (a.title > b.title) {
-							return 1;
-						}
-						return 0;
-					});
-					break;
-				case 'ascending':
-					filterChallengeList.sort(function (a, b) {
-						if (Number(a.distance) < Number(b.distance)) {
-							return -1;
-						}
-						if (Number(a.distance) > Number(b.distance)) {
-							return 1;
-						}
-						return 0;
-					});
-					break;
-				case 'descending':
-					filterChallengeList.sort(function (a, b) {
-						if (Number(a.distance) < Number(b.distance)) {
-							return 1;
-						}
-						if (Number(a.distance) > Number(b.distance)) {
-							return -1;
-						}
-						return 0;
-					});
-					break;
-				default:
-					break;
-			}
-			setFilterResult(filterChallengeList);
-		} else if (type !== 'sort' && sortInput !== 'none') {
-			switch (sortInput) {
-				case 'alphabetically':
-					filterChallengeList.sort(function (a, b) {
-						if (a.title < b.title) {
-							return -1;
-						}
-						if (a.title > b.title) {
-							return 1;
-						}
-						return 0;
-					});
-					break;
-				case 'ascending':
-					filterChallengeList.sort(function (a, b) {
-						if (Number(a.distance) < Number(b.distance)) {
-							return -1;
-						}
-						if (Number(a.distance) > Number(b.distance)) {
-							return 1;
-						}
-						return 0;
-					});
-					break;
-				case 'descending':
-					filterChallengeList.sort(function (a, b) {
-						if (Number(a.distance) < Number(b.distance)) {
-							return 1;
-						}
-						if (Number(a.distance) > Number(b.distance)) {
-							return -1;
-						}
-						return 0;
-					});
-					break;
-				default:
-					break;
-			}
-			setFilterResult(filterChallengeList);
-		}
-		setFilterResult(filterChallengeList);
+		const resultData = sortAndFilter(type, value, searchInput, sortInput, challengeList);
+		setFilterResult(resultData);
 	}
 
 	return (
@@ -195,8 +42,8 @@ export default function ChallengesPage() {
 				<meta key="description" name="description" content="Challenges" />
 			</Helmet>
 			<StyledSiteWrapper>
-				<SearchBar searchChallenges={filterChallenges} searchInput={searchInput} />
-				<SortBar sortChallenges={filterChallenges} />
+				<SearchBar searchChallenges={sortAndFilterChallenges} searchInput={searchInput} />
+				<SortBar sortChallenges={sortAndFilterChallenges} />
 				<ModalBackdrop open={modalStatus} />
 				<StyledModalWrapper>
 					<Modal open={modalStatus} />
