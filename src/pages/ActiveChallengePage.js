@@ -19,6 +19,7 @@ import {StyledHeadLineH1} from './style/StyledHeadLineH1';
 import {StyledNoChallengeText} from './style/StyledNoChallengeText';
 import {StyledText} from './style/StyledText';
 import {StyledTextBold} from './style/StyledTextBold';
+import {StyledTextBoldInText} from './style/StyledTextBoldInText';
 
 export default function ActiveChallengePage() {
 	const navigate = useNavigate();
@@ -72,7 +73,9 @@ export default function ActiveChallengePage() {
 									<StyledTextBold>&#127881; Congratulations!</StyledTextBold>
 									<StyledText>
 										You have conquered{' '}
-										<StyledTextBold>{challenge?.title} </StyledTextBold>
+										<StyledTextBoldInText>
+											{challenge?.title}{' '}
+										</StyledTextBoldInText>
 										&#127881;
 									</StyledText>
 									<Button

@@ -1,20 +1,44 @@
+import {Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js';
+import {Doughnut} from 'react-chartjs-2';
+
 import {sumDuration, sumDistance, calculatePercent} from '../../utils/progress';
 
-import {ProgressContainer} from './styled';
+import {StyledDoughnutContainer} from './Styled/StyledDoughnutContainer';
+import {StyledPercent} from './Styled/StyledPercent';
+import {StyledProgressContainer} from './Styled/StyledProgressContainer';
+import {StyledProgressUl} from './Styled/StyledProgressUl';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function ProgressBox({distance, activities}) {
-	let completedKM = sumDistance(activities, distance);
-	let completed = calculatePercent(distance, completedKM);
-	let totalDuration = sumDuration(activities);
+	const completedKM = sumDistance(activities, distance);
+	const completed = calculatePercent(distance, completedKM);
+	const openDistance = distance - completedKM;
+	const totalDuration = sumDuration(activities);
+
+	const data = {
+		datasets: [
+			{
+				data: [completedKM, openDistance],
+				backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 159, 64, 0.2)'],
+				borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 159, 64, 1)'],
+				borderWidth: 1,
+			},
+		],
+	};
 
 	return (
-		<ProgressContainer>
-			<ul>
-				<li>total distance: {distance}km</li>
-				<li>completed distance: {completedKM}km</li>
-				<li>{completed}% completed</li>
-				<li>total duration: {totalDuration}</li>
-			</ul>
-		</ProgressContainer>
+		<StyledProgressContainer>
+			<StyledDoughnutContainer>
+				<Doughnut data={data} />
+				<StyledPercent>{completed}%</StyledPercent>
+			</StyledDoughnutContainer>
+			<StyledProgressUl>
+				<li>distance: {distance}km</li>
+				<li>completed: {completedKM}km</li>
+				<li>total duration:</li>
+				<li>{totalDuration}</li>
+			</StyledProgressUl>
+		</StyledProgressContainer>
 	);
 }
