@@ -6,7 +6,7 @@ const StyledSearchInput = styled.input`
 	border: 1px solid black;
 	border-radius: 25px;
 
-	&:focus + label {
+	&:where(:focus, :not([value=''])) + label {
 		opacity: 0;
 		pointer-events: none;
 	}
