@@ -17,7 +17,7 @@ import {StyledSiteWrapper} from './style/SiteWrapper';
 
 export default function ChallengesPage() {
 	const [searchInput, setSearchInput] = useState('');
-	const [sortInput, setSortInput] = useState('');
+	const [sortInput, setSortInput] = useState('none');
 	const [filterResult, setFilterResult] = useState([]);
 
 	const modalStatus = useStore(state => state.modalStatus);
@@ -39,10 +39,7 @@ export default function ChallengesPage() {
 		console.log(sortInput, 'sortInput');
 		let challenges = challengeList;
 		if (filterResult.length > 0) {
-			challenges = filterResult;
-		}
-		if (sortInput !== 'none') {
-			switch (sortInput) {
+			challenges = filterResult;´
 				case 'alphabetically':
 					challenges.sort(function (a, b) {
 						if (a.title < b.title) {
@@ -86,11 +83,109 @@ export default function ChallengesPage() {
 	}*/
 
 	function filterChallenges(type, value) {
+		console.log(type, value);
+		let filterChallengeList = challengeList;
 		if (type === 'search') {
 			setSearchInput(value);
 		} else {
 			setSortInput(value);
 		}
+
+		if (type === 'search') {
+			if (value !== '') {
+				filterChallengeList = filterChallengeList.filter(challenge => {
+					return challenge.title.toLowerCase().includes(value.toLowerCase());
+				});
+				console.log(filterChallengeList);
+			}
+		} else {
+			if (searchInput !== '') {
+				filterChallengeList = filterChallengeList.filter(challenge => {
+					return challenge.title.toLowerCase().includes(searchInput.toLowerCase());
+				});
+			}
+		}
+
+		if (type === 'sort' && value !== 'none') {
+			switch (value) {
+				case 'alphabetically':
+					filterChallengeList.sort(function (a, b) {
+						if (a.title < b.title) {
+							return -1;
+						}
+						if (a.title > b.title) {
+							return 1;
+						}
+						return 0;
+					});
+					break;
+				case 'ascending':
+					filterChallengeList.sort(function (a, b) {
+						if (Number(a.distance) < Number(b.distance)) {
+							return -1;
+						}
+						if (Number(a.distance) > Number(b.distance)) {
+							return 1;
+						}
+						return 0;
+					});
+					break;
+				case 'descending':
+					filterChallengeList.sort(function (a, b) {
+						if (Number(a.distance) < Number(b.distance)) {
+							return 1;
+						}
+						if (Number(a.distance) > Number(b.distance)) {
+							return -1;
+						}
+						return 0;
+					});
+					break;
+				default:
+					break;
+			}
+			setFilterResult(filterChallengeList);
+		} else if (type !== 'sort' && sortInput !== 'none') {
+			switch (sortInput) {
+				case 'alphabetically':
+					filterChallengeList.sort(function (a, b) {
+						if (a.title < b.title) {
+							return -1;
+						}
+						if (a.title > b.title) {
+							return 1;
+						}
+						return 0;
+					});
+					break;
+				case 'ascending':
+					filterChallengeList.sort(function (a, b) {
+						if (Number(a.distance) < Number(b.distance)) {
+							return -1;
+						}
+						if (Number(a.distance) > Number(b.distance)) {
+							return 1;
+						}
+						return 0;
+					});
+					break;
+				case 'descending':
+					filterChallengeList.sort(function (a, b) {
+						if (Number(a.distance) < Number(b.distance)) {
+							return 1;
+						}
+						if (Number(a.distance) > Number(b.distance)) {
+							return -1;
+						}
+						return 0;
+					});
+					break;
+				default:
+					break;
+			}
+			setFilterResult(filterChallengeList);
+		}
+		setFilterResult(filterChallengeList);
 	}
 
 	return (
