@@ -23,6 +23,8 @@ export default function ChallengesPage() {
 
 	const modalStatus = useStore(state => state.modalStatus);
 	const challengeList = useStore(state => state.challenges);
+	const activityList = useStore(state => state.activities);
+	const statusList = useStore(state => state.challengeStatus);
 
 	function sortAndFilterChallenges(type, value) {
 		if (type === 'search') {
@@ -31,7 +33,15 @@ export default function ChallengesPage() {
 			setSortInput(value);
 		}
 
-		const resultData = sortAndFilter(type, value, searchInput, sortInput, challengeList);
+		const resultData = sortAndFilter(
+			type,
+			value,
+			searchInput,
+			sortInput,
+			challengeList,
+			statusList,
+			activityList
+		);
 		setFilterResult(resultData);
 	}
 
@@ -51,7 +61,7 @@ export default function ChallengesPage() {
 				<StyledSiteContent>
 					{
 						<StyledChallengeList>
-							{searchInput.length >= 1
+							{searchInput.length >= 1 || sortInput !== 'none'
 								? filterResult.map(item => {
 										return (
 											<Challenge
