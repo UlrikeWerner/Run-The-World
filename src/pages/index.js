@@ -13,6 +13,7 @@ import {sortAndFilter} from '../utils/searchAndSort';
 
 import {StyledChallengeList} from './style/IndexStyled';
 import {StyledModalWrapper} from './style/ModalWrapper';
+import {StyledSearchAndSortWrapper} from './style/SearchAndSortWrapper';
 import {StyledSiteContent} from './style/SiteContent';
 import {StyledSiteWrapper} from './style/SiteWrapper';
 
@@ -52,8 +53,13 @@ export default function ChallengesPage() {
 				<meta key="description" name="description" content="Challenges" />
 			</Helmet>
 			<StyledSiteWrapper>
-				<SearchBar searchChallenges={sortAndFilterChallenges} searchInput={searchInput} />
-				<SortBar sortChallenges={sortAndFilterChallenges} />
+				<StyledSearchAndSortWrapper>
+					<SearchBar
+						searchChallenges={sortAndFilterChallenges}
+						searchInput={searchInput}
+					/>
+					<SortBar sortChallenges={sortAndFilterChallenges} />
+				</StyledSearchAndSortWrapper>
 				<ModalBackdrop open={modalStatus} />
 				<StyledModalWrapper>
 					<Modal open={modalStatus} />
