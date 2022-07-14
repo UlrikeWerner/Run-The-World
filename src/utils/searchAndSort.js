@@ -57,13 +57,19 @@ export function sortByStatus(list, statusList, activitiesList) {
 	const activeChallenge = list?.find(challenge => challenge.id === activeId);
 
 	let resultList;
-	activeChallenge ? (resultList = [activeChallenge]) : (resultList = []);
+	if (activeChallenge !== undefined) {
+		resultList = [activeChallenge];
+	}
 
 	const pausedList = newStatusList?.filter(elements => elements?.status === 'paused');
 	let paused = [];
-	pausedList.forEach((element, index) => {
+	let count = 0;
+	pausedList.forEach(element => {
 		const challengePaused = list.find(challenge => challenge.id === element.challengeId);
-		paused[index] = challengePaused;
+		if (challengePaused !== undefined) {
+			paused[count] = challengePaused;
+			count++;
+		}
 	});
 
 	paused
@@ -73,12 +79,18 @@ export function sortByStatus(list, statusList, activitiesList) {
 		: (resultList = resultList);
 
 	let notStarted = [...list];
-	resultList.forEach(element => {
-		notStarted = notStarted.filter(challenges => challenges.id !== element.id);
-	});
-	finish.forEach(element => {
-		notStarted = notStarted.filter(challenges => challenges.id !== element.id);
-	});
+
+	resultList
+		? resultList.forEach(element => {
+				notStarted = notStarted.filter(challenges => challenges.id !== element.id);
+		  })
+		: (notStarted = notStarted);
+
+	finish
+		? finish.forEach(element => {
+				notStarted = notStarted.filter(challenges => challenges.id !== element.id);
+		  })
+		: (notStarted = notStarted);
 
 	notStarted
 		? resultList
