@@ -1,16 +1,3 @@
-export function sortActivitiesByChallengeId(activitiesList) {
-	activitiesList.sort(function (a, b) {
-		if (a.challengeId < b.challengeId) {
-			return -1;
-		}
-		if (a.title > b.title) {
-			return 1;
-		}
-		return 0;
-	});
-	return activitiesList;
-}
-
 export function searchList(type, value, searchInput, list) {
 	if (type === 'search') {
 		if (value !== '') {
@@ -28,31 +15,83 @@ export function searchList(type, value, searchInput, list) {
 	return list;
 }
 
-export function sortByStatus(list, statusList, activitiesList) {
-	sortActivitiesByChallengeId(activitiesList);
-	const activeId = statusList.find(element => element.status === 'active')?.challengeId;
-	let active = list.find(challenge => challenge.id === activeId);
+export function findFinishChallenges(challenges, statusList, activities) {
+	let newStatusList = statusList;
+	let finish = [];
 
-	const pausedList = statusList.filter(elements => elements.status === 'paused');
+	statusList.forEach(status => {
+		const examineChallenge = challenges?.find(
+			challenge => challenge?.id === status?.challengeId
+		);
+		const examineActivities = activities?.filter(
+			activity => activity?.challengeId === examineChallenge?.id
+		);
+
+		let activitiesDistance = 0;
+		examineActivities?.forEach(activity => {
+			activitiesDistance += activity?.distance;
+		});
+
+		if (activitiesDistance / 1000 >= examineChallenge?.distance) {
+			finish = [...finish, examineChallenge];
+			newStatusList = newStatusList?.filter(
+				challenge => challenge?.challengeId !== examineChallenge?.id
+			);
+		}
+	});
+	return [finish, newStatusList];
+}
+
+export function sortByStatus(list, statusList, activitiesList) {
+	let finishReturn = [];
+	let finish = [];
+	let newStatusList = [];
+
+	if (statusList.length > 0) {
+		finishReturn = findFinishChallenges(list, statusList, activitiesList);
+		finish = [...finishReturn[0]];
+		newStatusList = [...finishReturn[1]];
+	}
+
+	const activeId = newStatusList.find(element => element.status === 'active')?.challengeId;
+	const activeChallenge = list?.find(challenge => challenge.id === activeId);
+
+	let resultList;
+	activeChallenge ? (resultList = [activeChallenge]) : (resultList = []);
+
+	const pausedList = newStatusList?.filter(elements => elements?.status === 'paused');
 	let paused = [];
 	pausedList.forEach((element, index) => {
 		const challengePaused = list.find(challenge => challenge.id === element.challengeId);
 		paused[index] = challengePaused;
 	});
 
-	let resultList = [active, ...paused];
+	paused
+		? resultList
+			? (resultList = [...resultList, ...paused])
+			: (resultList = [...paused])
+		: (resultList = resultList);
+
 	let notStarted = [...list];
 	resultList.forEach(element => {
 		notStarted = notStarted.filter(challenges => challenges.id !== element.id);
 	});
+	finish.forEach(element => {
+		notStarted = notStarted.filter(challenges => challenges.id !== element.id);
+	});
 
-	resultList = [...resultList, ...notStarted];
+	notStarted
+		? resultList
+			? (resultList = [...resultList, ...notStarted])
+			: (resultList = [...notStarted])
+		: (resultList = resultList);
 
-	let finish;
-	console.log(list);
-	console.log(activitiesList);
+	finish
+		? resultList
+			? (resultList = [...resultList, ...finish])
+			: (resultList = [...finish])
+		: (resultList = resultList);
 
-	console.log('result', resultList);
 	return resultList;
 }
 
@@ -61,7 +100,6 @@ export function sortList(sortValue, list, statusList = '', activitiesList = '') 
 		switch (sortValue) {
 			case 'status':
 				list = sortByStatus(list, statusList, activitiesList);
-				console.log('list', list);
 				break;
 			case 'alphabetically':
 				list.sort(function (a, b) {
