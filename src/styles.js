@@ -12,13 +12,17 @@ export const GlobalStyle = createGlobalStyle`
 		--lightgreen: #94F284;
 		--green: #68CF57;
 		--darkgreen: #53A646;
-		--ldGreenGradient: linear-gradient(272.38deg, #53A646 4.69%, #94F284 85.74%);
-		--dlGreenGradient: linear-gradient(272.38deg, #94F284 4.69%, #53A646 85.74%);
-		--ldGreyGradient: linear-gradient(274.25deg, #D4D5D4 13.83%, #F4F4F4 86.17%);
-		--dlGreyGradient: linear-gradient(274.25deg, #F4F4F4 13.83%, #D4D5D4 86.17%);
-		--textGradientHeadline: linear-gradient(0deg, #53A646 0%, #94F284 100%);
-		--textGradient: linear-gradient(0deg, #53A646 0%, #68CF57 100%);
-		--bgShadow: 5px 5px 4px rgba(0, 0, 0, 0.25), -5px -5px 4px white;
+		--palegreen: #e3ffde;
+		--lightgrey: #F4F4F4;
+		--darkgrey: #D4D5D4;
+		--blackTransparent: rgba(0, 0, 0, 0.25); 
+		--greenGradientDiagonal: linear-gradient(274.25deg, var(--lightgreen) 13.83%, var(--darkgreen) 86.17%);
+		--greenReverseGradient: linear-gradient(0deg, var(--lightgreen) 0%, var(--darkgreen) 100%);
+		--dlGreyGradient: linear-gradient(274.25deg, var(--lightgrey) 13.83%, var(--darkgrey) 86.17%);
+		--textGradient: linear-gradient(0deg, var(--darkgreen) 0%, var(--green) 100%);
+		--bgShadow: 5px 5px 4px var(--blackTransparent), -5px -5px 4px white;
+		--buttonBorderColor: white var(--blackTransparent) var(--blackTransparent) white; 
+		--buttonBorderColorInverted:  var(--blackTransparent) white white var(--blackTransparent); 
 	}
 
 	html {

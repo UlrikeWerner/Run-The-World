@@ -44,6 +44,8 @@ export default function Challenge({
 				<StyledFinishText>*finished</StyledFinishText>
 			) : status?.status === 'paused' ? (
 				<Button
+					variant="medium"
+					role="challenge"
 					onClick={() => {
 						setModal('start Challenge', '', challengeId);
 						setModalStatus(true);
@@ -53,6 +55,8 @@ export default function Challenge({
 				</Button>
 			) : status?.status === 'active' ? (
 				<Button
+					variant="medium"
+					role="challenge"
 					onClick={() => {
 						setChallengeStatus(challengeId);
 						navigate('/ActiveChallenge');
@@ -62,6 +66,8 @@ export default function Challenge({
 				</Button>
 			) : challengeStatus.length <= 0 ? (
 				<Button
+					variant="medium"
+					role="challenge"
 					onClick={() => {
 						setChallengeStatus(challengeId);
 						navigate('/ActiveChallenge');
@@ -71,6 +77,8 @@ export default function Challenge({
 				</Button>
 			) : (
 				<Button
+					variant="medium"
+					role="challenge"
 					onClick={() => {
 						setModal('start Challenge', '', challengeId);
 						setModalStatus(true);

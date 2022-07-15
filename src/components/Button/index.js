@@ -1,4 +1,4 @@
-import StyledButton from './styled';
+import StyledButton from './Styled/StyledButton';
 
 export default function Button({children, type = 'button', ...props}) {
 	return (

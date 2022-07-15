@@ -20,7 +20,7 @@ export default function MessageBox({id = '', type, text}) {
 				{type === 'delete' ? (
 					<>
 						<Button
-							variant="medium"
+							variant="cancel"
 							role="cancel"
 							onClick={() => {
 								setModal('', '', '');
@@ -45,7 +45,7 @@ export default function MessageBox({id = '', type, text}) {
 				) : type === 'start' ? (
 					<>
 						<Button
-							variant="medium"
+							variant="cancel"
 							role="cancel"
 							onClick={() => {
 								setModal('', '', '');
