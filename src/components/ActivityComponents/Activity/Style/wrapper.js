@@ -6,15 +6,6 @@ const StyledActivityWrapper = styled.section`
 	button {
 		margin: 0;
 	}
-
-	h3 {
-		margin: 0.6rem 0 0;
-		font-size: 0.85rem;
-	}
-
-	p {
-		margin: 0.25rem 0 0;
-	}
 `;
 
 export {StyledActivityWrapper};

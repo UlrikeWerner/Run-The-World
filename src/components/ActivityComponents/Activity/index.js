@@ -11,7 +11,9 @@ import {
 import Button from '../../Button/index';
 
 import {StyledActivityContainer} from './Style/container';
+import {StyledHeadlineSubtitle} from './Style/HeadlineSubtitle';
 import {StyledHeadlineTitle} from './Style/HeadlineTitle';
+import {StyledTextContaint} from './Style/TextContaint';
 import {StyledActivityWrapper} from './Style/wrapper';
 
 export default function ActivityResult({challengeId, activityId, date, duration, distance}) {
@@ -32,12 +34,12 @@ export default function ActivityResult({challengeId, activityId, date, duration,
 				</span>
 			</StyledActivityWrapper>
 			<StyledActivityWrapper>
-				<h3>distance</h3>
-				<p>{distance ? distance / 1000 + 'km' : ''}</p>
+				<StyledHeadlineSubtitle>distance</StyledHeadlineSubtitle>
+				<StyledTextContaint>{distance ? distance / 1000 + 'km' : ''}</StyledTextContaint>
 			</StyledActivityWrapper>
 			<StyledActivityWrapper>
-				<h3>duration</h3>
-				<p>{durationData ? durationData : ''}</p>
+				<StyledHeadlineSubtitle>duration</StyledHeadlineSubtitle>
+				<StyledTextContaint>{durationData ? durationData : ''}</StyledTextContaint>
 			</StyledActivityWrapper>
 			<StyledActivityWrapper>
 				<Button
