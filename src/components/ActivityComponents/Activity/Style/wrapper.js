@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-const ActivityWrapper = styled.section`
+const StyledActivityWrapper = styled.section`
 	margin: 0.35rem 0 0;
 
-	h2,
 	button {
 		margin: 0;
 	}
@@ -18,4 +17,4 @@ const ActivityWrapper = styled.section`
 	}
 `;
 
-export {ActivityWrapper};
+export {StyledActivityWrapper};

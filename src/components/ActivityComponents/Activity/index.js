@@ -10,8 +10,9 @@ import {
 } from '../../../utils/date';
 import Button from '../../Button/index';
 
-import {ActivityContainer} from './Style/container';
-import {ActivityWrapper} from './Style/wrapper';
+import {StyledActivityContainer} from './Style/container';
+import {StyledHeadlineTitle} from './Style/HeadlineTitle';
+import {StyledActivityWrapper} from './Style/wrapper';
 
 export default function ActivityResult({challengeId, activityId, date, duration, distance}) {
 	const setModal = useStore(state => state.setModal);
@@ -20,23 +21,25 @@ export default function ActivityResult({challengeId, activityId, date, duration,
 	const durationData = createDurationString(secondToDurationData(duration));
 
 	return (
-		<ActivityContainer>
-			<ActivityWrapper>
-				<h2>{getDateWeekday(date) ? getDateWeekday(date) : ''}</h2>
+		<StyledActivityContainer>
+			<StyledActivityWrapper>
+				<StyledHeadlineTitle>
+					{getDateWeekday(date) ? getDateWeekday(date) : ''}
+				</StyledHeadlineTitle>
 				<span>
 					{getDateMonth(date) ? getDateMonth(date) : ''}{' '}
 					{getDateDay(date) ? getDateDay(date) : ''}
 				</span>
-			</ActivityWrapper>
-			<ActivityWrapper>
+			</StyledActivityWrapper>
+			<StyledActivityWrapper>
 				<h3>distance</h3>
 				<p>{distance ? distance / 1000 + 'km' : ''}</p>
-			</ActivityWrapper>
-			<ActivityWrapper>
+			</StyledActivityWrapper>
+			<StyledActivityWrapper>
 				<h3>duration</h3>
 				<p>{durationData ? durationData : ''}</p>
-			</ActivityWrapper>
-			<ActivityWrapper>
+			</StyledActivityWrapper>
+			<StyledActivityWrapper>
 				<Button
 					variant="small"
 					role="edit"
@@ -63,7 +66,7 @@ export default function ActivityResult({challengeId, activityId, date, duration,
 						alt="edit"
 					/>
 				</Button>
-			</ActivityWrapper>
-		</ActivityContainer>
+			</StyledActivityWrapper>
+		</StyledActivityContainer>
 	);
 }

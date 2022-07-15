@@ -12,6 +12,7 @@ import ProgressBox from '../components/ProgressBox';
 import {useStore} from '../hooks/useStore';
 import {sumDistance} from '../utils/progress';
 
+import {StyledActivitiesSection} from './style/ActivitiesSection';
 import {StyledHeadLine} from './style/HeadLineStyle';
 import {StyledSiteContent} from './style/SiteContent';
 import {StyledSiteWrapper} from './style/SiteWrapper';
@@ -99,22 +100,24 @@ export default function ActiveChallengePage() {
 								</Button>
 							)}
 							<Modal open={modalStatus} />
-							{activeChallengeActivities.length > 0 ? (
-								activeChallengeActivities.map(item => {
-									return (
-										<ActivityResult
-											key={item.id}
-											challengeId={activeChallengeId}
-											activityId={item.id}
-											date={item.date}
-											duration={item.duration}
-											distance={item.distance}
-										/>
-									);
-								})
-							) : (
-								<StyledText>no results</StyledText>
-							)}
+							<StyledActivitiesSection>
+								{activeChallengeActivities.length > 0 ? (
+									activeChallengeActivities.map(item => {
+										return (
+											<ActivityResult
+												key={item.id}
+												challengeId={activeChallengeId}
+												activityId={item.id}
+												date={item.date}
+												duration={item.duration}
+												distance={item.distance}
+											/>
+										);
+									})
+								) : (
+									<StyledText>no results</StyledText>
+								)}
+							</StyledActivitiesSection>
 						</>
 					) : (
 						<StyledNoChallengeText>You have no active challenge</StyledNoChallengeText>
