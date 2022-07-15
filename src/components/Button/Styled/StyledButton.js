@@ -31,7 +31,7 @@ const buttonState = {
 
 const StyledButton = styled.button`
 	margin-top: 0.5rem;
-	padding: 0.5em 1em;
+	padding: 0.5em 0.5em;
 	border-width: 2px;
 	border-style: solid;
 	border-radius: 0.4rem;
