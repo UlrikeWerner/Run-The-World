@@ -29,7 +29,7 @@ export default function SearchBar({searchChallenges, searchInput}) {
 				aria-label="search"
 				required
 				onChange={event => {
-					searchChallenges(event.target.value);
+					searchChallenges('search', event.target.value);
 				}}
 			/>
 			<StyledSearchLabel htmlFor="searchBar">search...</StyledSearchLabel>

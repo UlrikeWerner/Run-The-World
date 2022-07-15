@@ -32,5 +32,5 @@ export function calculatePercent(totalSum, partSum) {
 		return percent;
 	}
 	percent = Math.floor((partSum * 100) / totalSum);
-	return Math.min(percent, totalSum);
+	return Math.min(percent, 100);
 }

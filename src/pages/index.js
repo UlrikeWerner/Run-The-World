@@ -7,30 +7,43 @@ import Modal from '../components/Modal/index';
 import ModalBackdrop from '../components/Modal/ModalBackdrop/index';
 import NavBar from '../components/NavBar/index';
 import SearchBar from '../components/SearchBar';
+import SortBar from '../components/SortBar';
 import {useStore} from '../hooks/useStore';
+import {sortAndFilter} from '../utils/searchAndSort';
 
 import {StyledChallengeList} from './style/IndexStyled';
 import {StyledModalWrapper} from './style/ModalWrapper';
+import {StyledSearchAndSortWrapper} from './style/SearchAndSortWrapper';
 import {StyledSiteContent} from './style/SiteContent';
 import {StyledSiteWrapper} from './style/SiteWrapper';
 
 export default function ChallengesPage() {
 	const [searchInput, setSearchInput] = useState('');
+	const [sortInput, setSortInput] = useState('none');
 	const [filterResult, setFilterResult] = useState([]);
 
 	const modalStatus = useStore(state => state.modalStatus);
 	const challengeList = useStore(state => state.challenges);
+	const activityList = useStore(state => state.activities);
+	const statusList = useStore(state => state.challengeStatus);
 
-	function searchChallenges(searchInput) {
-		setSearchInput(searchInput);
-		if (searchInput !== '') {
-			const filterChallengeList = challengeList.filter(challenge => {
-				return challenge.title.toLowerCase().includes(searchInput.toLowerCase());
-			});
-			setFilterResult(filterChallengeList);
+	function sortAndFilterChallenges(type, value) {
+		if (type === 'search') {
+			setSearchInput(value);
 		} else {
-			setFilterResult(challengeList);
+			setSortInput(value);
 		}
+
+		const resultData = sortAndFilter(
+			type,
+			value,
+			searchInput,
+			sortInput,
+			challengeList,
+			statusList,
+			activityList
+		);
+		setFilterResult(resultData);
 	}
 
 	return (
@@ -40,7 +53,13 @@ export default function ChallengesPage() {
 				<meta key="description" name="description" content="Challenges" />
 			</Helmet>
 			<StyledSiteWrapper>
-				<SearchBar searchChallenges={searchChallenges} searchInput={searchInput} />
+				<StyledSearchAndSortWrapper>
+					<SearchBar
+						searchChallenges={sortAndFilterChallenges}
+						searchInput={searchInput}
+					/>
+					<SortBar sortChallenges={sortAndFilterChallenges} />
+				</StyledSearchAndSortWrapper>
 				<ModalBackdrop open={modalStatus} />
 				<StyledModalWrapper>
 					<Modal open={modalStatus} />
@@ -48,7 +67,7 @@ export default function ChallengesPage() {
 				<StyledSiteContent>
 					{
 						<StyledChallengeList>
-							{searchInput.length >= 1
+							{searchInput.length >= 1 || sortInput !== 'none'
 								? filterResult.map(item => {
 										return (
 											<Challenge
