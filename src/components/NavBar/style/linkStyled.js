@@ -1,7 +1,7 @@
 import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 
-const LinkContainer = styled(NavLink)`
+const StyledLinkContainer = styled(NavLink)`
 	position: relative;
 	color: slategrey;
 
@@ -26,4 +26,4 @@ const LinkContainer = styled(NavLink)`
 		}
 	}
 `;
-export {LinkContainer};
+export {StyledLinkContainer};
