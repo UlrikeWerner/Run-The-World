@@ -14,7 +14,6 @@ import {StyledActivityContainer} from './Style/container';
 import {StyledHeadlineSubtitle} from './Style/HeadlineSubtitle';
 import {StyledHeadlineTitle} from './Style/HeadlineTitle';
 import {StyledTextContaint} from './Style/TextContaint';
-import {StyledActivityWrapper} from './Style/wrapper';
 
 export default function ActivityResult({challengeId, activityId, date, duration, distance}) {
 	const setModal = useStore(state => state.setModal);
@@ -25,7 +24,7 @@ export default function ActivityResult({challengeId, activityId, date, duration,
 	return (
 		<>
 			<StyledActivityContainer>
-				<StyledActivityWrapper>
+				<div>
 					<StyledHeadlineTitle>
 						{getDateWeekday(date) ? getDateWeekday(date) : ''}
 					</StyledHeadlineTitle>
@@ -33,18 +32,18 @@ export default function ActivityResult({challengeId, activityId, date, duration,
 						{getDateMonth(date) ? getDateMonth(date) : ''}{' '}
 						{getDateDay(date) ? getDateDay(date) : ''}
 					</span>
-				</StyledActivityWrapper>
-				<StyledActivityWrapper>
+				</div>
+				<div>
 					<StyledHeadlineSubtitle>distance</StyledHeadlineSubtitle>
 					<StyledTextContaint>
 						{distance ? distance / 1000 + 'km' : ''}
 					</StyledTextContaint>
-				</StyledActivityWrapper>
-				<StyledActivityWrapper>
+				</div>
+				<div>
 					<StyledHeadlineSubtitle>duration</StyledHeadlineSubtitle>
 					<StyledTextContaint>{durationData ? durationData : ''}</StyledTextContaint>
-				</StyledActivityWrapper>
-				<StyledActivityWrapper>
+				</div>
+				<div>
 					<Button
 						variant="small"
 						role="edit"
@@ -77,7 +76,7 @@ export default function ActivityResult({challengeId, activityId, date, duration,
 							alt="edit"
 						/>
 					</Button>
-				</StyledActivityWrapper>
+				</div>
 			</StyledActivityContainer>
 			<StyledActivityDivider />
 		</>

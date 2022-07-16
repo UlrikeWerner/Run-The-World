@@ -12,7 +12,7 @@ const buttonState = {
 		large: '2rem',
 	},
 	marginTop: {
-		small: '0.25rem',
+		small: '0',
 		medium: '0.5rem',
 		large: '0.5rem',
 	},
@@ -20,6 +20,11 @@ const buttonState = {
 		small: '0',
 		medium: '0',
 		large: '0.75rem',
+	},
+	padding: {
+		small: '0.5em 0.8em',
+		medium: '0.5em 0.5em',
+		large: '0.5em 0.5em',
 	},
 	background: {
 		small: '--dlGreyGradient',
@@ -30,8 +35,9 @@ const buttonState = {
 };
 
 const StyledButton = styled.button`
-	margin-top: 0.5rem;
-	padding: 0.5em 0.5em;
+	${props => `
+	padding: ${buttonState.padding[props.variant] ?? buttonState.padding.medium};
+	`};
 	border-width: 2px;
 	border-style: solid;
 	border-radius: 0.4rem;
