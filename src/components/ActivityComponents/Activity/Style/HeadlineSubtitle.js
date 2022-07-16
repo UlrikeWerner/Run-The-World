@@ -8,7 +8,7 @@ const StyledHeadlineSubtitle = styled.h3`
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
 	font-size: 0.85rem;
-	font-weight: 400;
+	font-weight: 600;
 `;
 
 export {StyledHeadlineSubtitle};

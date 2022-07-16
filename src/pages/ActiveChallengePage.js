@@ -115,12 +115,24 @@ export default function ActiveChallengePage() {
 										);
 									})
 								) : (
-									<StyledText>no results</StyledText>
+									<StyledText>no activites yet</StyledText>
 								)}
 							</StyledActivitiesSection>
 						</>
 					) : (
-						<StyledNoChallengeText>You have no active challenge</StyledNoChallengeText>
+						<>
+							<StyledNoChallengeText>
+								You have no active challenge
+							</StyledNoChallengeText>
+							<Button
+								variant="large"
+								onClick={() => {
+									navigate('/');
+								}}
+							>
+								start a new challenge
+							</Button>
+						</>
 					)}
 				</StyledSiteContent>
 				<NavBar />
