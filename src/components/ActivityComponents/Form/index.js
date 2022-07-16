@@ -107,7 +107,7 @@ export default function AddActivity({
 			/>
 			<div>
 				<Button
-					variant="medium"
+					variant="cancel"
 					onClick={() => {
 						setModal('', '', '');
 						setModalStatus(false);

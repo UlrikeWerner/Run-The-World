@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 
-const ActivityContainer = styled.section`
+const StyledActivityContainer = styled.section`
 	display: grid;
-	justify-self: center;
-	grid-template-columns: 2fr 2fr 2fr 1fr;
-	margin: 0.3rem;
-	border: 1px solid black;
-	border-radius: 15px;
+	grid-template-columns: 2fr 1.6fr 2.25fr 1fr;
+	margin: 0.35rem 0.5rem 0 0.5rem;
 	& :first-child {
 		justify-self: center;
 	}
 `;
 
-export {ActivityContainer};
+export {StyledActivityContainer};

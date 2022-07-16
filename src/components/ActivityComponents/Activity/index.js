@@ -1,5 +1,3 @@
-import {Icon} from '@iconify/react';
-
 import {useStore} from '../../../hooks/useStore';
 import {
 	secondToDurationData,
@@ -9,9 +7,13 @@ import {
 	getDateMonth,
 } from '../../../utils/date';
 import Button from '../../Button/index';
+import {StyledButtonSVG} from '../../Button/Styled/ButtonSVG';
 
-import {ActivityContainer} from './Style/container';
-import {ActivityWrapper} from './Style/wrapper';
+import {StyledActivityDivider} from './Style/ActivityDivider';
+import {StyledActivityContainer} from './Style/container';
+import {StyledHeadlineSubtitle} from './Style/HeadlineSubtitle';
+import {StyledHeadlineTitle} from './Style/HeadlineTitle';
+import {StyledTextContaint} from './Style/TextContaint';
 
 export default function ActivityResult({challengeId, activityId, date, duration, distance}) {
 	const setModal = useStore(state => state.setModal);
@@ -20,50 +22,63 @@ export default function ActivityResult({challengeId, activityId, date, duration,
 	const durationData = createDurationString(secondToDurationData(duration));
 
 	return (
-		<ActivityContainer>
-			<ActivityWrapper>
-				<h2>{getDateWeekday(date) ? getDateWeekday(date) : ''}</h2>
-				<span>
-					{getDateMonth(date) ? getDateMonth(date) : ''}{' '}
-					{getDateDay(date) ? getDateDay(date) : ''}
-				</span>
-			</ActivityWrapper>
-			<ActivityWrapper>
-				<h3>distance</h3>
-				<p>{distance ? distance / 1000 + 'km' : ''}</p>
-			</ActivityWrapper>
-			<ActivityWrapper>
-				<h3>duration</h3>
-				<p>{durationData ? durationData : ''}</p>
-			</ActivityWrapper>
-			<ActivityWrapper>
-				<Button
-					variant="small"
-					role="edit"
-					onClick={() => {
-						setModal('edit', activityId, challengeId);
-						setModalStatus(true);
-					}}
-				>
-					<Icon icon="entypo:edit" width="1rem" height="1rem" color="black" alt="edit" />
-				</Button>
-				<Button
-					variant="small"
-					role="delete"
-					onClick={() => {
-						setModal('delete', activityId, '');
-						setModalStatus(true);
-					}}
-				>
-					<Icon
-						icon="fluent:delete-12-filled"
-						width="1rem"
-						height="1rem"
-						color="black"
-						alt="edit"
-					/>
-				</Button>
-			</ActivityWrapper>
-		</ActivityContainer>
+		<>
+			<StyledActivityContainer>
+				<div>
+					<StyledHeadlineTitle>
+						{getDateWeekday(date) ? getDateWeekday(date) : ''}
+					</StyledHeadlineTitle>
+					<span>
+						{getDateMonth(date) ? getDateMonth(date) : ''}{' '}
+						{getDateDay(date) ? getDateDay(date) : ''}
+					</span>
+				</div>
+				<div>
+					<StyledHeadlineSubtitle>distance</StyledHeadlineSubtitle>
+					<StyledTextContaint>
+						{distance ? distance / 1000 + 'km' : ''}
+					</StyledTextContaint>
+				</div>
+				<div>
+					<StyledHeadlineSubtitle>duration</StyledHeadlineSubtitle>
+					<StyledTextContaint>{durationData ? durationData : ''}</StyledTextContaint>
+				</div>
+				<div>
+					<Button
+						variant="small"
+						role="edit"
+						onClick={() => {
+							setModal('edit', activityId, challengeId);
+							setModalStatus(true);
+						}}
+					>
+						<StyledButtonSVG
+							icon="entypo:edit"
+							width="1rem"
+							height="1rem"
+							color="var(--darkgreen)"
+							alt="edit"
+						/>
+					</Button>
+					<Button
+						variant="small"
+						role="delete"
+						onClick={() => {
+							setModal('delete', activityId, '');
+							setModalStatus(true);
+						}}
+					>
+						<StyledButtonSVG
+							icon="fluent:delete-12-filled"
+							width="1rem"
+							height="1rem"
+							color="var(--darkgreen)"
+							alt="edit"
+						/>
+					</Button>
+				</div>
+			</StyledActivityContainer>
+			<StyledActivityDivider />
+		</>
 	);
 }

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import {pxToRem} from '../../utils/unit';
-
 const buttonState = {
 	width: {
 		small: '1rem',
@@ -14,7 +12,7 @@ const buttonState = {
 		large: '2rem',
 	},
 	marginTop: {
-		small: '0.25rem',
+		small: '0',
 		medium: '0.5rem',
 		large: '0.5rem',
 	},
@@ -23,14 +21,30 @@ const buttonState = {
 		medium: '0',
 		large: '0.75rem',
 	},
+	padding: {
+		small: '0.5em 0.8em',
+		medium: '0.5em 0.5em',
+		large: '0.5em 0.5em',
+	},
+	background: {
+		small: 'var(--dlGreyGradient)',
+		medium: 'var(--greenGradientDiagonal)',
+		cancel: 'var(--dlGreyGradient)',
+		large: 'var(--greenReverseGradient)',
+	},
 };
 
 const StyledButton = styled.button`
-	margin-top: 0.5rem;
-	padding: 0.5em 1em;
-	border: 1px solid rgba(0, 0, 0, 0.3);
-	border-radius: ${pxToRem(4)};
-	background: #fff;
+	${props => `
+	padding: ${buttonState.padding[props.variant] ?? buttonState.padding.medium};
+	`};
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 0.4rem;
+	border-color: var(--buttonBorderColor);
+	${props => `
+	background: ${buttonState.background[props.variant] ?? buttonState.background.medium};
+	`};
 	color: #000;
 	font-size: 1em;
 	${props => `
@@ -40,17 +54,14 @@ const StyledButton = styled.button`
 	margin-left: ${buttonState.marginLeft[props.variant] ?? buttonState.marginLeft.medium};
 	`};
 
-	svg {
-		position: relative;
-		top: -0.25rem;
-		right: 0.5rem;
+	&:focus {
+		background: var(--palegreen);
 	}
-
 	&:hover {
-		background: lightgreen;
+		background: var(--palegreen);
 	}
 	&:active {
-		background: #bad;
+		border-color: var(--buttonBorderColorInverted);
 	}
 `;
 
