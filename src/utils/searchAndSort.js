@@ -76,7 +76,7 @@ export function sortByStatus(list, statusList, activitiesList) {
 		? resultList
 			? (resultList = [...resultList, ...paused])
 			: (resultList = [...paused])
-		: (resultList = resultList);
+		: (resultList = [...resultList]);
 
 	let notStarted = [...list];
 
@@ -84,25 +84,25 @@ export function sortByStatus(list, statusList, activitiesList) {
 		? resultList.forEach(element => {
 				notStarted = notStarted.filter(challenges => challenges.id !== element.id);
 		  })
-		: (notStarted = notStarted);
+		: (notStarted = [...notStarted]);
 
 	finish
 		? finish.forEach(element => {
 				notStarted = notStarted.filter(challenges => challenges.id !== element.id);
 		  })
-		: (notStarted = notStarted);
+		: (notStarted = [...notStarted]);
 
 	notStarted
 		? resultList
 			? (resultList = [...resultList, ...notStarted])
 			: (resultList = [...notStarted])
-		: (resultList = resultList);
+		: (resultList = [...resultList]);
 
 	finish
 		? resultList
 			? (resultList = [...resultList, ...finish])
 			: (resultList = [...finish])
-		: (resultList = resultList);
+		: (resultList = [...resultList]);
 
 	return resultList;
 }

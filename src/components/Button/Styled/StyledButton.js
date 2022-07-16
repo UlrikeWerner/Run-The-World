@@ -27,10 +27,10 @@ const buttonState = {
 		large: '0.5em 0.5em',
 	},
 	background: {
-		small: '--dlGreyGradient',
-		medium: '--greenGradientDiagonal',
-		cancel: '--dlGreyGradient',
-		large: '--greenReverseGradient',
+		small: 'var(--dlGreyGradient)',
+		medium: 'var(--greenGradientDiagonal)',
+		cancel: 'var(--dlGreyGradient)',
+		large: 'var(--greenReverseGradient)',
 	},
 };
 
@@ -43,7 +43,7 @@ const StyledButton = styled.button`
 	border-radius: 0.4rem;
 	border-color: var(--buttonBorderColor);
 	${props => `
-	background: var(${buttonState.background[props.variant] ?? buttonState.background.medium});
+	background: ${buttonState.background[props.variant] ?? buttonState.background.medium};
 	`};
 	color: #000;
 	font-size: 1em;
