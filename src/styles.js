@@ -21,10 +21,18 @@ export const GlobalStyle = createGlobalStyle`
 		--dlGreyGradient: linear-gradient(274.25deg, var(--lightgrey) 13.83%, var(--darkgrey) 86.17%);
 		--textGradient: linear-gradient(0deg, var(--darkgreen) 0%, var(--green) 100%);
 		--bgShadow: 5px 5px 4px var(--blackTransparent), -5px -5px 4px white;
+<<<<<<< HEAD
 		--buttonBorderColor: white var(--blackTransparent) var(--blackTransparent) white; 
 		--buttonBorderColorInverted:  var(--blackTransparent) white white var(--blackTransparent); 
 	}
 
+=======
+		--activeNavLinkShadow: 3px 3px 4px var(--blackTransparent), -3px -3px 4px white;
+		--buttonBorderColor: white var(--blackTransparent) var(--blackTransparent) white; 
+		--buttonBorderColorInverted:  var(--blackTransparent) white white var(--blackTransparent); 
+	}
+	
+>>>>>>> origin/main
 	html {
 		font-size: 16px;
 	}
