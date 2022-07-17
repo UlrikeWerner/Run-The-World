@@ -10,7 +10,10 @@ import {
 } from '../../../utils/date';
 import Button from '../../Button/index';
 
-import {FormContainer} from './style';
+import {StyledButtonWrapper} from './Styled/StyledButtonWrapper';
+import {StyledFormContainer} from './Styled/StyledFormContainer';
+import {StyledInput} from './Styled/StyledInput';
+import {StyledInputWrapper} from './Styled/StyledInputWrapper';
 
 export default function AddActivity({
 	challengeId,
@@ -34,7 +37,7 @@ export default function AddActivity({
 	});
 
 	return (
-		<FormContainer
+		<StyledFormContainer
 			onSubmit={event => {
 				event.preventDefault();
 				addActivity(
@@ -49,11 +52,11 @@ export default function AddActivity({
 				setModalStatus(false);
 			}}
 		>
-			<label htmlFor="activityDate" aria-label="Enter your date">
-				date of the activity
-			</label>
-			<div>
-				<input
+			<StyledInputWrapper>
+				<label htmlFor="activityDate" aria-label="Enter your date">
+					date of the activity
+				</label>
+				<StyledInput
 					type="date"
 					id="activityDate"
 					placeholder="YYYY-MM-DD"
@@ -67,12 +70,12 @@ export default function AddActivity({
 						});
 					}}
 				/>
-			</div>
-			<label htmlFor="activityDistance" aria-label="Enter your distance">
-				distance (km)
-			</label>
-			<div>
-				<input
+			</StyledInputWrapper>
+			<StyledInputWrapper>
+				<label htmlFor="activityDistance" aria-label="Enter your distance">
+					distance (km)
+				</label>
+				<StyledInput
 					type="number"
 					id="activityDistance"
 					step="0.001"
@@ -86,26 +89,27 @@ export default function AddActivity({
 						});
 					}}
 				/>
-			</div>
-			<label htmlFor="activityDuration" aria-label="Enter your duration">
-				duration
-			</label>
-
-			<input
-				type="text"
-				id="activityDuration"
-				pattern="^(([0-9]+:)?[0-5]?[0-9]:)?[0-5]?[0-9]$"
-				placeholder="hh:mm:ss"
-				value={inputValues.duration}
-				required
-				onChange={event => {
-					setInputValues({
-						...inputValues,
-						duration: event.target.value,
-					});
-				}}
-			/>
-			<div>
+			</StyledInputWrapper>
+			<StyledInputWrapper>
+				<label htmlFor="activityDuration" aria-label="Enter your duration">
+					duration
+				</label>
+				<StyledInput
+					type="text"
+					id="activityDuration"
+					pattern="^(([0-9]+:)?[0-5]?[0-9]:)?[0-5]?[0-9]$"
+					placeholder="hh:mm:ss"
+					value={inputValues.duration}
+					required
+					onChange={event => {
+						setInputValues({
+							...inputValues,
+							duration: event.target.value,
+						});
+					}}
+				/>
+			</StyledInputWrapper>
+			<StyledButtonWrapper>
 				<Button
 					variant="cancel"
 					onClick={() => {
@@ -129,7 +133,7 @@ export default function AddActivity({
 				>
 					{id ? 'edit' : 'save'}
 				</Button>
-			</div>
-		</FormContainer>
+			</StyledButtonWrapper>
+		</StyledFormContainer>
 	);
 }

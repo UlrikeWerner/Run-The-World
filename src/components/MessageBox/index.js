@@ -3,7 +3,9 @@ import {useNavigate} from 'react-router-dom';
 import {useStore} from '../../hooks/useStore';
 import Button from '../Button';
 
-import {MessageContainer} from './styled';
+import {StyledButtonWrapper} from './Styled/StyledButtonWrapper';
+import {StyledMessageContainer} from './Styled/StyledMessageContainer';
+import {StyledTextWrapper} from './Styled/StyledTextWrapper';
 
 export default function MessageBox({id = '', type, text}) {
 	const setModal = useStore(state => state.setModal);
@@ -14,9 +16,9 @@ export default function MessageBox({id = '', type, text}) {
 	const navigate = useNavigate();
 
 	return (
-		<MessageContainer>
-			<p>{text}</p>
-			<div>
+		<StyledMessageContainer>
+			<StyledTextWrapper>{text}</StyledTextWrapper>
+			<StyledButtonWrapper>
 				{type === 'delete' ? (
 					<>
 						<Button
@@ -81,7 +83,7 @@ export default function MessageBox({id = '', type, text}) {
 						ok
 					</Button>
 				)}
-			</div>
-		</MessageContainer>
+			</StyledButtonWrapper>
+		</StyledMessageContainer>
 	);
 }
