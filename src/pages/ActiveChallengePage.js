@@ -71,13 +71,14 @@ export default function ActiveChallengePage() {
 							/>
 							{sumActivitiesDistance >= challenge.distance ? (
 								<div>
-									<StyledTextBold>&#127881; Congratulations!</StyledTextBold>
+									<StyledTextBold>
+										&#127881; Congratulations! &#127881;
+									</StyledTextBold>
 									<StyledText>
-										You have conquered{' '}
+										You have completed{' '}
 										<StyledTextBoldInText>
-											{challenge?.title}{' '}
+											{challenge?.title}
 										</StyledTextBoldInText>
-										&#127881;
 									</StyledText>
 									<Button
 										variant="large"
