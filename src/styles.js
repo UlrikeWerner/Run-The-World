@@ -26,6 +26,7 @@ export const GlobalStyle = createGlobalStyle`
 		--activeNavLinkShadow: 3px 3px 4px var(--blackTransparent), -3px -3px 4px white;
 		--buttonBorderColor: white var(--blackTransparent) var(--blackTransparent) white; 
 		--buttonBorderColorInverted:  var(--blackTransparent) white white var(--blackTransparent);
+		--inputBorderInvalid: red rgba(255, 0, 0, 0.25) rgba(255, 0, 0, 0.25) red;
 		--challengeContainerPadding: 0.375rem;
 	}
 	

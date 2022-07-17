@@ -9,6 +9,10 @@ const StyledInput = styled.input`
 	border-radius: 25px;
 	border-color: var(--buttonBorderColorInverted);
 	text-align: center;
+
+	&:invalid {
+		border-color: var(--inputBorderInvalid);
+	}
 `;
 
 export {StyledInput};
