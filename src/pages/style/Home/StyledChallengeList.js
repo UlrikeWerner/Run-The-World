@@ -4,7 +4,7 @@ const StyledChallengeList = styled.section`
 	display: flex;
 	flex-wrap: wrap;
 	width: 100vw;
-	padding: 0.8rem 1rem;
+	padding: 0 1rem 1rem;
 	column-gap: 1rem;
 	row-gap: 0.8rem;
 `;

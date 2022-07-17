@@ -8,7 +8,8 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	:root{
-		--bgColor: #F6F6F6;
+		--offWhite: #F6F6F6;
+		--bgColor: var(--offWhite);
 		--lightgreen: #94F284;
 		--green: #68CF57;
 		--darkgreen: #53A646;

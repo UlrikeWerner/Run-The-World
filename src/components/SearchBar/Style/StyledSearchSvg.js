@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const StyledSearchSvg = styled.svg`
-	position: relative;
-	top: 0.25rem;
-	left: 1.2rem;
+	position: absolute;
+	top: 0.375rem;
+	left: 0.375rem;
 	font-size: 0.8rem;
 `;
 

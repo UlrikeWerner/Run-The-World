@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 const StyledSearchInput = styled.input`
-	width: 85%;
+	height: 1.75rem;
 	padding: 0.2rem 0 0.2rem 1.5rem;
-	border: 1px solid black;
+	border-width: 2px;
+	border-style: solid;
 	border-radius: 25px;
+	border-color: var(--buttonBorderColorInverted);
 
 	&:where(:focus, :not([value=''])) + label {
 		opacity: 0;

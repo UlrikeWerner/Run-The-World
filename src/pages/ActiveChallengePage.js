@@ -12,15 +12,15 @@ import ProgressBox from '../components/ProgressBox';
 import {useStore} from '../hooks/useStore';
 import {sumDistance} from '../utils/progress';
 
-import {StyledActivitiesSection} from './style/ActivitiesSection';
-import {StyledHeadLine} from './style/HeadLineStyle';
-import {StyledSiteContent} from './style/SiteContent';
-import {StyledSiteWrapper} from './style/SiteWrapper';
-import {StyledHeadLineH1} from './style/StyledHeadLineH1';
-import {StyledNoChallengeText} from './style/StyledNoChallengeText';
-import {StyledText} from './style/StyledText';
-import {StyledTextBold} from './style/StyledTextBold';
-import {StyledTextBoldInText} from './style/StyledTextBoldInText';
+import {StyledActivitiesSection} from './style/ActiveChallenge/ActivitiesSection';
+import {StyledHeadLine} from './style/ActiveChallenge/HeadLineStyle';
+import {StyledHeadLineH1} from './style/ActiveChallenge/StyledHeadLineH1';
+import {StyledNoChallengeText} from './style/ActiveChallenge/StyledNoChallengeText';
+import {StyledText} from './style/ActiveChallenge/StyledText';
+import {StyledTextBold} from './style/ActiveChallenge/StyledTextBold';
+import {StyledTextBoldInText} from './style/ActiveChallenge/StyledTextBoldInText';
+import {StyledSiteContent} from './style/SiteWrapper/SiteContent';
+import {StyledSiteWrapper} from './style/SiteWrapper/SiteWrapper';
 
 export default function ActiveChallengePage() {
 	const navigate = useNavigate();
