@@ -8,12 +8,12 @@ const buttonState = {
 	},
 	height: {
 		small: '1.5rem',
-		medium: '2.5rem',
+		medium: '2rem',
 		large: '2rem',
 	},
 	padding: {
 		small: '0.5em 0.8em',
-		medium: '0.5em 0.5em',
+		medium: '0.25em 0.5em',
 		large: '0.5em 0.5em',
 	},
 	background: {

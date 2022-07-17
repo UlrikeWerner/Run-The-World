@@ -1,33 +1,22 @@
 import styled from 'styled-components';
 
-const ChallengeContainer = styled.section`
+const StyledChallengeContainer = styled.section`
+	position: relative;
 	max-width: 10rem;
 	max-height: 20rem;
+	padding: var(--challengeContainerPadding);
+	padding-bottom: 2.5rem;
 	overflow: hidden;
-	border: 1px solid black;
 	border-radius: 15px;
-
-	img {
-		max-width: 10rem;
-		max-height: 10rem;
-	}
-
-	h2,
-	p {
-		margin: 0 0.25rem;
-	}
-
-	h2 {
-		font-size: 1.25rem;
-	}
-
-	p {
-		font-size: 0.9rem;
-	}
+	background: var(--dlGreyGradient);
+	box-shadow: var(--bgShadow);
 
 	button {
-		margin: 0.5rem 0.25rem;
+		position: absolute;
+		bottom: calc(var(--challengeContainerPadding) * 1.5);
+		left: 50%;
+		transform: translateX(-50%);
 	}
 `;
 
-export {ChallengeContainer};
+export {StyledChallengeContainer};
