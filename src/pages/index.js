@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {Helmet} from 'react-helmet';
 
 import Challenge from '../components/Challenge/index';
+import Header from '../components/Header/index';
 import Layout from '../components/Layout';
 import Modal from '../components/Modal/index';
 import ModalBackdrop from '../components/Modal/ModalBackdrop/index';
@@ -11,21 +12,23 @@ import SortBar from '../components/SortBar';
 import {useStore} from '../hooks/useStore';
 import {sortAndFilter} from '../utils/searchAndSort';
 
-import {StyledChallengeList} from './style/IndexStyled';
-import {StyledModalWrapper} from './style/ModalWrapper';
-import {StyledSearchAndSortWrapper} from './style/SearchAndSortWrapper';
-import {StyledSiteContent} from './style/SiteContent';
-import {StyledSiteWrapper} from './style/SiteWrapper';
+import {StyledSearchAndSortWrapper} from './style/Home/SearchAndSortWrapper';
+import {StyledChallengeList} from './style/Home/StyledChallengeList';
+import {StyledModalWrapper} from './style/SiteWrapper/ModalWrapper';
+import {StyledSiteContent} from './style/SiteWrapper/SiteContent';
+import {StyledSiteWrapper} from './style/SiteWrapper/SiteWrapper';
 
 export default function ChallengesPage() {
-	const [searchInput, setSearchInput] = useState('');
-	const [sortInput, setSortInput] = useState('none');
-	const [filterResult, setFilterResult] = useState([]);
-
 	const modalStatus = useStore(state => state.modalStatus);
 	const challengeList = useStore(state => state.challenges);
 	const activityList = useStore(state => state.activities);
 	const statusList = useStore(state => state.challengeStatus);
+
+	const [searchInput, setSearchInput] = useState('');
+	const [sortInput, setSortInput] = useState('alphabetically');
+	const [filterResult, setFilterResult] = useState(
+		sortAndFilter('sort', sortInput, '', sortInput, challengeList, statusList, activityList)
+	);
 
 	function sortAndFilterChallenges(type, value) {
 		if (type === 'search') {
@@ -53,6 +56,7 @@ export default function ChallengesPage() {
 				<meta key="description" name="description" content="Challenges" />
 			</Helmet>
 			<StyledSiteWrapper>
+				<Header />
 				<StyledSearchAndSortWrapper>
 					<SearchBar
 						searchChallenges={sortAndFilterChallenges}
@@ -67,33 +71,19 @@ export default function ChallengesPage() {
 				<StyledSiteContent>
 					{
 						<StyledChallengeList>
-							{searchInput.length >= 1 || sortInput !== 'none'
-								? filterResult.map(item => {
-										return (
-											<Challenge
-												key={item.id}
-												challengeId={item.id}
-												image={item.img}
-												title={item.title}
-												startingPoint={item.startingPoint}
-												endingPoint={item.endingPoint}
-												distance={item.distance}
-											/>
-										);
-								  })
-								: challengeList.map(item => {
-										return (
-											<Challenge
-												key={item.id}
-												challengeId={item.id}
-												image={item.img}
-												title={item.title}
-												startingPoint={item.startingPoint}
-												endingPoint={item.endingPoint}
-												distance={item.distance}
-											/>
-										);
-								  })}
+							{filterResult.map(item => {
+								return (
+									<Challenge
+										key={item.id}
+										challengeId={item.id}
+										image={item.img}
+										title={item.title}
+										startingPoint={item.startingPoint}
+										endingPoint={item.endingPoint}
+										distance={item.distance}
+									/>
+								);
+							})}
 						</StyledChallengeList>
 					}
 				</StyledSiteContent>
