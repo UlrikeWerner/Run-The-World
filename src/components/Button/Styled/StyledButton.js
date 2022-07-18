@@ -8,22 +8,12 @@ const buttonState = {
 	},
 	height: {
 		small: '1.5rem',
-		medium: '2.5rem',
+		medium: '2rem',
 		large: '2rem',
-	},
-	marginTop: {
-		small: '0',
-		medium: '0.5rem',
-		large: '0.5rem',
-	},
-	marginLeft: {
-		small: '0',
-		medium: '0',
-		large: '0.75rem',
 	},
 	padding: {
 		small: '0.5em 0.8em',
-		medium: '0.5em 0.5em',
+		medium: '0.25em 0.5em',
 		large: '0.5em 0.5em',
 	},
 	background: {
@@ -50,9 +40,15 @@ const StyledButton = styled.button`
 	${props => `
 	width: ${buttonState.width[props.variant] ?? buttonState.width.medium};
 	height: ${buttonState.height[props.variant] ?? buttonState.height.medium};
-	margin-top: ${buttonState.marginTop[props.variant] ?? buttonState.marginTop.medium};
-	margin-left: ${buttonState.marginLeft[props.variant] ?? buttonState.marginLeft.medium};
 	`};
+	${props =>
+		props.variant === 'large'
+			? `
+			position: relative;
+			left: 50%;
+			transform: translateX(-50%);
+			`
+			: ''};
 
 	&:focus {
 		background: var(--palegreen);

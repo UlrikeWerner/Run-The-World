@@ -21,7 +21,7 @@ export function setModalContent(modalState, activity, challengeTitle = '') {
 		case 'delete':
 			text = `Do you want to delete the activity from ${getDateMonth(
 				activity?.date
-			)} ${getDateDay(activity?.date)}`;
+			)} ${getDateDay(activity?.date)}?`;
 			return <MessageBox id={modalState.idOfActivObject} type="delete" text={text} />;
 		case 'start Challenge':
 			text = `Do you want to pause your active challenge to start '${challengeTitle}' challenge?`;

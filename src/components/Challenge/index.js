@@ -3,8 +3,11 @@ import {useNavigate} from 'react-router-dom';
 import {useStore} from '../../hooks/useStore';
 import Button from '../Button/index';
 
-import {ChallengeContainer} from './Style/StyledChallengeContainer';
+import {StyledChallengeContainer} from './Style/StyledChallengeContainer';
+import {StyledChallengeImage} from './Style/StyledChallengeImage';
+import {StyledChallengeInfo} from './Style/StyledChallengeInfo';
 import {StyledFinishText} from './Style/StyledFinishText';
+import {StyledHeadline} from './Style/StyledHeadline';
 
 export default function Challenge({
 	challengeId,
@@ -33,15 +36,14 @@ export default function Challenge({
 	const status = challengeStatus.find(challenge => challenge.challengeId === challengeId);
 
 	return (
-		<ChallengeContainer>
-			<img src={image} aria-label={title} alt={title} />
-			<h2>{title}</h2>
-			<p>
-				{startingPoint} to {endingPoint}
-			</p>
-			<p>{distance} km</p>
+		<StyledChallengeContainer>
+			<StyledChallengeImage src={image} aria-label={title} alt={title} />
+			<StyledHeadline>{title}</StyledHeadline>
+			<StyledChallengeInfo>From {startingPoint}</StyledChallengeInfo>
+			<StyledChallengeInfo>To {endingPoint}</StyledChallengeInfo>
+			<StyledChallengeInfo>{distance} km</StyledChallengeInfo>
 			{isFinished ? (
-				<StyledFinishText>*finished</StyledFinishText>
+				<StyledFinishText />
 			) : status?.status === 'paused' ? (
 				<Button
 					variant="medium"
@@ -87,6 +89,6 @@ export default function Challenge({
 					start
 				</Button>
 			)}
-		</ChallengeContainer>
+		</StyledChallengeContainer>
 	);
 }
