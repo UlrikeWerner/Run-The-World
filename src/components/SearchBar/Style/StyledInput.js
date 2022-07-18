@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledSearchInput = styled.input`
+const StyledInput = styled.input`
 	height: 1.75rem;
 	padding: 0.2rem 0 0.2rem 1.5rem;
 	border-width: 2px;
@@ -14,4 +14,4 @@ const StyledSearchInput = styled.input`
 	}
 `;
 
-export {StyledSearchInput};
+export {StyledInput};

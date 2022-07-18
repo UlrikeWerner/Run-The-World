@@ -1,7 +1,7 @@
 import {Icon} from '@iconify/react';
 import styled from 'styled-components';
 
-const StyledSortIcon = styled(Icon)`
+const StyledIcon = styled(Icon)`
 	position: absolute;
 	top: 0.2rem;
 	left: 0.25rem;
@@ -9,4 +9,4 @@ const StyledSortIcon = styled(Icon)`
 	font-size: 1.375rem;
 `;
 
-export {StyledSortIcon};
+export {StyledIcon};

@@ -1,12 +1,12 @@
-import {StyledSortContainer} from './Styled/StyledSortContainer';
-import {StyledSortIcon} from './Styled/StyledSortIcon';
-import {StyledSortInput} from './Styled/StyledSortInput';
+import {StyledContainer} from './Styled/StyledContainer';
+import {StyledIcon} from './Styled/StyledIcon';
+import {StyledInput} from './Styled/StyledInput';
 
 export default function SortBar({sortChallenges}) {
 	return (
-		<StyledSortContainer>
-			<StyledSortIcon icon="clarity:sort-by-line" />
-			<StyledSortInput
+		<StyledContainer>
+			<StyledIcon icon="clarity:sort-by-line" />
+			<StyledInput
 				id="sortBar"
 				aria-label="sort by"
 				onChange={event => sortChallenges('sort', event.target.value)}
@@ -16,7 +16,7 @@ export default function SortBar({sortChallenges}) {
 				<option value="status">challenge status</option>
 				<option value="ascending">km ascending</option>
 				<option value="descending">km descending</option>
-			</StyledSortInput>
-		</StyledSortContainer>
+			</StyledInput>
+		</StyledContainer>
 	);
 }

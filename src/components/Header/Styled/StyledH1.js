@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledHeaderH1 = styled.h1`
+const StyledH1 = styled.h1`
 	margin: 0;
 	background: var(--textGradient);
 	/* stylelint-disable property-no-vendor-prefix */
@@ -9,4 +9,4 @@ const StyledHeaderH1 = styled.h1`
 	background-clip: text;
 `;
 
-export {StyledHeaderH1};
+export {StyledH1};

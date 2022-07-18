@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledSearchLabel = styled.label`
+const StyledLabel = styled.label`
 	position: absolute;
 	top: 0.3rem;
 	left: 1.625rem;
@@ -9,4 +9,4 @@ const StyledSearchLabel = styled.label`
 	font-weight: 400;
 `;
 
-export {StyledSearchLabel};
+export {StyledLabel};

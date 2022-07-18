@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledSortInput = styled.select`
+const StyledInput = styled.select`
 	height: 1.75rem;
 	padding: 0.2rem;
 	padding-left: 1.375rem;
@@ -12,4 +12,4 @@ const StyledSortInput = styled.select`
 	font-weight: 400;
 `;
 
-export {StyledSortInput};
+export {StyledInput};
