@@ -71,13 +71,14 @@ export default function ActiveChallengePage() {
 							/>
 							{sumActivitiesDistance >= challenge.distance ? (
 								<div>
-									<StyledTextBold>&#127881; Congratulations!</StyledTextBold>
+									<StyledTextBold>
+										&#127881; Congratulations! &#127881;
+									</StyledTextBold>
 									<StyledText>
-										You have conquered{' '}
+										You have completed{' '}
 										<StyledTextBoldInText>
-											{challenge?.title}{' '}
+											{challenge?.title}
 										</StyledTextBoldInText>
-										&#127881;
 									</StyledText>
 									<Button
 										variant="large"
@@ -115,12 +116,24 @@ export default function ActiveChallengePage() {
 										);
 									})
 								) : (
-									<StyledText>no results</StyledText>
+									<StyledText>no activites yet</StyledText>
 								)}
 							</StyledActivitiesSection>
 						</>
 					) : (
-						<StyledNoChallengeText>You have no active challenge</StyledNoChallengeText>
+						<>
+							<StyledNoChallengeText>
+								You have no active challenge
+							</StyledNoChallengeText>
+							<Button
+								variant="large"
+								onClick={() => {
+									navigate('/');
+								}}
+							>
+								start a new challenge
+							</Button>
+						</>
 					)}
 				</StyledSiteContent>
 				<NavBar />
