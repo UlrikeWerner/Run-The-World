@@ -61,6 +61,7 @@ export default function ActiveChallengePage() {
 										icon={challenge?.logo}
 										width={challenge?.logoSize}
 										height={challenge?.logoSize}
+										color="#53A646"
 									/>
 								</div>
 								<StyledHeadLineH1>{challenge?.title}</StyledHeadLineH1>
