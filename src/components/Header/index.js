@@ -5,7 +5,7 @@ import {StyledIcon} from './Styled/StyledIcon';
 export default function Header() {
 	return (
 		<StyledHeader>
-			<StyledIcon icon="subway:world-1" />
+			<StyledIcon icon="subway:world-1" alt="world" />
 			<StyledH1>Run The World</StyledH1>
 		</StyledHeader>
 	);
