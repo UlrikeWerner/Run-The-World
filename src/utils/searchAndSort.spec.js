@@ -6,12 +6,8 @@ import {
 	sortAndFilter,
 } from './searchAndSort';
 
-//const typeSearch = 'search';
-//const typeSort = 'sort';
-//const valueSearch = 'at';
-//const valueSort = 'status';
-const searchInput = 'at';
-const sortInput = 'status';
+//const searchInput = 'at';
+//const sortInput = 'status';
 const list = [
 	{
 		id: 'IFSHJmPJEmB1C6k81MWrv',
@@ -86,11 +82,51 @@ const activitiesList = [
 	},
 ];
 
-/*describe('sortAndFilter', () => {
-	it('should return the completed sort and filtered list', () => {
-		expect(sumDuration(activities)).toBe('1h 14min ');
+describe('sortAndFilter', () => {
+	it('should return the sorted and filtered challengeList called by onChange from searchInput', () => {
+		expect(
+			sortAndFilter('search', 'th', '', 'status', list, statusList, activitiesList)
+		).toStrictEqual([
+			{
+				distance: '246',
+				id: 'tPHuEz94x14BqmCvflRug',
+				title: 'Sparthathlon',
+			},
+			{
+				distance: '5000',
+				id: 'IygyGrSVBm6Zb9l8OJt7d',
+				title: 'The Great Wall of China',
+			},
+			{
+				distance: '42.2',
+				id: 'DNZPt-9k0_0X5P85LmVm_',
+				title: 'New York City Marathon',
+			},
+		]);
 	});
-});*/
+
+	it('should return the sorted and filtered challengeList called by onChange from sortInput', () => {
+		expect(
+			sortAndFilter('sort', 'status', 'th', '', list, statusList, activitiesList)
+		).toStrictEqual([
+			{
+				distance: '246',
+				id: 'tPHuEz94x14BqmCvflRug',
+				title: 'Sparthathlon',
+			},
+			{
+				distance: '5000',
+				id: 'IygyGrSVBm6Zb9l8OJt7d',
+				title: 'The Great Wall of China',
+			},
+			{
+				distance: '42.2',
+				id: 'DNZPt-9k0_0X5P85LmVm_',
+				title: 'New York City Marathon',
+			},
+		]);
+	});
+});
 
 describe('searchList', () => {
 	it('should return a searched list by a search value', () => {

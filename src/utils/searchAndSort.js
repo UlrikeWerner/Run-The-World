@@ -104,7 +104,6 @@ export function sortByStatus(list, statusList, activitiesList) {
 			: (resultList = [...finish])
 		: (resultList = [...resultList]);
 
-	console.log('sortByStatus', resultList);
 	return resultList;
 }
 
