@@ -21,38 +21,19 @@ describe('SortBar component', () => {
 		expect(screen.getAllByRole('option').length).toBe(4);
 	});
 
-	/*it('should render children', () => {
+	it('should allow user to change the sort value', () => {
 		const handleChange = jest.fn();
 		render(<SortBar sortChallenges={handleChange} />);
 
-		const select = screen.getByRole('combobox');
-		//const ascending = screen.getAllByRole('combobox', {value: 'ascending'});
-		//const descending = screen.getAllByRole('combobox', {value: 'descending'});
+		userEvent.selectOptions(
+			screen.getByRole('combobox'),
+			screen.getByRole('option', {name: 'km ascending'})
+		);
 
-		expect(select).toBeInTheDocument();
-		expect(select.value).toBe('alphabetically');
+		const newSelection = screen.getByRole('option', {name: 'km ascending'});
+		const otherOption = screen.getByRole('option', {name: 'km descending'});
 
-		const selectField = screen.getByText(/status/);
-		expect(selectField).toBeInTheDocument;
-		/*fireEvent.click(selectField);
-		select = screen.getAllByRole('combobox');
-
-		expect(select.value).toBe('status');
-	});*/
-});
-
-/*describe('SearchBar component', () => {
-	it('should let type into an input field', async () => {
-		const handleChange = jest.fn();
-
-		render(<SearchBar searchChallenges={handleChange} searchInput="" />);
-
-		const searchInput = screen.getByLabelText('search...');
-
-		await userEvent.type(searchInput, 'Bye');
-
-		expect(handleChange).toHaveBeenCalledWith('B');
-		expect(handleChange).toHaveBeenCalledWith('y');
-		expect(handleChange).toHaveBeenCalledWith('e');
+		expect(newSelection.selected).toBe(true);
+		expect(otherOption.selected).not.toBe(true);
 	});
-});*/
+});
