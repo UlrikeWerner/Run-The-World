@@ -6,8 +6,6 @@ import {
 	sortAndFilter,
 } from './searchAndSort';
 
-//const searchInput = 'at';
-//const sortInput = 'status';
 const list = [
 	{
 		id: 'IFSHJmPJEmB1C6k81MWrv',

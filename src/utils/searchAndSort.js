@@ -172,6 +172,5 @@ export function sortAndFilter(
 	let resultList = searchList(type, value, searchInput, list);
 	resultList = sortList(sortValue, resultList, statusList, activitiesList);
 
-	console.log('sortAndFilter', resultList);
 	return resultList;
 }
