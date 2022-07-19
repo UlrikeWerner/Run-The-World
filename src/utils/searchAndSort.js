@@ -39,6 +39,7 @@ export function findFinishChallenges(challenges, statusList, activities) {
 			);
 		}
 	});
+	console.log('findFinishChallenges', [finish, newStatusList]);
 	return [finish, newStatusList];
 }
 
@@ -104,52 +105,53 @@ export function sortByStatus(list, statusList, activitiesList) {
 			: (resultList = [...finish])
 		: (resultList = [...resultList]);
 
+	console.log('sortByStatus', resultList);
 	return resultList;
 }
 
 export function sortList(sortValue, list, statusList = '', activitiesList = '') {
-	if (sortValue !== 'none') {
-		switch (sortValue) {
-			case 'status':
-				list = sortByStatus(list, statusList, activitiesList);
-				break;
-			case 'alphabetically':
-				list.sort(function (a, b) {
-					if (a.title < b.title) {
-						return -1;
-					}
-					if (a.title > b.title) {
-						return 1;
-					}
-					return 0;
-				});
-				break;
-			case 'ascending':
-				list.sort(function (a, b) {
-					if (Number(a.distance) < Number(b.distance)) {
-						return -1;
-					}
-					if (Number(a.distance) > Number(b.distance)) {
-						return 1;
-					}
-					return 0;
-				});
-				break;
-			case 'descending':
-				list.sort(function (a, b) {
-					if (Number(a.distance) < Number(b.distance)) {
-						return 1;
-					}
-					if (Number(a.distance) > Number(b.distance)) {
-						return -1;
-					}
-					return 0;
-				});
-				break;
-			default:
-				break;
-		}
+	switch (sortValue) {
+		case 'status':
+			list = sortByStatus(list, statusList, activitiesList);
+			break;
+		case 'alphabetically':
+			list.sort(function (a, b) {
+				if (a.title < b.title) {
+					return -1;
+				}
+				if (a.title > b.title) {
+					return 1;
+				}
+				return 0;
+			});
+			break;
+		case 'ascending':
+			list.sort(function (a, b) {
+				if (Number(a.distance) < Number(b.distance)) {
+					return -1;
+				}
+				if (Number(a.distance) > Number(b.distance)) {
+					return 1;
+				}
+				return 0;
+			});
+			break;
+		case 'descending':
+			list.sort(function (a, b) {
+				if (Number(a.distance) < Number(b.distance)) {
+					return 1;
+				}
+				if (Number(a.distance) > Number(b.distance)) {
+					return -1;
+				}
+				return 0;
+			});
+			break;
+		default:
+			break;
 	}
+
+	console.log('sortList', list);
 	return list;
 }
 
@@ -173,5 +175,6 @@ export function sortAndFilter(
 	let resultList = searchList(type, value, searchInput, list);
 	resultList = sortList(sortValue, resultList, statusList, activitiesList);
 
+	console.log('sortAndFilter', resultList);
 	return resultList;
 }
