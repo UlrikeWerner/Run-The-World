@@ -199,3 +199,52 @@ describe('sortList', () => {
 		]);
 	});
 });
+
+describe('findFinishChallenges', () => {
+	it('should return a list with finished challenges and a the statusList without the finished challenges', () => {
+		const shortList = [{...list[3]}, {...list[6]}, {...list[1]}];
+		expect(findFinishChallenges(shortList, statusList, activitiesList)).toStrictEqual([
+			[
+				{
+					distance: '5000',
+					id: 'IygyGrSVBm6Zb9l8OJt7d',
+					title: 'The Great Wall of China',
+				},
+				{
+					distance: '42.2',
+					id: 'DNZPt-9k0_0X5P85LmVm_',
+					title: 'New York City Marathon',
+				},
+			],
+			[
+				{
+					challengeId: 'tPHuEz94x14BqmCvflRug',
+					status: 'active',
+				},
+			],
+		]);
+	});
+});
+
+describe('sortByStatus', () => {
+	it('should return the challengeList sorted by their status', () => {
+		const shortList = [{...list[3]}, {...list[6]}, {...list[1]}];
+		expect(sortByStatus(shortList, statusList, activitiesList)).toStrictEqual([
+			{
+				distance: '246',
+				id: 'tPHuEz94x14BqmCvflRug',
+				title: 'Sparthathlon',
+			},
+			{
+				distance: '5000',
+				id: 'IygyGrSVBm6Zb9l8OJt7d',
+				title: 'The Great Wall of China',
+			},
+			{
+				distance: '42.2',
+				id: 'DNZPt-9k0_0X5P85LmVm_',
+				title: 'New York City Marathon',
+			},
+		]);
+	});
+});

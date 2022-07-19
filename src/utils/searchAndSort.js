@@ -39,7 +39,6 @@ export function findFinishChallenges(challenges, statusList, activities) {
 			);
 		}
 	});
-	console.log('findFinishChallenges', [finish, newStatusList]);
 	return [finish, newStatusList];
 }
 
@@ -151,7 +150,6 @@ export function sortList(sortValue, list, statusList = '', activitiesList = '') 
 			break;
 	}
 
-	console.log('sortList', list);
 	return list;
 }
 
