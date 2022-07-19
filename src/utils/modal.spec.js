@@ -48,7 +48,7 @@ describe('setModalContent', () => {
 		);
 
 		expect(setModalContent(paramsDelete[0], paramsDelete[1], '').props.text).toBe(
-			'Do you want to delete the activity from Jun 12'
+			'Do you want to delete the activity from Jun 12?'
 		);
 	});
 

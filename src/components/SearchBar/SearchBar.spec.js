@@ -32,8 +32,8 @@ describe('SearchBar component', () => {
 
 		await userEvent.type(searchInput, 'Bye');
 
-		expect(handleChange).toHaveBeenCalledWith('B');
-		expect(handleChange).toHaveBeenCalledWith('y');
-		expect(handleChange).toHaveBeenCalledWith('e');
+		expect(handleChange).toHaveBeenCalledWith('search', 'B');
+		expect(handleChange).toHaveBeenCalledWith('search', 'y');
+		expect(handleChange).toHaveBeenCalledWith('search', 'e');
 	});
 });
