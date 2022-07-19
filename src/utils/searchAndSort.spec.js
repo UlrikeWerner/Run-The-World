@@ -16,74 +16,40 @@ const list = [
 	{
 		id: 'IFSHJmPJEmB1C6k81MWrv',
 		title: 'Historic Route 66',
-		logo: 'map:route',
-		logoSize: '1.8rem',
-		img: 'https://images.pexels.com/photos/210112/pexels-photo-210112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
 		distance: '3945',
-		startingPoint: 'Chicago',
-		endingPoint: 'Santa Monica',
 	},
 	{
 		id: 'IygyGrSVBm6Zb9l8OJt7d',
 		title: 'The Great Wall of China',
-		logo: 'icon-park-outline:great-wall',
-		logoSize: '1.8rem',
-		img: 'https://images.unsplash.com/photo-1509624780899-f812439647e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
 		distance: '5000',
-		startingPoint: 'Jiayuguan Pass',
-		endingPoint: 'Shanhai Pass',
 	},
 	{
 		id: 'Ko4rz4z1xey7bE8i7ZFKf',
 		title: 'Camino de Santiago',
-		logo: 'cib:shell',
-		logoSize: '1.8rem',
-		img: 'https://cdn.pixabay.com/photo/2018/04/10/10/01/nature-3306920_960_720.jpg',
 		distance: '800',
-		startingPoint: 'Saint-Jean-Pied-de-Port',
-		endingPoint: 'Santiago de Compostela',
 	},
 	{
 		id: 'DNZPt-9k0_0X5P85LmVm_',
 		title: 'New York City Marathon',
-		logo: 'emojione-monotone:statue-of-liberty',
-		logoSize: '1.8rem',
-		img: 'https://images.pexels.com/photos/7729432/pexels-photo-7729432.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
 		distance: '42.2',
-		startingPoint: 'Fort Wadsworth',
-		endingPoint: 'Central Park',
 	},
 	{
 		id: 'U1LAyg6UreXUwUG7z_h6M',
 		title: 'Amazonas',
-		logo: 'iconoir:sea-waves',
-		logoSize: '2rem',
-		img: 'https://images.unsplash.com/photo-1585926494452-3bbf4064af50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
 		distance: '6800',
-		startingPoint: 'Mount Mismi',
-		endingPoint: 'Atlanic Ocean',
 	},
 	{
 		id: 'OEqClfdYkQzFSRaPzuRcH',
 		title: 'Lauf zwischen den Meeren',
-		logo: 'mdi:lighthouse',
-		logoSize: '1.8rem',
-		img: 'https://images.unsplash.com/photo-1558366761-abbf5fee4cea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
 		distance: '96.6',
-		startingPoint: 'Husum',
-		endingPoint: 'Damp',
 	},
 	{
 		id: 'tPHuEz94x14BqmCvflRug',
 		title: 'Sparthathlon',
-		logo: 'emojione-monotone:amphora',
-		logoSize: '1.8rem',
-		img: 'https://images.pexels.com/photos/951531/pexels-photo-951531.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
 		distance: '246',
-		startingPoint: 'Akropolis',
-		endingPoint: 'Sparta',
 	},
 ];
+
 const statusList = [
 	{challengeId: 'IygyGrSVBm6Zb9l8OJt7d', status: 'paused'},
 	{challengeId: 'DNZPt-9k0_0X5P85LmVm_', status: 'paused'},
@@ -131,12 +97,7 @@ describe('searchList', () => {
 		expect(searchList('search', 'st', '', list)).toStrictEqual([
 			{
 				distance: '3945',
-				endingPoint: 'Santa Monica',
 				id: 'IFSHJmPJEmB1C6k81MWrv',
-				img: 'https://images.pexels.com/photos/210112/pexels-photo-210112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-				logo: 'map:route',
-				logoSize: '1.8rem',
-				startingPoint: 'Chicago',
 				title: 'Historic Route 66',
 			},
 		]);
@@ -146,12 +107,7 @@ describe('searchList', () => {
 		expect(searchList('sort', 'status', 'st', list)).toStrictEqual([
 			{
 				distance: '3945',
-				endingPoint: 'Santa Monica',
 				id: 'IFSHJmPJEmB1C6k81MWrv',
-				img: 'https://images.pexels.com/photos/210112/pexels-photo-210112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-				logo: 'map:route',
-				logoSize: '1.8rem',
-				startingPoint: 'Chicago',
 				title: 'Historic Route 66',
 			},
 		]);
@@ -159,7 +115,87 @@ describe('searchList', () => {
 });
 
 describe('sortList', () => {
-	it('should return a sorted list', () => {
-		expect(sumDuration(activities)).toBe('1h 14min ');
+	it('should return a sorted list by sortValue: "alphabetically"', () => {
+		const shortList = [{...list[3]}, {...list[6]}, {...list[1]}];
+		expect(sortList('alphabetically', shortList, statusList, activitiesList)).toStrictEqual([
+			{
+				distance: '42.2',
+				id: 'DNZPt-9k0_0X5P85LmVm_',
+				title: 'New York City Marathon',
+			},
+			{
+				distance: '246',
+				id: 'tPHuEz94x14BqmCvflRug',
+				title: 'Sparthathlon',
+			},
+			{
+				distance: '5000',
+				id: 'IygyGrSVBm6Zb9l8OJt7d',
+				title: 'The Great Wall of China',
+			},
+		]);
+	});
+
+	it('should return a sorted list by sortValue: "status"', () => {
+		const shortList = [{...list[3]}, {...list[6]}, {...list[1]}];
+		expect(sortList('status', shortList, statusList, activitiesList)).toStrictEqual([
+			{
+				distance: '246',
+				id: 'tPHuEz94x14BqmCvflRug',
+				title: 'Sparthathlon',
+			},
+			{
+				distance: '5000',
+				id: 'IygyGrSVBm6Zb9l8OJt7d',
+				title: 'The Great Wall of China',
+			},
+			{
+				distance: '42.2',
+				id: 'DNZPt-9k0_0X5P85LmVm_',
+				title: 'New York City Marathon',
+			},
+		]);
+	});
+
+	it('should return a sorted list by sortValue: "ascending"', () => {
+		const shortList = [{...list[3]}, {...list[6]}, {...list[1]}];
+		expect(sortList('ascending', shortList, statusList, activitiesList)).toStrictEqual([
+			{
+				distance: '42.2',
+				id: 'DNZPt-9k0_0X5P85LmVm_',
+				title: 'New York City Marathon',
+			},
+			{
+				distance: '246',
+				id: 'tPHuEz94x14BqmCvflRug',
+				title: 'Sparthathlon',
+			},
+			{
+				distance: '5000',
+				id: 'IygyGrSVBm6Zb9l8OJt7d',
+				title: 'The Great Wall of China',
+			},
+		]);
+	});
+
+	it('should return a sorted list by sortValue: "descending"', () => {
+		const shortList = [{...list[3]}, {...list[6]}, {...list[1]}];
+		expect(sortList('descending', shortList, statusList, activitiesList)).toStrictEqual([
+			{
+				distance: '5000',
+				id: 'IygyGrSVBm6Zb9l8OJt7d',
+				title: 'The Great Wall of China',
+			},
+			{
+				distance: '246',
+				id: 'tPHuEz94x14BqmCvflRug',
+				title: 'Sparthathlon',
+			},
+			{
+				distance: '42.2',
+				id: 'DNZPt-9k0_0X5P85LmVm_',
+				title: 'New York City Marathon',
+			},
+		]);
 	});
 });
