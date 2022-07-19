@@ -25,13 +25,15 @@ describe('Challenge component', () => {
 
 		const image = screen.getByAltText('Route 66');
 		const title = screen.getByText('Route 66');
-		const route = screen.getByText('Chicago to Santa Monica');
+		const routeFrom = screen.getByText(/Chicago/);
+		const routeTo = screen.getByText(/Santa/);
 		const distance = screen.getByText('3945 km');
-		const button = screen.getByRole('button', {name: 'start'});
+		const button = screen.getByText('start');
 
 		expect(image).toBeInTheDocument();
 		expect(title).toBeInTheDocument();
-		expect(route).toBeInTheDocument();
+		expect(routeFrom).toBeInTheDocument();
+		expect(routeTo).toBeInTheDocument();
 		expect(distance).toBeInTheDocument();
 		expect(button).toBeInTheDocument();
 	});
