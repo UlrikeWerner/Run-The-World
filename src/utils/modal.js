@@ -1,4 +1,4 @@
-import AddActivity from '../components/ActivityComponents/Form/index';
+import AddActivity from '../components/Form/index';
 import MessageBox from '../components/MessageBox';
 import {getDateDay, getDateMonth} from '../utils/date';
 

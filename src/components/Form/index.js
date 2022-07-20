@@ -1,14 +1,14 @@
 import {useState} from 'react';
 
-import {useStore} from '../../../hooks/useStore';
+import {useStore} from '../../hooks/useStore';
 import {
 	getDateForForm,
 	createDurationInputValue,
 	secondToDurationData,
 	calculateDistance,
 	calculateDuration,
-} from '../../../utils/date';
-import Button from '../../Button/index';
+} from '../../utils/date';
+import Button from '../Button/index';
 
 import {StyledButtonWrapper} from './Styled/StyledButtonWrapper';
 import {StyledFormContainer} from './Styled/StyledFormContainer';

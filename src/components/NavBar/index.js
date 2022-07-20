@@ -6,7 +6,7 @@ export default function NavBar() {
 	const iconSize = '2.75rem';
 	return (
 		<StyledNavBar>
-			<StyledLinkContainer to="/" role="LinkToList">
+			<StyledLinkContainer to="/" data-testid="challenge list">
 				<StyledIcon
 					icon="bi:card-list"
 					width={iconSize}
@@ -15,7 +15,7 @@ export default function NavBar() {
 					alt="list of challenges"
 				/>
 			</StyledLinkContainer>
-			<StyledLinkContainer to="/ActiveChallenge">
+			<StyledLinkContainer to="/ActiveChallenge" data-testid="active challenge">
 				<StyledIcon
 					icon="icon-park-solid:sport"
 					width={iconSize}
