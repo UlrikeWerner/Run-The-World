@@ -6,7 +6,7 @@ export default function NavBar() {
 	const iconSize = '2.75rem';
 	return (
 		<StyledNavBar>
-			<StyledLinkContainer to="/" role="LinkToList">
+			<StyledLinkContainer to="/" data-testid="challenge list">
 				<StyledIcon
 					icon="bi:card-list"
 					width={iconSize}

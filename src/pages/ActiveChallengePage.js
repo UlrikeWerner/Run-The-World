@@ -2,7 +2,7 @@ import {Icon} from '@iconify/react';
 import {Helmet} from 'react-helmet';
 import {useNavigate} from 'react-router-dom';
 
-import ActivityResult from '../components/ActivityComponents/Activity/index';
+import ActivityResult from '../components/Activity/index';
 import Button from '../components/Button';
 import Layout from '../components/Layout';
 import Modal from '../components/Modal';

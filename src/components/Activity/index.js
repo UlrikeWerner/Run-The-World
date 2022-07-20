@@ -1,13 +1,13 @@
-import {useStore} from '../../../hooks/useStore';
+import {useStore} from '../../hooks/useStore';
 import {
 	secondToDurationData,
 	createDurationString,
 	getDateWeekday,
 	getDateDay,
 	getDateMonth,
-} from '../../../utils/date';
-import Button from '../../Button/index';
-import {StyledButtonSVG} from '../../Button/Styled/ButtonSVG';
+} from '../../utils/date';
+import Button from '../Button/index';
+import {StyledButtonSVG} from '../Button/Styled/ButtonSVG';
 
 import {StyledActivityDivider} from './Style/ActivityDivider';
 import {StyledActivityContainer} from './Style/container';
@@ -73,7 +73,7 @@ export default function ActivityResult({challengeId, activityId, date, duration,
 							width="1rem"
 							height="1rem"
 							color="var(--darkgreen)"
-							alt="edit"
+							alt="delete"
 						/>
 					</Button>
 				</div>
