@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, fireEvent, screen} from '@testing-library/react';
 
-import AddActivity from './ActivityComponents/Form/index';
+import AddActivity from './index';
 
 describe('AddActivity component', () => {
 	it('should render children', () => {

@@ -15,7 +15,7 @@ export default function NavBar() {
 					alt="list of challenges"
 				/>
 			</StyledLinkContainer>
-			<StyledLinkContainer to="/ActiveChallenge" data-testid="active challenge">
+			<StyledLinkContainer to="/ActiveChallenge">
 				<StyledIcon
 					icon="icon-park-solid:sport"
 					width={iconSize}

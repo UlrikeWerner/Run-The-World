@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import {render, screen} from '@testing-library/react';
 
-import ActivityResult from '.';
+import ActivityResult from './index';
 
 describe('ActivityResult component', () => {
 	it('should render children', () => {
